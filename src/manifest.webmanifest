@@ -1,0 +1,26 @@
+{
+  "name": "空资讯",
+  "short_name": "空",
+  "theme_color": "#e91e63",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/icons/logo/logo.svg",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "assets/icons/logo/logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/icons/logo/logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
