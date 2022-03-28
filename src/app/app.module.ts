@@ -6,13 +6,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { MaterialModule } from './shared/material.module';
+import { ComponentsModule } from './components.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
@@ -20,7 +19,8 @@ import { MaterialModule } from './shared/material.module';
       registrationStrategy: 'registerWhenStable:30000',
     }),
     BrowserAnimationsModule,
-    MaterialModule,
+    ComponentsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
