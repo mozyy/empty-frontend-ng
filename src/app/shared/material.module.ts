@@ -65,7 +65,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     // MatDatepickerModule,
     // MatDialogModule,
     // MatDividerModule,
-    // MatExpansionModule,
+    MatExpansionModule,
     // MatGridListModule,
     MatIconModule,
     // MatInputModule,

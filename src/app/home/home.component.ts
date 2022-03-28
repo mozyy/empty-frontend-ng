@@ -2,6 +2,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import {
   ChangeDetectorRef, Component, OnDestroy,
 } from '@angular/core';
+import { SourcesItem } from 'src/proto/manage/sources_pb';
 
 @Component({
   selector: 'efn-home',
@@ -10,6 +11,8 @@ import {
 })
 export class HomeComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
+
+  routers: SourcesItem[] = [];
 
   fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
