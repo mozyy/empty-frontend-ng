@@ -1,15 +1,16 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import {
-  ChangeDetectorRef, Component, OnDestroy,
+  ChangeDetectorRef, Component, OnDestroy, OnInit,
 } from '@angular/core';
 import { SourcesItem } from 'src/proto/manage/sources_pb';
+import { SourceService } from '../grpc/source.service';
 
 @Component({
   selector: 'efn-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
 
   routers: SourcesItem[] = [];
@@ -27,10 +28,20 @@ export class HomeComponent implements OnDestroy {
 
   private mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    public source:SourceService,
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addEventListener('change', this.mobileQueryListener);
+  }
+
+  ngOnInit(): void {
+    this.source.getSource(new SourcesItem()).subscribe((data) => {
+      this.routers = data;
+    });
   }
 
   ngOnDestroy(): void {
