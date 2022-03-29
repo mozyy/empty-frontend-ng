@@ -1,0 +1,18 @@
+<div class="root" *ngIf="detail">
+  <h1>{{ detail.getTitle() }}</h1>
+  <h4>{{ detail.getFrom() + " - " + detail.getTime() }}</h4>
+  <p class="mat-caption">{{ detail.getSummary() }}</p>
+  <mat-divider class="divider"></mat-divider>
+  <div *ngFor="let item of detail.getContentList()">
+    <p *ngIf="item.getType() === 1; else elseBlock">{{ item.getContent() }}</p>
+    <ng-template #elseBlock>
+      <img
+        #elseBlock
+        class="img"
+        [src]="item.getContent()"
+        referrerpolicy="no-referrer"
+      />
+    </ng-template>
+  </div>
+  <mat-divider class="divider"></mat-divider>
+</div>

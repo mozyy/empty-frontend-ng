@@ -1,0 +1,37 @@
+<div class="root">
+  <mat-toolbar color="primary" class="toolbar">
+    <button
+      mat-icon-button
+      aria-label="Example icon-button with menu icon"
+      (click)="snav.toggle()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>空资讯</span>
+    <span class="spacer"></span>
+    <button mat-icon-button aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="container">
+    <mat-sidenav
+      #snav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      autoFocus="false"
+    >
+      <mat-accordion>
+        <efn-menu [routers]="routers"></efn-menu>
+      </mat-accordion>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="router">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,22 +1,11 @@
 @import "../utils/utils.scss";
 
 .root {
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-  height: 100%;
 }
-.toolbar {
-  flex: none;
+.item {
+  margin-top: 5px;
+  display: block;
 }
-.spacer {
-  flex: auto;
-}
-.container {
-  flex: auto;
-  overflow: auto;
-}
-
 .card-title {
   line-height: initial;
   @include overEllipsis(3);

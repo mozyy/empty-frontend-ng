@@ -1,0 +1,20 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 100%;
+}
+.toolbar {
+  flex: none;
+}
+.spacer {
+  flex: auto;
+}
+.container {
+  flex: auto;
+  overflow: auto;
+}
+.router {
+  margin: 0 auto;
+  max-width: 800px;
+}

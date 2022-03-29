@@ -4,7 +4,7 @@ import {
   catchError, from, map, Observable, of, tap,
 } from 'rxjs';
 import { NewsClient } from 'src/proto/news/NewsServiceClientPb';
-import { NewsItem } from 'src/proto/news/news_pb';
+import { DetailRequest, DetailResponse, NewsItem } from 'src/proto/news/news_pb';
 import { HandleErrorService } from './handle-error.service';
 
 @Injectable({
@@ -20,6 +20,14 @@ export class NewsService extends NewsClient {
       map((resp) => resp.getListList()),
       tap((resp) => console.log(resp)),
       this.handleError.handleCatchError<NewsItem[]>([]),
+    );
+  }
+
+  getDetail(link:string) {
+    const req = new DetailRequest();
+    req.setUrl(link);
+    return from(this.detail(req, null)).pipe(
+      this.handleError.handleCatchError(new DetailResponse()),
     );
   }
 }
