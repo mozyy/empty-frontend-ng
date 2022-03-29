@@ -1,3 +1,5 @@
+@import "../utils/utils.scss";
+
 .root {
   display: flex;
   flex-direction: column;
@@ -13,4 +15,9 @@
 .container {
   flex: auto;
   overflow: auto;
+}
+
+.card-title {
+  line-height: initial;
+  @include overEllipsis(2);
 }

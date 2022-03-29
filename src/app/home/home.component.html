@@ -29,7 +29,26 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <p *ngFor="let content of fillerContent">{{ content }}</p>
+      <mat-nav-list>
+        <a [href]="item.getLink()" *ngFor="let item of newsList | async">
+          <mat-card>
+            <mat-card-title-group>
+              <mat-card-title class="card-title">{{
+                item.getTitle()
+              }}</mat-card-title>
+              <mat-card-subtitle>{{ item.getTime() }}</mat-card-subtitle>
+              <img
+                referrerpolicy="no-referrer"
+                mat-card-md-image
+                [src]="item.getImage()"
+              />
+            </mat-card-title-group>
+            <mat-card-content>
+              {{ item.getView() + " | " + item.getComment() }}
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </mat-nav-list>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
