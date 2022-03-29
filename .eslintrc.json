@@ -1,6 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*", "proto/**/*"],
+  "ignorePatterns": ["projects/**/*", "src/proto/**/*", "src/gorm/**/*"],
   "overrides": [
     {
       "files": ["*.ts"],
