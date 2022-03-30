@@ -3,6 +3,7 @@ import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
 import {
   catchError, from, map, Observable, of, tap,
 } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { NewsClient } from 'src/proto/news/NewsServiceClientPb';
 import { DetailRequest, DetailResponse, NewsItem } from 'src/proto/news/news_pb';
 import { HandleErrorService } from './handle-error.service';
@@ -12,14 +13,14 @@ import { HandleErrorService } from './handle-error.service';
 })
 export class NewsService extends NewsClient {
   constructor(private handleError: HandleErrorService) {
-    super('http://localhost:50052/i/api');
+    super(environment.grpcHost);
   }
 
   getNews() {
     return from(this.list(new Empty(), null)).pipe(
       map((resp) => resp.getListList()),
       tap((resp) => console.log(resp)),
-      this.handleError.handleCatchError<NewsItem[]>([]),
+      this.handleError.handleCatchError<NewsItem[]>([], 'get news list'),
     );
   }
 
@@ -27,7 +28,7 @@ export class NewsService extends NewsClient {
     const req = new DetailRequest();
     req.setUrl(link);
     return from(this.detail(req, null)).pipe(
-      this.handleError.handleCatchError(new DetailResponse()),
+      this.handleError.handleCatchError(new DetailResponse(), 'get news detail'),
     );
   }
 }

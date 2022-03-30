@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
 import { DetailRequest, DetailResponse } from 'src/proto/news/news_pb';
-import { NewsService } from '../grpc/news.service';
+import { NewsService } from '../../grpc/news.service';
 
 @Component({
   selector: 'efn-news-detail',

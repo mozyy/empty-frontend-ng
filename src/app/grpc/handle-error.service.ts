@@ -12,6 +12,7 @@ export class HandleErrorService {
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   log(message:string) {
     console.error(message);
   }

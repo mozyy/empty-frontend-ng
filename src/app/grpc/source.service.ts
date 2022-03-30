@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { from, map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { SourcesClient } from 'src/proto/manage/SourcesServiceClientPb';
 import { SourcesItem } from 'src/proto/manage/sources_pb';
 import { HandleErrorService } from './handle-error.service';
@@ -9,7 +10,7 @@ import { HandleErrorService } from './handle-error.service';
 })
 export class SourceService extends SourcesClient {
   constructor(private handleError: HandleErrorService) {
-    super('http://localhost:50052/i/api');
+    super(environment.grpcHost);
   }
 
   getSource(source: SourcesItem):Observable<SourcesItem[]> {

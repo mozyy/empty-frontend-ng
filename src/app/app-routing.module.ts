@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { LayoutComponent } from './layout/layout/layout.component';
-import { NewsDetailComponent } from './news-detail/news-detail.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NewsDetailComponent } from './pages/news-detail/news-detail.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       },
     ],
   },
+  { path: 'login', component: LoginComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
