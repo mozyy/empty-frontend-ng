@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { lib } from 'crypto-js';
 import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
 import {
   catchError, from, map, Observable, of, tap,
@@ -6,13 +7,14 @@ import {
 import { environment } from 'src/environments/environment';
 import { NewsClient } from 'src/proto/news/NewsServiceClientPb';
 import { DetailRequest, DetailResponse, NewsItem } from 'src/proto/news/news_pb';
+import { CryptoService } from './crypto.service';
 import { HandleErrorService } from './handle-error.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewsService extends NewsClient {
-  constructor(private handleError: HandleErrorService) {
+  constructor(private handleError: HandleErrorService, private crypto:CryptoService) {
     super(environment.grpcHost);
   }
 

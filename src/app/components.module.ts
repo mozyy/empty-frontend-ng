@@ -17,7 +17,7 @@ import { LoginComponent } from './pages/login/login.component';
     CommonModule,
     ReactiveFormsModule,
     MaterialModule,
-    RouterModule,
+    RouterModule.forRoot([]),
   ],
 })
 export class ComponentsModule { }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CryptoService } from 'src/app/grpc/crypto.service';
 import { NewsService } from '../../grpc/news.service';
 
 @Component({
@@ -9,5 +10,5 @@ import { NewsService } from '../../grpc/news.service';
 export class HomeComponent {
   newsList$ = this.news.getNews();
 
-  constructor(private news: NewsService) { }
+  constructor(private news: NewsService, private crypto:CryptoService) { }
 }
