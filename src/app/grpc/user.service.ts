@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { OAuthToken } from 'src/proto/model/oauth_pb';
 import { UserClient } from 'src/proto/user/UserServiceClientPb';
 import { LoginRequest } from 'src/proto/user/user_pb';
-import { HandleErrorService } from './handle-error.service';
+import { HandleErrorService } from '../services/handle-error.service';
 
 @Injectable({
   providedIn: 'root',

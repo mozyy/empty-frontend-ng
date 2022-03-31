@@ -7,8 +7,8 @@ import {
 import { environment } from 'src/environments/environment';
 import { NewsClient } from 'src/proto/news/NewsServiceClientPb';
 import { DetailRequest, DetailResponse, NewsItem } from 'src/proto/news/news_pb';
-import { CryptoService } from './crypto.service';
-import { HandleErrorService } from './handle-error.service';
+import { CryptoService } from '../services/crypto.service';
+import { HandleErrorService } from '../services/handle-error.service';
 
 @Injectable({
   providedIn: 'root',
