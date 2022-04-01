@@ -1,0 +1,14 @@
+.root {
+  overflow: hidden;
+}
+.card {
+  margin: 50px auto;
+  width: 300px;
+}
+mat-form-field {
+  width: 100%;
+}
+.btns {
+  display: flex;
+  justify-content: space-between;
+}

@@ -3,14 +3,15 @@ import { from, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { SourcesClient } from 'src/proto/manage/SourcesServiceClientPb';
 import { SourcesItem } from 'src/proto/manage/sources_pb';
+import { GrpcInterceptorService } from '../services/grpc-interceptor.service';
 import { HandleErrorService } from '../services/handle-error.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SourceService extends SourcesClient {
-  constructor(private handleError: HandleErrorService) {
-    super(environment.grpcHost);
+  constructor(private handleError: HandleErrorService, interceptor: GrpcInterceptorService) {
+    super(environment.grpcHost, null, { unaryInterceptors: [interceptor] });
   }
 
   getSource(source: SourcesItem):Observable<SourcesItem[]> {
