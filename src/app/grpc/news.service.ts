@@ -7,21 +7,21 @@ import {
 import { environment } from 'src/environments/environment';
 import { NewsClient } from 'src/proto/news/NewsServiceClientPb';
 import { DetailRequest, DetailResponse, NewsItem } from 'src/proto/news/news_pb';
-import { CryptoService } from './crypto.service';
-import { HandleErrorService } from './handle-error.service';
+import { CryptoService } from '../services/crypto.service';
+import { GrpcInterceptorService } from '../services/grpc-interceptor.service';
+import { HandleErrorService } from '../services/handle-error.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewsService extends NewsClient {
-  constructor(private handleError: HandleErrorService, private crypto:CryptoService) {
-    super(environment.grpcHost);
+  constructor(private handleError: HandleErrorService, interceptor:GrpcInterceptorService) {
+    super(environment.grpcHost, null, { unaryInterceptors: [interceptor] });
   }
 
   getNews() {
     return from(this.list(new Empty(), null)).pipe(
       map((resp) => resp.getListList()),
-      tap((resp) => console.log(resp)),
       this.handleError.handleCatchError<NewsItem[]>([], 'get news list'),
     );
   }

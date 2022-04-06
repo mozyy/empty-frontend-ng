@@ -6,7 +6,8 @@ import { environment } from 'src/environments/environment';
 import { OAuthToken } from 'src/proto/model/oauth_pb';
 import { UserClient } from 'src/proto/user/UserServiceClientPb';
 import { LoginRequest } from 'src/proto/user/user_pb';
-import { HandleErrorService } from './handle-error.service';
+import { GrpcInterceptorService } from '../services/grpc-interceptor.service';
+import { HandleErrorService } from '../services/handle-error.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +15,8 @@ import { HandleErrorService } from './handle-error.service';
 export class UserService extends UserClient {
   oauthToken:OAuthToken | null = null;
 
-  constructor(private handleError: HandleErrorService) {
-    super(environment.grpcHost);
+  constructor(private handleError: HandleErrorService, interceptor:GrpcInterceptorService) {
+    super(environment.grpcHost, null, { unaryInterceptors: [interceptor] });
   }
 
   loginHandle(reqObj: LoginRequest.AsObject) {

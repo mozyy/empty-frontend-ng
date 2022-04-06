@@ -11,7 +11,11 @@ interface Deserialize<T> {
 })
 
 export class CryptoService {
-  key = '2a4ac92b8217a77a';
+  protected key = '2a4ac92b8217a77a';
+
+  setKey(key:string) {
+    this.key = key;
+  }
 
   encAES(
     message: string | lib.WordArray,
@@ -31,7 +35,10 @@ export class CryptoService {
     return AES.decrypt(message, this.key);
   }
 
-  dncProtoAES<T>(str:string, decode: Deserialize<T>) {
+  dncProtoAES<T>(
+    str:string,
+    decode: Deserialize<T>,
+  ) {
     const dnc = this.dncAES(str);
     const arr = new Uint8Array(dnc.words);
     const message = decode.deserializeBinary(arr);

@@ -5,12 +5,17 @@
   height: 100%;
 }
 .toolbar {
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // right: 0;
   flex: none;
 }
 .spacer {
   flex: auto;
 }
 .container {
+  // padding-top: 80px;
   flex: auto;
   overflow: auto;
 }
