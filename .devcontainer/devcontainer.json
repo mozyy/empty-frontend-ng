@@ -2,31 +2,48 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.195.0/containers/javascript-node
 {
   "name": "EmptyFrontendNg",
-  "build": {
-    "dockerfile": "Dockerfile",
-    // Update 'VARIANT' to pick a Node version: 16, 14, 12.
-    // Append -bullseye or -buster to pin to an OS version.
-    // Use -bullseye variants on local arm64/Apple Silicon.
-    "args": { "VARIANT": "16-bullseye" }
-  },
+  "image": "mozyy/dev-container:1.0.0",
+  // "build": {
+  //   "dockerfile": "Dockerfile",
+  //   // Update the VARIANT arg to pick a version of Go: 1, 1.18, 1.17
+  //   "args": {
+  //     // "VARIANT": "1.18"
+  //     // "HTTP_PROXY": "${localEnv:proxy_addr}",
+  //     // "HTTPS_PROXY": "${localEnv:proxy_addr}"
+  //   }
+  // },
+  "runArgs": ["--init"],
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind"
+  ],
+  "overrideCommand": false,
 
   // Use this environment variable if you need to bind mount your local source code into a new container.
   "remoteEnv": {
     // "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
-    "YARN_CACHE_FOLDER": "/workspaces/cache/yarn_cache",
     "http_proxy": "${localEnv:proxy_addr}",
-    "https_proxy": "${localEnv:proxy_addr}"
+    "https_proxy": "${localEnv:proxy_addr}",
+    "mysql_dsn": "${localEnv:mysql_dsn}",
+    "postgresql_dsn": "${localEnv:postgresql_dsn}"
   },
 
   // Set *default* container specific settings.json values on container create.
-  "settings": {},
+  "settings": {
+    "terminal.integrated.profiles.linux": {
+      "zsh (login)": {
+        "path": "zsh",
+        "args": ["-l"]
+      }
+    }
+  },
 
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
-    "dbaeumer.vscode-eslint",
-    "angular.ng-template",
+    "ms-azuretools.vscode-docker",
     "esbenp.prettier-vscode",
-    "eamodio.gitlens"
+    "eamodio.gitlens",
+    "dbaeumer.vscode-eslint",
+    "angular.ng-template"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.

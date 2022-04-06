@@ -1,9 +1,10 @@
-import * as jspb from 'google-protobuf';
+import * as jspb from 'google-protobuf'
 
 import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb';
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 import * as gorm_options_gorm_pb from '../../gorm/options/gorm_pb';
 import * as gorm_types_types_pb from '../../gorm/types/types_pb';
+
 
 export class NewsItem extends jspb.Message {
   getId(): number;
@@ -66,7 +67,7 @@ export namespace NewsItem {
     view: number,
     comment: number,
     type: string,
-  };
+  }
 }
 
 export class ListResponse extends jspb.Message {
@@ -86,7 +87,7 @@ export class ListResponse extends jspb.Message {
 export namespace ListResponse {
   export type AsObject = {
     listList: Array<NewsItem.AsObject>,
-  };
+  }
 }
 
 export class DetailRequest extends jspb.Message {
@@ -104,7 +105,7 @@ export class DetailRequest extends jspb.Message {
 export namespace DetailRequest {
   export type AsObject = {
     url: string,
-  };
+  }
 }
 
 export class DetailResponse extends jspb.Message {
@@ -166,7 +167,7 @@ export namespace DetailResponse {
     summary: string,
     contentList: Array<DetailResponse.DetailContent.AsObject>,
     no: string,
-  };
+  }
 
   export class DetailContent extends jspb.Message {
     getId(): number;
@@ -213,7 +214,8 @@ export namespace DetailResponse {
       type: number,
       content: string,
       newsDetailid: number,
-    };
+    }
   }
 
 }
+
