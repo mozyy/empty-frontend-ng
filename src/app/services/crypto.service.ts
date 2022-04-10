@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AES, lib } from 'crypto-js';
 import { Message } from 'google-protobuf';
 
-interface Deserialize<T> {
+export interface Deserialize<T extends Message = Message> {
   deserializeBinary(bytes: Uint8Array): T;
 }
 
@@ -17,31 +17,28 @@ export class CryptoService {
     this.key = key;
   }
 
-  encAES(
-    message: string | lib.WordArray,
+  encAES<T extends Message>(
+    message: T | string,
   ) {
-    return AES.encrypt(message, this.key).toString();
+    console.log('enc', message, (message as any).serializeBinary(), Array.from((message as any).serializeBinary()));
+    const value = message instanceof Message
+      ? lib.WordArray.create(Array.from(message.serializeBinary())) : message;
+    return AES.encrypt(value, this.key).toString();
   }
 
-  encProtoAES(message: Message) {
-    const wordArray = lib.WordArray.create(Array.from(message.serializeBinary()));
-    const encryptValue = this.encAES(wordArray);
-    return encryptValue;
-  }
-
-  dncAES(
+  dncAES(message: string):string;
+  dncAES<T extends Message>(message: string, decode:Deserialize<T>):T;
+  dncAES<T extends Message>(
     message: string,
+    decode?: Deserialize<T>,
   ) {
-    return AES.decrypt(message, this.key);
-  }
-
-  dncProtoAES<T>(
-    str:string,
-    decode: Deserialize<T>,
-  ) {
-    const dnc = this.dncAES(str);
+    const dnc = AES.decrypt(message, this.key);
+    if (!decode) {
+      return dnc.toString();
+    }
     const arr = new Uint8Array(dnc.words);
-    const message = decode.deserializeBinary(arr);
-    return message;
+    const res = decode.deserializeBinary(arr);
+    console.log('dnc', res, arr, dnc.words);
+    return res;
   }
 }
