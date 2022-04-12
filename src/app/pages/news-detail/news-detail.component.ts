@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { lib } from 'crypto-js';
 import { switchMap, tap } from 'rxjs';
-import { DetailRequest, DetailResponse } from 'src/proto/news/news_pb';
 import * as proto from 'google-protobuf';
-import { CryptoService } from 'src/app/services/crypto.service';
 import { NewsService } from '../../grpc/news.service';
+import { DetailResponse } from '../../../proto/news/news_pb';
+import { CryptoService } from '../../services/crypto.service';
 
 @Component({
   selector: 'efn-news-detail',

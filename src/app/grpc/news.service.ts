@@ -4,9 +4,9 @@ import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
 import {
   catchError, from, map, Observable, of, tap,
 } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { NewsClient } from 'src/proto/news/NewsServiceClientPb';
-import { DetailRequest, DetailResponse, NewsItem } from 'src/proto/news/news_pb';
+import { environment } from '../../environments/environment';
+import { NewsClient } from '../../proto/news/NewsServiceClientPb';
+import { DetailRequest, DetailResponse, NewsItem } from '../../proto/news/news_pb';
 import { CryptoService } from '../services/crypto.service';
 import { GrpcInterceptorService } from '../services/grpc-interceptor.service';
 import { HandleErrorService } from '../services/handle-error.service';

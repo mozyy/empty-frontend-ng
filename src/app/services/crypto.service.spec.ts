@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Message } from 'google-protobuf';
-import { NewsItem } from 'src/proto/news/news_pb';
 import { Random } from 'mockjs';
+import { NewsItem } from '../../proto/news/news_pb';
 import { CryptoService } from './crypto.service';
 
 describe('CryptoService', () => {
@@ -19,8 +19,8 @@ describe('CryptoService', () => {
   it('should encrypt and decrypt proto message use aes', () => {
     const msg = new NewsItem();
     msg.setTitle(Random.word());
-    const enc = service.encProtoAES(msg);
-    const dec = service.dncProtoAES(enc, NewsItem);
+    const enc = service.encAES(msg);
+    const dec = service.dncAES(enc, NewsItem);
     const equals = Message.equals(msg, dec);
     expect(equals).toBeTrue();
   });

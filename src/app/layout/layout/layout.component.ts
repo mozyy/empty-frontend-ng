@@ -2,8 +2,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import {
   ChangeDetectorRef, Component, OnDestroy, OnInit,
 } from '@angular/core';
-import { SourceService } from 'src/app/grpc/source.service';
-import { SourcesItem } from 'src/proto/manage/sources_pb';
+import { SourcesItem } from '../../../proto/manage/sources_pb';
+import { SourceService } from '../../grpc/source.service';
 
 @Component({
   selector: 'efn-layout',

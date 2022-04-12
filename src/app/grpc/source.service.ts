@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { from, map, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { SourcesClient } from 'src/proto/manage/SourcesServiceClientPb';
-import { SourcesItem } from 'src/proto/manage/sources_pb';
+import { environment } from '../../environments/environment';
+import { SourcesClient } from '../../proto/manage/SourcesServiceClientPb';
+import { SourcesItem } from '../../proto/manage/sources_pb';
 import { GrpcInterceptorService } from '../services/grpc-interceptor.service';
 import { HandleErrorService } from '../services/handle-error.service';
 

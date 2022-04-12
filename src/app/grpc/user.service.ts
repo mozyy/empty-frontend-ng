@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import {
   from, map, Observable, tap,
 } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { OAuthToken } from 'src/proto/model/oauth_pb';
-import { UserClient } from 'src/proto/user/UserServiceClientPb';
-import { LoginRequest } from 'src/proto/user/user_pb';
+import { environment } from '../../environments/environment';
+import { OAuthToken } from '../../proto/model/oauth_pb';
+import { UserClient } from '../../proto/user/UserServiceClientPb';
+import { LoginRequest } from '../../proto/user/user_pb';
 import { GrpcInterceptorService } from '../services/grpc-interceptor.service';
 import { HandleErrorService } from '../services/handle-error.service';
 

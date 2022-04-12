@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CryptoService } from 'src/app/services/crypto.service';
 import { NewsService } from '../../grpc/news.service';
+import { CryptoService } from '../../services/crypto.service';
 
 @Component({
   selector: 'efn-home',

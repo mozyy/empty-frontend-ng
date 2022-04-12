@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { enc } from 'crypto-js';
 import { Message } from 'google-protobuf';
-import { OAuthToken } from 'src/proto/model/oauth_pb';
-import { NewsItem } from 'src/proto/news/news_pb';
+import { OAuthToken } from '../../proto/model/oauth_pb';
+import { NewsItem } from '../../proto/news/news_pb';
 import { CryptoService } from './crypto.service';
 
 @Injectable({

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SpecModule } from 'src/app/shared/spec.module';
+import { SpecModule } from '../../shared/spec.module';
 
 import { NewsDetailComponent } from './news-detail.component';
 

@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'src/app/grpc/user.service';
+import { UserService } from '../../grpc/user.service';
 
 @Component({
   selector: 'efn-login',
