@@ -29,9 +29,6 @@ export class NewsDetailComponent implements OnInit {
     const link = this.route.snapshot.paramMap.get('link')!;
     this.news.getDetail(link).subscribe((resp) => {
       this.detail = resp;
-      const a = this.crypto.encAES(resp);
-      const b = this.crypto.dncAES(a, DetailResponse);
-      console.log(proto.Message.equals(resp, b), resp, b);
     });
   }
 }
