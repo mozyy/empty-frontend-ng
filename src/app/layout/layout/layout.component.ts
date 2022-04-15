@@ -3,7 +3,7 @@ import {
   ChangeDetectorRef, Component, OnDestroy, OnInit,
 } from '@angular/core';
 import { SourcesItem } from '../../../proto/manage/sources_pb';
-import { SourceService } from '../../grpc/source.service';
+import { SourceService } from '../../grpc/manage/source.service';
 
 @Component({
   selector: 'efn-layout',

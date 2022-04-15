@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { lib } from 'crypto-js';
 import { switchMap, tap } from 'rxjs';
 import * as proto from 'google-protobuf';
-import { NewsService } from '../../grpc/news.service';
 import { DetailResponse } from '../../../proto/news/news_pb';
 import { CryptoService } from '../../services/crypto.service';
+import { NewsService } from '../../grpc/news/news.service';
 
 @Component({
   selector: 'efn-news-detail',
