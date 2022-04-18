@@ -8,6 +8,7 @@ import { UserClient } from '../../../proto/user/UserServiceClientPb';
 import { LoginRequest } from '../../../proto/user/user_pb';
 import { GrpcInterceptorService } from '../../services/grpc-interceptor.service';
 import { HandleErrorService } from '../../services/handle-error.service';
+import { protobufAssign } from '../../utils/grpc';
 
 @Injectable({
   providedIn: 'root',
@@ -21,8 +22,7 @@ export class UserService extends UserClient {
 
   loginHandle(reqObj: LoginRequest.AsObject) {
     const req = new LoginRequest();
-    req.setMobile(reqObj.mobile);
-    req.setPassword(reqObj.password);
+    protobufAssign(reqObj, req);
     return from(this.login(req, null)).pipe(
       tap((token) => this.oauthToken = token),
       this.handleError.handleCatchError<OAuthToken | null>(null, 'login'),

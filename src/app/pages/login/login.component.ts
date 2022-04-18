@@ -9,7 +9,7 @@ import { UserService } from '../../grpc/user/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   form = this.fb.group({
     mobile: ['', [Validators.required, Validators.pattern('\\d{11}')]],
     password: ['', [Validators.required, Validators.pattern('\\S{6,}')]],
@@ -21,10 +21,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private location: Location,
   ) { }
-
-  ngOnInit(): void {
-    // this.form.disable();
-  }
 
   onSubmit() {
     if (this.form.valid) {
