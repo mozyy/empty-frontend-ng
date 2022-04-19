@@ -24,7 +24,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      this.user.loginHandle(this.form.value).subscribe((token) => {
+      this.user.login(this.form.value).subscribe((token) => {
         if (token) {
           // this.location.back();
           this.router.navigate(['..'], { replaceUrl: true }).then(() => {

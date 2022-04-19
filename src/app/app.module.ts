@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { ComponentsModule } from './components.module';
+import { AppConfigProvider } from './app.config';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,9 @@ import { ComponentsModule } from './components.module';
     ComponentsModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    AppConfigProvider,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
