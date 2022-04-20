@@ -19,22 +19,23 @@ export class UserService {
   private client:UserClient;
 
   constructor(
-    private handleError: HandleErrorService,
     interceptor:GrpcInterceptorService,
-    private oauthService: OauthService,
     @Inject(APP_CONFIG) config: AppConfig,
+    private handleError: HandleErrorService,
+    private oauthService: OauthService,
   ) {
     this.client = new UserClient(config.grpcHost, null, { unaryInterceptors: [interceptor] });
   }
 
-  login(reqObj: LoginRequest.AsObject) {
+  login(params: LoginRequest.AsObject) {
     const req = new LoginRequest();
-    protobufAssign(reqObj, req);
+    protobufAssign(params, req);
     return from(this.client.login(req, null)).pipe(
-      tap((token) => {
-        this.oauthService.createToken(token);
+      tap((resp) => {
+        this.oauthService.createToken(resp);
       }),
-      this.handleError.handleCatchError<OAuthToken | null>(null, 'login'),
+      map((resp) => resp.toObject()),
+      this.handleError.handleCatchError<OAuthToken.AsObject>(new OAuthToken().toObject(), 'login'),
     );
   }
 }

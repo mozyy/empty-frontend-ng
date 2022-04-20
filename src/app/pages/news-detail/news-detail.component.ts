@@ -13,7 +13,7 @@ import { NewsService } from '../../grpc/news/news.service';
   styleUrls: ['./news-detail.component.scss'],
 })
 export class NewsDetailComponent implements OnInit {
-  detail:DetailResponse | undefined;
+  detail:DetailResponse.AsObject | undefined;
 
   constructor(
     private route: ActivatedRoute,

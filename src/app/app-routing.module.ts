@@ -5,6 +5,8 @@ import { LayoutComponent } from './layout/layout/layout.component';
 import { NewsDetailComponent } from './pages/news-detail/news-detail.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ManageComponent } from './pages/manage/manage.component';
+import { SourceComponent } from './pages/manage/source/source.component';
 
 const routes: Routes = [
   {
@@ -18,6 +20,16 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
+      },
+      {
+        path: 'manage',
+        component: ManageComponent,
+        children: [
+          {
+            path: 'source',
+            component: SourceComponent,
+          },
+        ],
       },
     ],
   },

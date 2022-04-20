@@ -83,7 +83,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     // MatSlideToggleModule,
     // MatSnackBarModule,
     // MatSortModule,
-    // MatTableModule,
+    MatTableModule,
     // MatTabsModule,
     MatToolbarModule,
     // MatTooltipModule,

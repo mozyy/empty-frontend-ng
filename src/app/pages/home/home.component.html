@@ -1,21 +1,21 @@
 <mat-nav-list class="root">
   <a
-    [routerLink]="['newsDetail', item.getLink()]"
+    [routerLink]="['newsDetail', item.link]"
     *ngFor="let item of newsList$ | async"
     class="item"
   >
     <mat-card>
       <mat-card-title-group>
         <mat-card-title>
-          <span class="mat-h4 card-title">{{ item.getTitle() }}</span>
+          <span class="mat-h4 card-title">{{ item.title }}</span>
         </mat-card-title>
         <mat-card-subtitle>{{
-          item.getTime() + " | " + item.getView() + " | " + item.getComment()
+          item.time + " | " + item.view + " | " + item.comment
         }}</mat-card-subtitle>
         <img
           referrerpolicy="no-referrer"
           mat-card-md-image
-          [src]="item.getImage()"
+          [src]="item.image"
         />
       </mat-card-title-group>
       <!-- <mat-card-content>

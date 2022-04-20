@@ -7,5 +7,5 @@ import { SourcesItem } from '../../../proto/manage/sources_pb';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent {
-  @Input() routers:SourcesItem[] = [];
+  @Input() routers:SourcesItem.AsObject[] = [];
 }

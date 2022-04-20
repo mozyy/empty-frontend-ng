@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { lib } from 'crypto-js';
 import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
 import {
@@ -7,30 +7,39 @@ import {
 import { environment } from '../../../environments/environment';
 import { NewsClient } from '../../../proto/news/NewsServiceClientPb';
 import { DetailRequest, DetailResponse, NewsItem } from '../../../proto/news/news_pb';
+import { AppConfig, APP_CONFIG } from '../../app.config';
 import { CryptoService } from '../../services/crypto.service';
 import { GrpcInterceptorService } from '../../services/grpc-interceptor.service';
 import { HandleErrorService } from '../../services/handle-error.service';
+import { protobufAssign } from '../../utils/grpc';
 
 @Injectable({
   providedIn: 'root',
 })
-export class NewsService extends NewsClient {
-  constructor(private handleError: HandleErrorService, interceptor:GrpcInterceptorService) {
-    super(environment.grpcHost, null, { unaryInterceptors: [interceptor] });
+export class NewsService {
+  client: NewsClient;
+
+  constructor(
+    interceptor:GrpcInterceptorService,
+    @Inject(APP_CONFIG) config: AppConfig,
+    private handleError: HandleErrorService,
+  ) {
+    this.client = new NewsClient(config.grpcHost, null, { unaryInterceptors: [interceptor] });
   }
 
   getNews() {
-    return from(this.list(new Empty(), null)).pipe(
-      map((resp) => resp.getListList()),
-      this.handleError.handleCatchError<NewsItem[]>([], 'get news list'),
+    return from(this.client.list(new Empty(), null)).pipe(
+      map((resp) => resp.toObject().listList),
+      this.handleError.handleCatchError<NewsItem.AsObject[]>([], 'get news list'),
     );
   }
 
   getDetail(link:string) {
     const req = new DetailRequest();
-    req.setUrl(link);
-    return from(this.detail(req, null)).pipe(
-      this.handleError.handleCatchError(new DetailResponse(), 'get news detail'),
+    protobufAssign({ link }, req);
+    return from(this.client.detail(req, null)).pipe(
+      map((resp) => resp.toObject()),
+      this.handleError.handleCatchError<DetailResponse.AsObject>(new DetailResponse().toObject(), 'get news detail'),
     );
   }
 }

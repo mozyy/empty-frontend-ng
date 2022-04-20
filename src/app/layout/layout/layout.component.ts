@@ -13,7 +13,7 @@ import { SourceService } from '../../grpc/manage/source.service';
 export class LayoutComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
 
-  routers:SourcesItem[] = [];
+  routers:SourcesItem.AsObject[] = [];
 
   private mobileQueryListener: () => void;
 
@@ -29,7 +29,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.source.getSource(new SourcesItem())
+    this.source.getSource({})
       .subscribe((resp) => this.routers = resp);
   }
 

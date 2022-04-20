@@ -1,14 +1,14 @@
 <ng-template *ngFor="let router of routers">
-  <mat-expansion-panel *ngIf="router.getChildrenList().length > 0">
+  <mat-expansion-panel *ngIf="router.childrenList.length > 0">
     <mat-expansion-panel-header>
-      <mat-panel-title> {{ router.getName() }} </mat-panel-title>
+      <mat-panel-title> {{ router.name }} </mat-panel-title>
       <mat-panel-description>
         <mat-icon>home</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <efn-menu [routers]="router.getChildrenList()"></efn-menu>
+    <efn-menu [routers]="router.childrenList"></efn-menu>
   </mat-expansion-panel>
-  <mat-nav-list *ngIf="router.getChildrenList().length === 0">
-    <a mat-list-item [href]="router.getPath()"> {{ router.getName() }} </a>
+  <mat-nav-list *ngIf="router.childrenList.length === 0">
+    <a mat-list-item [href]="router.path"> {{ router.name }} </a>
   </mat-nav-list>
 </ng-template>
