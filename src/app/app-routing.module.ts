@@ -23,13 +23,7 @@ const routes: Routes = [
       },
       {
         path: 'manage',
-        component: ManageComponent,
-        children: [
-          {
-            path: 'source',
-            component: SourceComponent,
-          },
-        ],
+        loadChildren: () => import('./pages/manage/manage.module').then((m) => m.ManageModule),
       },
     ],
   },

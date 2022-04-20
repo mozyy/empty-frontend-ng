@@ -9,14 +9,12 @@ import { MenuComponent } from './components/menu/menu.component';
 import { LayoutComponent } from './layout/layout/layout.component';
 import { NewsDetailComponent } from './pages/news-detail/news-detail.component';
 import { LoginComponent } from './pages/login/login.component';
-import { SourceComponent } from './pages/manage/source/source.component';
-import { ManageComponent } from './pages/manage/manage.component';
 
 @NgModule({
   declarations: [
     HomeComponent, PageNotFoundComponent,
     MenuComponent, LayoutComponent, NewsDetailComponent,
-    LoginComponent, SourceComponent, ManageComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,
