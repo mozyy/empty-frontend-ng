@@ -16,7 +16,7 @@ implements UnaryInterceptor<REQ, RESP> {
     invoker: (request: Request<REQ, RESP>) =>
     Promise<UnaryResponse<REQ, RESP>>,
   ): Promise<UnaryResponse<REQ, RESP>> {
-    const accessToken = await lastValueFrom(this.oauthService.accessToken);
+    const accessToken = await this.oauthService.getAccessToken();
     const reqMeta = request.getMetadata();
     reqMeta['Authorization'] = reqMeta['Authorization'] ?? `Bearer ${accessToken}`;
     return invoker(request).then((response) => {

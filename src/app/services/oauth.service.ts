@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as ClientOAuth2 from 'client-oauth2';
 import {
-  from, map, of, tap, throttle, throttleTime,
+  empty,
+  EMPTY,
+  from, map, Observable, of, tap, throttle, throttleTime,
 } from 'rxjs';
 import { OAuthToken } from '../../proto/model/oauth_pb';
 import { StorageService } from './storage.service';
@@ -11,6 +13,8 @@ import { StorageService } from './storage.service';
 })
 export class OauthService {
   private oAuth2Token?:ClientOAuth2.Token;
+
+  private refreshing: Promise<string> | null = null;
 
   private client = new ClientOAuth2({
     clientId: '1',
@@ -22,11 +26,11 @@ export class OauthService {
   constructor(private storageService:StorageService) {
     const storage = this.storageService.getItem<OAuthToken>('oauthToken');
     if (storage) {
-      this.createToken(storage, false);
+      this.convertToken(storage);
     }
   }
 
-  createToken(req: OAuthToken, storage:boolean = true) {
+  private convertToken(req: OAuthToken) {
     const token = this.client.createToken(
       req.getAccessToken(),
       req.getRefreshToken(),
@@ -35,36 +39,45 @@ export class OauthService {
     );
     token.expiresIn(req.getExpiresSeconds());
     this.oAuth2Token = token;
-    console.log(1111, token);
-    if (storage) {
-      this.setToken(req);
-    }
+    return token;
   }
 
-  setToken(req: OAuthToken) {
+  createToken(req: OAuthToken) {
+    this.convertToken(req);
+    this.setToken(req);
+  }
+
+  private setToken(req: OAuthToken) {
     this.storageService.setItem('oauthToken', req);
   }
 
-  get accessToken() {
+  private async refreshToken() {
     if (!this.oAuth2Token) {
-      return of('');
+      return Promise.reject(Error('no oAuth2Token'));
+    }
+    const token = await this.oAuth2Token.refresh();
+    this.oAuth2Token = token;
+    const req = new OAuthToken();
+    req.setAccessToken(token.accessToken);
+    req.setRefreshToken(token.refreshToken);
+    req.setTokenType(token.tokenType);
+    req.setExpiresSeconds(((token as any).expires - Date.now()) / 1000);
+    this.setToken(req);
+    return token.accessToken;
+  }
+
+  getAccessToken() {
+    if (!this.oAuth2Token) {
+      return Promise.resolve('');
     }
     if (!this.oAuth2Token.expired()) {
-      return of(this.oAuth2Token.accessToken);
+      return Promise.resolve(this.oAuth2Token.accessToken);
     }
-    return from(this.oAuth2Token.refresh())
-      .pipe(
-        throttleTime(5000),
-        map((token) => {
-          this.oAuth2Token = token;
-          const req = new OAuthToken();
-          req.setAccessToken(token.accessToken);
-          req.setRefreshToken(token.refreshToken);
-          req.setTokenType(token.tokenType);
-          req.setExpiresSeconds(((token as any).expires - Date.now()) / 1000);
-          this.setToken(req);
-          return token.accessToken;
-        }),
-      );
+    if (!this.refreshing) {
+      this.refreshing = this.refreshToken().finally(() => {
+        this.refreshing = null;
+      });
+    }
+    return this.refreshing;
   }
 }
