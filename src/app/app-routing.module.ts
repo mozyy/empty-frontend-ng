@@ -1,12 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
 import { LayoutComponent } from './layout/layout/layout.component';
-import { NewsDetailComponent } from './pages/news-detail/news-detail.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { LoginComponent } from './pages/login/login.component';
-import { ManageComponent } from './pages/manage/manage.component';
-import { SourceComponent } from './pages/manage/source/source.component';
 
 const routes: Routes = [
   {
@@ -14,20 +9,24 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: 'newsDetail/:link',
-        component: NewsDetailComponent,
-      },
-      {
-        path: '',
-        component: HomeComponent,
+        path: 'news',
+        loadChildren: () => import('./pages/news/news.module').then((m) => m.NewsModule),
       },
       {
         path: 'manage',
         loadChildren: () => import('./pages/manage/manage.module').then((m) => m.ManageModule),
       },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'news',
+      },
     ],
   },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then((m) => m.LoginModule),
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 

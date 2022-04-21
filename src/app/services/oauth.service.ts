@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
 import * as ClientOAuth2 from 'client-oauth2';
-import {
-  empty,
-  EMPTY,
-  from, map, Observable, of, tap, throttle, throttleTime,
-} from 'rxjs';
 import { OAuthToken } from '../../proto/model/oauth_pb';
 import { StorageService } from './storage.service';
 

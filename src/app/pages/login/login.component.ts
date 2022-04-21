@@ -1,8 +1,4 @@
-import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../grpc/user/user.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'efn-login',
@@ -10,29 +6,5 @@ import { UserService } from '../../grpc/user/user.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  form = this.fb.group({
-    mobile: ['', [Validators.required, Validators.pattern('\\d{11}')]],
-    password: ['', [Validators.required, Validators.pattern('\\S{6,}')]],
-  });
 
-  constructor(
-    private fb: FormBuilder,
-    private user:UserService,
-    private router: Router,
-    private location: Location,
-  ) { }
-
-  onSubmit() {
-    if (this.form.valid) {
-      this.user.login(this.form.value).subscribe((token) => {
-        if (token) {
-          // this.location.back();
-          this.router.navigate(['..'], { replaceUrl: true }).then(() => {
-            this.router.navigate(['/'], { replaceUrl: true });
-          });
-          this.form.reset();
-        }
-      });
-    }
-  }
 }

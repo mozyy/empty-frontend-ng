@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Message } from 'google-protobuf';
 import { UnaryInterceptor, UnaryResponse, Request } from 'grpc-web';
-import { lastValueFrom } from 'rxjs';
 import { OauthService } from './oauth.service';
 
 @Injectable({

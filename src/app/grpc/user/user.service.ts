@@ -1,8 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import {
-  from, map, Observable, tap,
+  from, map, tap,
 } from 'rxjs';
-import { environment } from '../../../environments/environment';
 import { OAuthToken } from '../../../proto/model/oauth_pb';
 import { UserClient } from '../../../proto/user/UserServiceClientPb';
 import { LoginRequest } from '../../../proto/user/user_pb';

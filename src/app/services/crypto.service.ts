@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  AES, enc, lib, mode, pad,
+  AES, enc, mode, pad,
 } from 'crypto-js';
 import { Message } from 'google-protobuf';
 import { decodeStringToUint8Array, encodeByteArray } from 'src/app/utils/google-closure-library';

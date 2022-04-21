@@ -1,0 +1,41 @@
+<div class="root">
+  <mat-card class="card">
+    <h2>login</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>手机号</mat-label>
+        <input matInput placeholder="请输入手机号" formControlName="mobile" />
+        <mat-hint>11位手机号</mat-hint>
+        <mat-error *ngIf="form.hasError('required', 'mobile')">
+          手机号 为<strong>必填</strong>
+        </mat-error>
+        <mat-error *ngIf="form.hasError('pattern', 'mobile')">
+          手机号 格式不正确
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>密码</mat-label>
+        <input
+          matInput
+          placeholder="请输入密码"
+          formControlName="password"
+          type="password"
+        />
+        <mat-hint>6位以上密码</mat-hint>
+        <mat-error *ngIf="form.hasError('required', 'password')">
+          密码 为<strong>必填</strong>
+        </mat-error>
+        <mat-error *ngIf="form.hasError('pattern', 'password')">
+          密码 格式不正确
+        </mat-error>
+      </mat-form-field>
+      <div class="btns">
+        <button mat-flat-button type="reset">reset</button>
+        <button mat-flat-button color="primary" type="submit">submit</button>
+      </div>
+    </form>
+    <div>
+      <a mat-button routerLink="../register">注册</a>
+    </div>
+  </mat-card>
+</div>

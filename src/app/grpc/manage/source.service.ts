@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { from, map, Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { from, map } from 'rxjs';
 import { SourcesClient } from '../../../proto/manage/SourcesServiceClientPb';
 import { SourcesItem } from '../../../proto/manage/sources_pb';
 import { AppConfig, APP_CONFIG } from '../../app.config';

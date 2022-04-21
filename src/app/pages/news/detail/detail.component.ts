@@ -1,18 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { lib } from 'crypto-js';
-import { switchMap, tap } from 'rxjs';
-import * as proto from 'google-protobuf';
-import { DetailResponse } from '../../../proto/news/news_pb';
-import { CryptoService } from '../../services/crypto.service';
-import { NewsService } from '../../grpc/news/news.service';
+import { DetailResponse } from '../../../../proto/news/news_pb';
+import { NewsService } from '../../../grpc/news/news.service';
+import { CryptoService } from '../../../services/crypto.service';
 
 @Component({
-  selector: 'efn-news-detail',
-  templateUrl: './news-detail.component.html',
-  styleUrls: ['./news-detail.component.scss'],
+  selector: 'efn-detail',
+  templateUrl: './detail.component.html',
+  styleUrls: ['./detail.component.scss'],
 })
-export class NewsDetailComponent implements OnInit {
+export class DetailComponent implements OnInit {
   detail:DetailResponse.AsObject | undefined;
 
   constructor(
