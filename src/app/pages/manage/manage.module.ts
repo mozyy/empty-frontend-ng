@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 import { ManageRoutingModule } from './manage-routing.module';
 import { ManageComponent } from './manage.component';
-import { MaterialModule } from '../../shared/material.module';
 import { SourceComponent } from './source/source.component';
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SourceComponent } from './source/source.component';
   imports: [
     CommonModule,
     ManageRoutingModule,
-    MaterialModule,
+    MatTableModule,
+    MatButtonModule,
   ],
 })
 export class ManageModule { }

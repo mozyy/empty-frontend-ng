@@ -7,9 +7,9 @@ const routes: Routes = [
   {
     path: '',
     component: ManageComponent,
-    redirectTo: 'source',
     children: [
       { path: 'source', component: SourceComponent },
+      { path: '', redirectTo: 'source', pathMatch: 'full' },
     ],
   },
 ];

@@ -6,11 +6,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { ComponentsModule } from './components.module';
 import { AppConfigProvider } from './app.config';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { MenuModule } from './components/menu/menu.module';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -20,8 +22,9 @@ import { AppConfigProvider } from './app.config';
       registrationStrategy: 'registerWhenStable:30000',
     }),
     BrowserAnimationsModule,
-    ComponentsModule,
     AppRoutingModule,
+    MenuModule,
+    LayoutModule,
   ],
   providers: [
     AppConfigProvider,
