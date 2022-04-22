@@ -29,8 +29,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.source.getSource({})
-      .subscribe((resp) => this.routers = resp);
+    // this.source.list({});
+    // .subscribe((resp) => this.routers = resp);
   }
 
   ngOnDestroy(): void {

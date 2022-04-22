@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>资源标识</mat-label>
+      <input matInput placeholder="唯一资源标识" formControlName="key" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>类型</mat-label>
+      <mat-select formControlName="type">
+        <mat-option [value]="0">路由</mat-option>
+        <mat-option [value]="1">功能</mat-option>
+        <mat-option [value]="2">接口</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>路径</mat-label>
+      <input matInput formControlName="path" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>名称</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <mat-checkbox [formControl]="menuContarl">是否菜单</mat-checkbox>
+    <mat-form-field>
+      <mat-label>图标</mat-label>
+      <input matInput formControlName="icon" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>描述</mat-label>
+      <textarea matInput formControlName="desc" cdkFocusInitial></textarea>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>取消</button>
+    <button mat-button type="submit">确认</button>
+  </mat-dialog-actions>
+</form>

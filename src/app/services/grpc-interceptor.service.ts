@@ -28,6 +28,15 @@ implements UnaryInterceptor<REQ, RESP> {
         response.getResponseMessage().toObject(),
       );
       return response;
+    }, (err) => {
+      console.warn(
+        '%c[[grpc]]: ',
+        'color: red ',
+        request.getMethodDescriptor().getName(),
+        request.getRequestMessage(),
+        err,
+      );
+      return Promise.reject(err);
     });
   }
 }

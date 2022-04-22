@@ -11,6 +11,8 @@ import { HandleErrorService } from '../../services/handle-error.service';
 import { OauthService } from '../../services/oauth.service';
 import { protobufAssign } from '../../utils/grpc';
 
+export type ParamsLogin = LoginRequest.AsObject;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,7 +28,7 @@ export class UserService {
     this.client = new UserClient(config.grpcHost, null, { unaryInterceptors: [interceptor] });
   }
 
-  login(params: LoginRequest.AsObject) {
+  login(params: ParamsLogin) {
     const req = new LoginRequest();
     protobufAssign(params, req);
     return from(this.client.login(req, null)).pipe(

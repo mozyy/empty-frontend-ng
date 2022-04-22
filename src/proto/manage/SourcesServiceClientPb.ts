@@ -40,28 +40,28 @@ export class SourcesClient {
     '/manage.Sources/Create',
     grpcWeb.MethodType.UNARY,
     proto_manage_sources_pb.SourcesItem,
-    google_protobuf_empty_pb.Empty,
+    proto_manage_sources_pb.SourcesItem,
     (request: proto_manage_sources_pb.SourcesItem) => {
       return request.serializeBinary();
     },
-    google_protobuf_empty_pb.Empty.deserializeBinary
+    proto_manage_sources_pb.SourcesItem.deserializeBinary
   );
 
   create(
     request: proto_manage_sources_pb.SourcesItem,
-    metadata: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+    metadata: grpcWeb.Metadata | null): Promise<proto_manage_sources_pb.SourcesItem>;
 
   create(
     request: proto_manage_sources_pb.SourcesItem,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+               response: proto_manage_sources_pb.SourcesItem) => void): grpcWeb.ClientReadableStream<proto_manage_sources_pb.SourcesItem>;
 
   create(
     request: proto_manage_sources_pb.SourcesItem,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: google_protobuf_empty_pb.Empty) => void) {
+               response: proto_manage_sources_pb.SourcesItem) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -77,6 +77,49 @@ export class SourcesClient {
     request,
     metadata || {},
     this.methodDescriptorCreate);
+  }
+
+  methodDescriptorUpdate = new grpcWeb.MethodDescriptor(
+    '/manage.Sources/Update',
+    grpcWeb.MethodType.UNARY,
+    proto_manage_sources_pb.SourcesItem,
+    proto_manage_sources_pb.SourcesItem,
+    (request: proto_manage_sources_pb.SourcesItem) => {
+      return request.serializeBinary();
+    },
+    proto_manage_sources_pb.SourcesItem.deserializeBinary
+  );
+
+  update(
+    request: proto_manage_sources_pb.SourcesItem,
+    metadata: grpcWeb.Metadata | null): Promise<proto_manage_sources_pb.SourcesItem>;
+
+  update(
+    request: proto_manage_sources_pb.SourcesItem,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: proto_manage_sources_pb.SourcesItem) => void): grpcWeb.ClientReadableStream<proto_manage_sources_pb.SourcesItem>;
+
+  update(
+    request: proto_manage_sources_pb.SourcesItem,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: proto_manage_sources_pb.SourcesItem) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/manage.Sources/Update',
+        request,
+        metadata || {},
+        this.methodDescriptorUpdate,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/manage.Sources/Update',
+    request,
+    metadata || {},
+    this.methodDescriptorUpdate);
   }
 
   methodDescriptorList = new grpcWeb.MethodDescriptor(
@@ -120,6 +163,49 @@ export class SourcesClient {
     request,
     metadata || {},
     this.methodDescriptorList);
+  }
+
+  methodDescriptorDelete = new grpcWeb.MethodDescriptor(
+    '/manage.Sources/Delete',
+    grpcWeb.MethodType.UNARY,
+    proto_manage_sources_pb.SourcesItem,
+    google_protobuf_empty_pb.Empty,
+    (request: proto_manage_sources_pb.SourcesItem) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  delete(
+    request: proto_manage_sources_pb.SourcesItem,
+    metadata: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  delete(
+    request: proto_manage_sources_pb.SourcesItem,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  delete(
+    request: proto_manage_sources_pb.SourcesItem,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/manage.Sources/Delete',
+        request,
+        metadata || {},
+        this.methodDescriptorDelete,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/manage.Sources/Delete',
+    request,
+    metadata || {},
+    this.methodDescriptorDelete);
   }
 
 }
