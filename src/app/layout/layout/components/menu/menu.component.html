@@ -1,4 +1,4 @@
-<ng-template *ngFor="let router of routers">
+<div *ngFor="let router of routers">
   <mat-expansion-panel *ngIf="router.childrenList.length > 0">
     <mat-expansion-panel-header>
       <mat-panel-title> {{ router.name }} </mat-panel-title>
@@ -9,6 +9,9 @@
     <efn-menu [routers]="router.childrenList"></efn-menu>
   </mat-expansion-panel>
   <mat-nav-list *ngIf="router.childrenList.length === 0">
-    <a mat-list-item [href]="router.path"> {{ router.name }} </a>
+    <a mat-list-item [href]="router.path">
+      <mat-icon mat-list-icon>{{ router.icon || "warning" }}</mat-icon>
+      {{ router.name }}
+    </a>
   </mat-nav-list>
-</ng-template>
+</div>

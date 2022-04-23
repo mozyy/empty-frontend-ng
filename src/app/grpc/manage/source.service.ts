@@ -51,6 +51,13 @@ export class SourceService {
     );
   }
 
+  routers() {
+    return this.list({ id: 7 })
+      .pipe(
+        map((resp) => resp[0]?.childrenList || []),
+      );
+  }
+
   list(params: ParamsList) {
     const req = new SourcesItem();
     protobufAssign(params, req);
