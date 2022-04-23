@@ -31,9 +31,10 @@
             "style": "kebab-case"
           }
         ],
-        "import/prefer-default-export": "off",
+        "import/prefer-default-export": "warn",
         "@typescript-eslint/no-unused-vars": "warn",
-        "no-return-assign": "off"
+        "no-return-assign": "warn",
+        "class-methods-use-this": "warn"
       }
     },
     {

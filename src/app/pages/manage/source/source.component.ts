@@ -50,16 +50,60 @@ export class SourceComponent implements OnInit {
   }
 
   getSource() {
-    this.sourceService.list(this.params).subscribe((resp) => this.sources = resp);
+    this.sourceService.list(this.params).subscribe((resp) => this.dataSource.data = resp);
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open<EditDialogComponent, ParamsList>(EditDialogComponent, {
-      data: this.params,
+  add(node: FlatNode) {
+    const sourcesItemid = node.id;
+    const item = new SourcesItem().toObject();
+    this.openDialog({ ...item, sourcesItemid });
+  }
+
+  edit(node:FlatNode) {
+    this.openDialog({ ...node });
+  }
+
+  openDialog(data: SourcesItem.AsObject): void {
+    const dialogRef = this.dialog.open<EditDialogComponent,
+    ParamsList>(EditDialogComponent, {
+      data,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed', result);
     });
+  }
+
+  getLevel = (node: FlatNode) => node.level;
+
+  getParentNode(node: FlatNode): FlatNode | null {
+    const currentLevel = this.getLevel(node);
+
+    if (currentLevel < 1) {
+      return null;
+    }
+
+    const startIndex = this.treeControl.dataNodes.indexOf(node) - 1;
+
+    for (let i = startIndex; i >= 0; i -= 1) {
+      const currentNode = this.treeControl.dataNodes[i];
+
+      if (this.getLevel(currentNode) < currentLevel) {
+        return currentNode;
+      }
+    }
+    return null;
+  }
+
+  hasContent() {
+    return false;
+  }
+
+  hasChild(i: number, node: FlatNode) {
+    return node.expandable;
+  }
+
+  drop(event: any) {
+    console.log(event);
   }
 }

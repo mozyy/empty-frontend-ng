@@ -2,6 +2,10 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field>
+      <mat-label>父资源</mat-label>
+      <input matInput type="number" formControlName="sourcesItemid" />
+    </mat-form-field>
+    <mat-form-field>
       <mat-label>资源标识</mat-label>
       <input matInput placeholder="唯一资源标识" formControlName="key" />
     </mat-form-field>
@@ -21,15 +25,15 @@
       <mat-label>名称</mat-label>
       <input matInput formControlName="name" />
     </mat-form-field>
-    <mat-checkbox [formControl]="menuContarl">是否菜单</mat-checkbox>
     <mat-form-field>
       <mat-label>图标</mat-label>
       <input matInput formControlName="icon" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>描述</mat-label>
-      <textarea matInput formControlName="desc" cdkFocusInitial></textarea>
+      <textarea matInput formControlName="desc"></textarea>
     </mat-form-field>
+    <mat-checkbox [formControl]="menuContarl">是否菜单</mat-checkbox>
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-button mat-dialog-close>取消</button>
