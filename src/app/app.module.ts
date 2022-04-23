@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { AppConfigProvider } from './app.config';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { MenuModule } from './components/menu/menu.module';
 import { LayoutModule } from './layout/layout.module';
+import { ModalModule } from './components/modal/modal.module';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -23,8 +23,8 @@ import { LayoutModule } from './layout/layout.module';
     }),
     BrowserAnimationsModule,
     AppRoutingModule,
-    MenuModule,
     LayoutModule,
+    ModalModule,
   ],
   providers: [
     AppConfigProvider,

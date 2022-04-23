@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { SourcesItem } from '../../../../proto/manage/sources_pb';
+import { ModalService } from '../../../components/modal/modal.service';
 import { ParamsList, SourceService } from '../../../grpc/manage/source.service';
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 
@@ -43,7 +44,11 @@ export class SourceComponent implements OnInit {
 
   sources:SourcesItem.AsObject[] = [];
 
-  constructor(private sourceService: SourceService, private dialog: MatDialog) { }
+  constructor(
+    private sourceService: SourceService,
+    private dialog: MatDialog,
+    private modal: ModalService,
+  ) { }
 
   ngOnInit(): void {
     this.getSource();
@@ -61,6 +66,10 @@ export class SourceComponent implements OnInit {
 
   edit(node:FlatNode) {
     this.openDialog({ ...node });
+  }
+
+  delete(node: FlatNode) {
+    this.modal.open({ content: '确定删除？' });
   }
 
   openDialog(data: SourcesItem.AsObject): void {

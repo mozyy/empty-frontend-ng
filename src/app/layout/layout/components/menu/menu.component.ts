@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SourcesItem } from '../../../proto/manage/sources_pb';
+import { SourcesItem } from '../../../../../proto/manage/sources_pb';
 
 @Component({
   selector: 'efn-menu',

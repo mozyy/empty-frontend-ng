@@ -8,6 +8,7 @@
 >
   <mat-tree-node
     *matTreeNodeDef="let node"
+    class="tree-node"
     matTreeNodePadding
     cdkDrag
     [cdkDragData]="node"
@@ -35,7 +36,7 @@
     <button mat-icon-button cdkDragHandle>
       <mat-icon>swap_vert</mat-icon>
     </button>
-    <button mat-icon-button (click)="add(node)">
+    <button mat-icon-button (click)="delete(node)">
       <mat-icon>delete</mat-icon>
     </button>
   </mat-tree-node>

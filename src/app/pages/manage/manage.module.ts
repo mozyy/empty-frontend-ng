@@ -12,18 +12,22 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { LayoutModule } from '@angular/cdk/layout';
 import { ManageRoutingModule } from './manage-routing.module';
 import { ManageComponent } from './manage.component';
 import { SourceComponent } from './source/source.component';
 import { EditDialogComponent } from './source/components/edit-dialog/edit-dialog.component';
-import { SourcesComponent } from './sources/sources.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     ManageComponent,
     SourceComponent,
     EditDialogComponent,
-    SourcesComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +44,10 @@ import { SourcesComponent } from './sources/sources.component';
     MatTreeModule,
     MatIconModule,
     DragDropModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    LayoutModule,
   ],
 })
 export class ManageModule { }
