@@ -24,17 +24,59 @@ export class OAuthToken extends jspb.Message {
   hasDeletedAt(): boolean;
   clearDeletedAt(): OAuthToken;
 
-  getAccessToken(): string;
-  setAccessToken(value: string): OAuthToken;
+  getClientid(): string;
+  setClientid(value: string): OAuthToken;
+
+  getUserid(): string;
+  setUserid(value: string): OAuthToken;
+
+  getRedirecturi(): string;
+  setRedirecturi(value: string): OAuthToken;
+
+  getScope(): string;
+  setScope(value: string): OAuthToken;
+
+  getCode(): string;
+  setCode(value: string): OAuthToken;
+
+  getCodeCreateAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCodeCreateAt(value?: google_protobuf_timestamp_pb.Timestamp): OAuthToken;
+  hasCodeCreateAt(): boolean;
+  clearCodeCreateAt(): OAuthToken;
+
+  getCodeExpiresIn(): number;
+  setCodeExpiresIn(value: number): OAuthToken;
+
+  getCodeChallenge(): string;
+  setCodeChallenge(value: string): OAuthToken;
+
+  getCodeChallengeMethod(): string;
+  setCodeChallengeMethod(value: string): OAuthToken;
+
+  getAccess(): string;
+  setAccess(value: string): OAuthToken;
+
+  getAccessCreateAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setAccessCreateAt(value?: google_protobuf_timestamp_pb.Timestamp): OAuthToken;
+  hasAccessCreateAt(): boolean;
+  clearAccessCreateAt(): OAuthToken;
+
+  getAccessExpiresIn(): number;
+  setAccessExpiresIn(value: number): OAuthToken;
+
+  getRefresh(): string;
+  setRefresh(value: string): OAuthToken;
+
+  getRefreshCreateAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setRefreshCreateAt(value?: google_protobuf_timestamp_pb.Timestamp): OAuthToken;
+  hasRefreshCreateAt(): boolean;
+  clearRefreshCreateAt(): OAuthToken;
+
+  getRefreshExpiresIn(): number;
+  setRefreshExpiresIn(value: number): OAuthToken;
 
   getTokenType(): string;
   setTokenType(value: string): OAuthToken;
-
-  getRefreshToken(): string;
-  setRefreshToken(value: string): OAuthToken;
-
-  getExpiresSeconds(): number;
-  setExpiresSeconds(value: number): OAuthToken;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OAuthToken.AsObject;
@@ -50,10 +92,22 @@ export namespace OAuthToken {
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     deletedAt?: gorm_types_types_pb.DeletedAt.AsObject,
-    accessToken: string,
+    clientid: string,
+    userid: string,
+    redirecturi: string,
+    scope: string,
+    code: string,
+    codeCreateAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    codeExpiresIn: number,
+    codeChallenge: string,
+    codeChallengeMethod: string,
+    access: string,
+    accessCreateAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    accessExpiresIn: number,
+    refresh: string,
+    refreshCreateAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    refreshExpiresIn: number,
     tokenType: string,
-    refreshToken: string,
-    expiresSeconds: number,
   }
 }
 
@@ -75,6 +129,9 @@ export class OAuthClient extends jspb.Message {
   setDeletedAt(value?: gorm_types_types_pb.DeletedAt): OAuthClient;
   hasDeletedAt(): boolean;
   clearDeletedAt(): OAuthClient;
+
+  getClientid(): string;
+  setClientid(value: string): OAuthClient;
 
   getSecret(): string;
   setSecret(value: string): OAuthClient;
@@ -99,6 +156,7 @@ export namespace OAuthClient {
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     deletedAt?: gorm_types_types_pb.DeletedAt.AsObject,
+    clientid: string,
     secret: string,
     domain: string,
     userid: string,

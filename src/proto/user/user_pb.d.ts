@@ -1,7 +1,7 @@
 import * as jspb from 'google-protobuf'
 
 import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb';
-import * as proto_model_oauth_pb from '../../proto/model/oauth_pb';
+import * as proto_user_oauth_pb from '../../proto/user/oauth_pb';
 
 
 export class RegisterRequest extends jspb.Message {

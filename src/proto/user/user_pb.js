@@ -17,8 +17,8 @@ var global = (function() { return this || window || global || self || Function('
 
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 goog.object.extend(proto, google_protobuf_empty_pb);
-var proto_model_oauth_pb = require('../../proto/model/oauth_pb.js');
-goog.object.extend(proto, proto_model_oauth_pb);
+var proto_user_oauth_pb = require('../../proto/user/oauth_pb.js');
+goog.object.extend(proto, proto_user_oauth_pb);
 goog.exportSymbol('proto.user.InfoResponse', null, global);
 goog.exportSymbol('proto.user.LoginRequest', null, global);
 goog.exportSymbol('proto.user.RegisterRequest', null, global);

@@ -18,7 +18,9 @@ export class EditDialogComponent {
     @Inject(MAT_DIALOG_DATA) private data: ParamsList,
     private fb:FormBuilder,
     private sourceService: SourceService,
-  ) { }
+  ) {
+    console.log(11111111, 'edit');
+  }
 
   get title() {
     if (this.data.id) {

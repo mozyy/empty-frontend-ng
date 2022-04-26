@@ -23,8 +23,8 @@ var gorm_options_gorm_pb = require('../../gorm/options/gorm_pb.js');
 goog.object.extend(proto, gorm_options_gorm_pb);
 var gorm_types_types_pb = require('../../gorm/types/types_pb.js');
 goog.object.extend(proto, gorm_types_types_pb);
-var proto_model_oauth_pb = require('../../proto/model/oauth_pb.js');
-goog.object.extend(proto, proto_model_oauth_pb);
+var proto_user_oauth_pb = require('../../proto/user/oauth_pb.js');
+goog.object.extend(proto, proto_user_oauth_pb);
 goog.exportSymbol('proto.conf.Config', null, global);
 goog.exportSymbol('proto.conf.CreateRequest', null, global);
 goog.exportSymbol('proto.conf.CreateResponse', null, global);
@@ -263,7 +263,7 @@ proto.conf.Config.toObject = function(includeInstance, msg) {
     value: jspb.Message.getFieldWithDefault(msg, 6, ""),
     content: jspb.Message.getFieldWithDefault(msg, 7, ""),
     desc: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    oAuthToken: (f = msg.getOAuthToken()) && proto_model_oauth_pb.OAuthToken.toObject(includeInstance, f)
+    oAuthToken: (f = msg.getOAuthToken()) && proto_user_oauth_pb.OAuthToken.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -336,8 +336,8 @@ proto.conf.Config.deserializeBinaryFromReader = function(msg, reader) {
       msg.setDesc(value);
       break;
     case 9:
-      var value = new proto_model_oauth_pb.OAuthToken;
-      reader.readMessage(value,proto_model_oauth_pb.OAuthToken.deserializeBinaryFromReader);
+      var value = new proto_user_oauth_pb.OAuthToken;
+      reader.readMessage(value,proto_user_oauth_pb.OAuthToken.deserializeBinaryFromReader);
       msg.setOAuthToken(value);
       break;
     default:
@@ -433,7 +433,7 @@ proto.conf.Config.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       9,
       f,
-      proto_model_oauth_pb.OAuthToken.serializeBinaryToWriter
+      proto_user_oauth_pb.OAuthToken.serializeBinaryToWriter
     );
   }
 };
@@ -641,17 +641,17 @@ proto.conf.Config.prototype.setDesc = function(value) {
 
 
 /**
- * optional model.OAuthToken o_auth_token = 9;
- * @return {?proto.model.OAuthToken}
+ * optional oauth.OAuthToken o_auth_token = 9;
+ * @return {?proto.oauth.OAuthToken}
  */
 proto.conf.Config.prototype.getOAuthToken = function() {
-  return /** @type{?proto.model.OAuthToken} */ (
-    jspb.Message.getWrapperField(this, proto_model_oauth_pb.OAuthToken, 9));
+  return /** @type{?proto.oauth.OAuthToken} */ (
+    jspb.Message.getWrapperField(this, proto_user_oauth_pb.OAuthToken, 9));
 };
 
 
 /**
- * @param {?proto.model.OAuthToken|undefined} value
+ * @param {?proto.oauth.OAuthToken|undefined} value
  * @return {!proto.conf.Config} returns this
 */
 proto.conf.Config.prototype.setOAuthToken = function(value) {

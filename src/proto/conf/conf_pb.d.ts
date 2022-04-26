@@ -4,7 +4,7 @@ import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 import * as gorm_options_gorm_pb from '../../gorm/options/gorm_pb';
 import * as gorm_types_types_pb from '../../gorm/types/types_pb';
-import * as proto_model_oauth_pb from '../../proto/model/oauth_pb';
+import * as proto_user_oauth_pb from '../../proto/user/oauth_pb';
 
 
 export class Config extends jspb.Message {
@@ -38,8 +38,8 @@ export class Config extends jspb.Message {
   getDesc(): string;
   setDesc(value: string): Config;
 
-  getOAuthToken(): proto_model_oauth_pb.OAuthToken | undefined;
-  setOAuthToken(value?: proto_model_oauth_pb.OAuthToken): Config;
+  getOAuthToken(): proto_user_oauth_pb.OAuthToken | undefined;
+  setOAuthToken(value?: proto_user_oauth_pb.OAuthToken): Config;
   hasOAuthToken(): boolean;
   clearOAuthToken(): Config;
 
@@ -61,7 +61,7 @@ export namespace Config {
     value: string,
     content: string,
     desc: string,
-    oAuthToken?: proto_model_oauth_pb.OAuthToken.AsObject,
+    oAuthToken?: proto_user_oauth_pb.OAuthToken.AsObject,
   }
 }
 
