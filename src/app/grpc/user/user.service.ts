@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import {
   from, map, tap,
 } from 'rxjs';
-import { OAuthToken } from '../../../proto/model/oauth_pb';
+import { OAuthToken } from '../../../proto/user/oauth_pb';
 import { UserClient } from '../../../proto/user/UserServiceClientPb';
 import { LoginRequest } from '../../../proto/user/user_pb';
 import { AppConfig, APP_CONFIG } from '../../app.config';

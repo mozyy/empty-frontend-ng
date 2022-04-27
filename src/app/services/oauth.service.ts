@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as ClientOAuth2 from 'client-oauth2';
-import { OAuthToken } from '../../proto/model/oauth_pb';
+import { OAuthToken } from '../../proto/user/oauth_pb';
 import { StorageService } from './storage.service';
 
 @Injectable({
@@ -27,12 +27,12 @@ export class OauthService {
 
   private convertToken(req: OAuthToken) {
     const token = this.client.createToken(
-      req.getAccessToken(),
-      req.getRefreshToken(),
+      req.getAccess(),
+      req.getRefresh(),
       req.getTokenType(),
       { },
     );
-    token.expiresIn(req.getExpiresSeconds());
+    token.expiresIn(req.getAccessExpiresIn());
     this.oAuth2Token = token;
     return token;
   }
@@ -53,10 +53,10 @@ export class OauthService {
     const token = await this.oAuth2Token.refresh();
     this.oAuth2Token = token;
     const req = new OAuthToken();
-    req.setAccessToken(token.accessToken);
-    req.setRefreshToken(token.refreshToken);
+    req.setAccess(token.accessToken);
+    req.setRefresh(token.refreshToken);
     req.setTokenType(token.tokenType);
-    req.setExpiresSeconds(((token as any).expires - Date.now()) / 1000);
+    req.setAccessExpiresIn(((token as any).expires - Date.now()) / 1000);
     this.setToken(req);
     return token.accessToken;
   }
@@ -65,7 +65,10 @@ export class OauthService {
     if (!this.oAuth2Token) {
       return Promise.resolve('');
     }
-    if (!this.oAuth2Token.expired()) {
+
+    // if (!this.oAuth2Token.expired()) {
+    // 从已过期再刷新token, 改为还有5分钟过期就刷新
+    if ((this.oAuth2Token as any).expires.getTime() < Date.now() - 1000 * 60 * 5) {
       return Promise.resolve(this.oAuth2Token.accessToken);
     }
     if (!this.refreshing) {
