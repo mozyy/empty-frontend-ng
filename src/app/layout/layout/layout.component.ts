@@ -29,7 +29,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.source.routers()
+    this.source.source()
       .subscribe((resp) => this.routers = resp);
   }
 

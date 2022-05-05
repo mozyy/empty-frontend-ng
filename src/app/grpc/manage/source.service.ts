@@ -1,6 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
-import { from, map } from 'rxjs';
+import {
+  EMPTY,
+  from, map, merge, Observable, of, scan, Subject, Subscriber, switchMap, TeardownLogic,
+} from 'rxjs';
 import { SourcesClient } from '../../../proto/manage/SourcesServiceClientPb';
 import { SourcesItem } from '../../../proto/manage/sources_pb';
 import { AppConfig, APP_CONFIG } from '../../app.config';
@@ -16,12 +19,15 @@ export type ParamsList = Partial<SourcesItem.AsObject>;
 export class SourceService {
   private client: SourcesClient;
 
+  private refreshObservable:Subject<null>;
+
   constructor(
     interceptor:GrpcInterceptorService,
     @Inject(APP_CONFIG) config: AppConfig,
     private handleError: HandleErrorService,
   ) {
     this.client = new SourcesClient(config.grpcHost, null, { unaryInterceptors: [interceptor] });
+    this.refreshObservable = new Subject();
   }
 
   create(params: ParamsList) {
@@ -51,19 +57,30 @@ export class SourceService {
     );
   }
 
-  routers() {
-    return this.list({ id: 7 })
+  source() {
+    return this.sourcesTree({})
       .pipe(
         map((resp) => resp[0]?.childrenList || []),
       );
   }
 
-  list(params: ParamsList) {
+  refresh() {
+    this.refreshObservable.next(null);
+  }
+
+  static generateTree(sources:SourcesItem.AsObject[]) {
+    return sources;
+  }
+
+  sourcesTree(params: ParamsList) {
     const req = new SourcesItem();
     protobufAssign(params, req);
-    return from(this.client.list(req, null)).pipe(
-      map((resp) => resp.toObject().listList),
-      this.handleError.handleCatchError<SourcesItem.AsObject[]>([], 'getSource'),
-    );
+    return merge(this.refreshObservable, of(null))
+      .pipe(
+        switchMap(() => this.client.list(req, null)),
+        map((resp) => resp.toObject().listList),
+        this.handleError.handleCatchError<SourcesItem.AsObject[]>([], 'getSource'),
+        map(SourceService.generateTree),
+      );
   }
 }

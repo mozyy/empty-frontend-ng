@@ -55,7 +55,7 @@ export class SourceComponent implements OnInit {
   }
 
   getSource() {
-    this.sourceService.list(this.params).subscribe((resp) => this.dataSource.data = resp);
+    this.sourceService.sourcesTree(this.params).subscribe((resp) => this.dataSource.data = resp);
   }
 
   add(node: FlatNode) {

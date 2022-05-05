@@ -68,7 +68,7 @@ export class OauthService {
 
     // if (!this.oAuth2Token.expired()) {
     // 从已过期再刷新token, 改为还有5分钟过期就刷新
-    if ((this.oAuth2Token as any).expires.getTime() < Date.now() - 1000 * 60 * 5) {
+    if ((this.oAuth2Token as any).expires.getTime() > Date.now() - 1000 * 60 * 5) {
       return Promise.resolve(this.oAuth2Token.accessToken);
     }
     if (!this.refreshing) {
