@@ -114,7 +114,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/empty-frontend-ng/server",
-            "main": "src/main.server.ts",
+            "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss"
           },
@@ -140,6 +140,37 @@
           "builder": "@angular-devkit/build-angular:app-shell",
           "options": {
             "route": "shell"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "empty-frontend-ng:build:production",
+              "serverTarget": "empty-frontend-ng:server:production"
+            },
+            "development": {
+              "browserTarget": "empty-frontend-ng:build:development",
+              "serverTarget": "empty-frontend-ng:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "empty-frontend-ng:build:development",
+              "serverTarget": "empty-frontend-ng:server:development"
+            },
+            "production": {
+              "browserTarget": "empty-frontend-ng:build:production",
+              "serverTarget": "empty-frontend-ng:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": ["/"]
           },
           "configurations": {
             "production": {
