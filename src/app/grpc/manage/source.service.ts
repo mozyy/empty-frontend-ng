@@ -69,7 +69,15 @@ export class SourceService {
   }
 
   static generateTree(sources:SourcesItem.AsObject[]) {
-    return sources;
+    sources.forEach((source) => {
+      if (source.sourcesItemid) {
+        const parent = sources.find((item) => item.id === source.sourcesItemid);
+        if (parent) {
+          parent.childrenList.push(source);
+        }
+      }
+    });
+    return sources.filter((source) => source.id === 7);
   }
 
   sourcesTree(params: ParamsList) {

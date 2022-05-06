@@ -6,7 +6,10 @@ export const protobufAssign = (obj: Object, msg:Message) => {
   Object.entries(obj).forEach(([key, value]) => {
     if (message[`set${capitalizeFirstLetter(key)}`]) {
       if (value && typeof value === 'object') {
-        protobufAssign(value, message[`get${capitalizeFirstLetter(key)}`]());
+        const child = message[`get${capitalizeFirstLetter(key)}`]();
+        if (child) {
+          protobufAssign(value, message[`get${capitalizeFirstLetter(key)}`]());
+        }
       } else {
         message[`set${capitalizeFirstLetter(key)}`](value);
       }
