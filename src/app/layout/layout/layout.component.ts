@@ -1,6 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
+import { isPlatformBrowser } from '@angular/common';
 import {
-  ChangeDetectorRef, Component, OnDestroy, OnInit,
+  ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID,
 } from '@angular/core';
 import { SourcesItem } from '../../../proto/manage/sources_pb';
 import { SourceService } from '../../grpc/manage/source.service';
@@ -11,21 +12,26 @@ import { SourceService } from '../../grpc/manage/source.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit, OnDestroy {
-  mobileQuery: MediaQueryList;
+  mobileQuery?: MediaQueryList;
+
+  isBrowser: boolean;
 
   routers:SourcesItem.AsObject[] = [];
 
-  private mobileQueryListener: () => void;
+  private mobileQueryListener = () => {};
 
   constructor(
     media: MediaMatcher,
     changeDetectorRef: ChangeDetectorRef,
-    public source:SourceService,
-
+    public source: SourceService,
+    @Inject(PLATFORM_ID) platformId: Object,
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this.mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addEventListener('change', this.mobileQueryListener);
+    this.isBrowser = isPlatformBrowser(platformId);
+    if (this.isBrowser) {
+      this.mobileQuery = media.matchMedia('(max-width: 600px)');
+      this.mobileQueryListener = () => changeDetectorRef.detectChanges();
+      this.mobileQuery.addEventListener('change', this.mobileQueryListener);
+    }
   }
 
   ngOnInit(): void {
@@ -34,6 +40,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeEventListener('change', this.mobileQueryListener);
+    if (this.isBrowser) {
+      this.mobileQuery?.removeEventListener('change', this.mobileQueryListener);
+    }
   }
 }
