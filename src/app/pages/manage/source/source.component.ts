@@ -69,17 +69,23 @@ export class SourceComponent implements OnInit {
   }
 
   delete(node: FlatNode) {
-    this.modal.open({ content: '确定删除？' });
+    this.modal.open({ content: '确定删除？' }).afterClosed().subscribe(() => {
+      this.sourceService.delete({ ...node }).subscribe(() => {
+        this.sourceService.refresh();
+      });
+    });
   }
 
   openDialog(data: SourcesItem.AsObject): void {
     const dialogRef = this.dialog.open<EditDialogComponent,
-    ParamsList>(EditDialogComponent, {
+    ParamsList, boolean>(EditDialogComponent, {
       data,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed', result);
+      if (result) {
+        this.sourceService.refresh();
+      }
     });
   }
 

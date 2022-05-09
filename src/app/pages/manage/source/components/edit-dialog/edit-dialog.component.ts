@@ -14,7 +14,7 @@ export class EditDialogComponent {
   });
 
   constructor(
-    private dialogRef: MatDialogRef<EditDialogComponent>,
+    private dialogRef: MatDialogRef<EditDialogComponent, boolean>,
     @Inject(MAT_DIALOG_DATA) private data: ParamsList,
     private fb:FormBuilder,
     private sourceService: SourceService,
@@ -39,15 +39,17 @@ export class EditDialogComponent {
     if (valid) {
       if (value.id) {
         this.sourceService.update(value).subscribe((resp) => {
-          console.log(resp);
+          this.close(true);
         });
       } else {
-        this.sourceService.create(value).subscribe();
+        this.sourceService.create(value).subscribe(() => {
+          this.close(true);
+        });
       }
     }
   }
 
-  close(): void {
-    this.dialogRef.close();
+  close(refresh?:boolean): void {
+    this.dialogRef.close(refresh);
   }
 }

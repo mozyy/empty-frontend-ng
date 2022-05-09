@@ -20,7 +20,7 @@ export class ModalComponent {
   content:string;
 
   constructor(
-    private dialogRef: MatDialogRef<ModalComponent>,
+    private dialogRef: MatDialogRef<ModalComponent, boolean>,
     @Inject(MAT_DIALOG_DATA) {
       title = '提示',
       showCancel = true, content,
