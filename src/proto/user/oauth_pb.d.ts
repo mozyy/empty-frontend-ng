@@ -130,9 +130,6 @@ export class OAuthClient extends jspb.Message {
   hasDeletedAt(): boolean;
   clearDeletedAt(): OAuthClient;
 
-  getClientid(): string;
-  setClientid(value: string): OAuthClient;
-
   getSecret(): string;
   setSecret(value: string): OAuthClient;
 
@@ -156,7 +153,6 @@ export namespace OAuthClient {
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     deletedAt?: gorm_types_types_pb.DeletedAt.AsObject,
-    clientid: string,
     secret: string,
     domain: string,
     userid: string,

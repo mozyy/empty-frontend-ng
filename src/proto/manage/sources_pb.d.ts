@@ -1,6 +1,7 @@
 import * as jspb from 'google-protobuf'
 
 import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb';
+import * as google_api_annotations_pb from '../../google/api/annotations_pb';
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 import * as gorm_options_gorm_pb from '../../gorm/options/gorm_pb';
 import * as gorm_types_types_pb from '../../gorm/types/types_pb';

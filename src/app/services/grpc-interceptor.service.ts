@@ -19,29 +19,31 @@ implements UnaryInterceptor<REQ, RESP> {
     invoker: (request: Request<REQ, RESP>) =>
     Promise<UnaryResponse<REQ, RESP>>,
   ): Promise<UnaryResponse<REQ, RESP>> {
-    if (isPlatformServer(this.platformId)) {
-      return Promise.reject(Error('TODO: server grpc'));
-    }
     const accessToken = await this.oauthService.getAccessToken();
     const reqMeta = request.getMetadata();
     reqMeta['Authorization'] = reqMeta['Authorization'] ?? `Bearer ${accessToken}`;
     return invoker(request).then((response) => {
+      const isServer = isPlatformServer(this.platformId);
       // You can also do something with response metadata here.
+
       console.log(
         '%c[[grpc]]: ',
         'color: red ',
+        isServer ? 'on the server' : 'in the browser',
         request.getMethodDescriptor().getName(),
-        request.getRequestMessage().toObject(),
-        response.getResponseMessage().toObject(),
+        isServer ? '' : request.getRequestMessage().toObject(),
+        isServer ? '' : response.getResponseMessage().toObject(),
       );
       return response;
     }, (err) => {
+      const isServer = isPlatformServer(this.platformId);
       console.warn(
         '%c[[grpc]]: ',
         'color: red ',
+        isServer ? 'on the server' : 'in the browser',
         request.getMethodDescriptor().getName(),
-        request.getRequestMessage(),
-        err,
+        isServer ? '' : request.getRequestMessage(),
+        isServer ? err.message : err,
       );
       return Promise.reject(err);
     });

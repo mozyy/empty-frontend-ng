@@ -1,0 +1,185 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/conf/conf.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Conf"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "confConfig": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/typesDeletedAt"
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "desc": {
+          "type": "string"
+        },
+        "oAuthToken": {
+          "$ref": "#/definitions/oauthOAuthToken"
+        }
+      }
+    },
+    "confCreateResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "$ref": "#/definitions/confConfig"
+        }
+      }
+    },
+    "confListResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/confConfig"
+          }
+        }
+      }
+    },
+    "oauthOAuthToken": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/typesDeletedAt"
+        },
+        "clientID": {
+          "type": "string"
+        },
+        "userID": {
+          "type": "string"
+        },
+        "redirectURI": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "codeCreateAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "codeExpiresIn": {
+          "type": "string",
+          "format": "int64"
+        },
+        "codeChallenge": {
+          "type": "string"
+        },
+        "codeChallengeMethod": {
+          "type": "string"
+        },
+        "access": {
+          "type": "string"
+        },
+        "accessCreateAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "accessExpiresIn": {
+          "type": "string",
+          "format": "int64"
+        },
+        "refresh": {
+          "type": "string"
+        },
+        "refreshCreateAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "refreshExpiresIn": {
+          "type": "string",
+          "format": "int64"
+        },
+        "tokenType": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "typesDeletedAt": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

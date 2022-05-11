@@ -927,10 +927,9 @@ proto.oauth.OAuthClient.toObject = function(includeInstance, msg) {
     createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     deletedAt: (f = msg.getDeletedAt()) && gorm_types_types_pb.DeletedAt.toObject(includeInstance, f),
-    clientid: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    secret: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    domain: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    userid: jspb.Message.getFieldWithDefault(msg, 8, "")
+    secret: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    domain: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    userid: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -988,17 +987,13 @@ proto.oauth.OAuthClient.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setClientid(value);
+      msg.setSecret(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
-      msg.setSecret(value);
-      break;
-    case 7:
-      var value = /** @type {string} */ (reader.readString());
       msg.setDomain(value);
       break;
-    case 8:
+    case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setUserid(value);
       break;
@@ -1062,31 +1057,24 @@ proto.oauth.OAuthClient.serializeBinaryToWriter = function(message, writer) {
       gorm_types_types_pb.DeletedAt.serializeBinaryToWriter
     );
   }
-  f = message.getClientid();
+  f = message.getSecret();
   if (f.length > 0) {
     writer.writeString(
       5,
       f
     );
   }
-  f = message.getSecret();
+  f = message.getDomain();
   if (f.length > 0) {
     writer.writeString(
       6,
       f
     );
   }
-  f = message.getDomain();
-  if (f.length > 0) {
-    writer.writeString(
-      7,
-      f
-    );
-  }
   f = message.getUserid();
   if (f.length > 0) {
     writer.writeString(
-      8,
+      7,
       f
     );
   }
@@ -1223,10 +1211,10 @@ proto.oauth.OAuthClient.prototype.hasDeletedAt = function() {
 
 
 /**
- * optional string clientID = 5;
+ * optional string secret = 5;
  * @return {string}
  */
-proto.oauth.OAuthClient.prototype.getClientid = function() {
+proto.oauth.OAuthClient.prototype.getSecret = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -1235,16 +1223,16 @@ proto.oauth.OAuthClient.prototype.getClientid = function() {
  * @param {string} value
  * @return {!proto.oauth.OAuthClient} returns this
  */
-proto.oauth.OAuthClient.prototype.setClientid = function(value) {
+proto.oauth.OAuthClient.prototype.setSecret = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional string secret = 6;
+ * optional string domain = 6;
  * @return {string}
  */
-proto.oauth.OAuthClient.prototype.getSecret = function() {
+proto.oauth.OAuthClient.prototype.getDomain = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
@@ -1253,16 +1241,16 @@ proto.oauth.OAuthClient.prototype.getSecret = function() {
  * @param {string} value
  * @return {!proto.oauth.OAuthClient} returns this
  */
-proto.oauth.OAuthClient.prototype.setSecret = function(value) {
+proto.oauth.OAuthClient.prototype.setDomain = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional string domain = 7;
+ * optional string userID = 7;
  * @return {string}
  */
-proto.oauth.OAuthClient.prototype.getDomain = function() {
+proto.oauth.OAuthClient.prototype.getUserid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -1271,26 +1259,8 @@ proto.oauth.OAuthClient.prototype.getDomain = function() {
  * @param {string} value
  * @return {!proto.oauth.OAuthClient} returns this
  */
-proto.oauth.OAuthClient.prototype.setDomain = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
-};
-
-
-/**
- * optional string userID = 8;
- * @return {string}
- */
-proto.oauth.OAuthClient.prototype.getUserid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.oauth.OAuthClient} returns this
- */
 proto.oauth.OAuthClient.prototype.setUserid = function(value) {
-  return jspb.Message.setProto3StringField(this, 8, value);
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
