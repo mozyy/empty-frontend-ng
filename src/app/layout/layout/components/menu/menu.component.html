@@ -9,7 +9,7 @@
     <efn-menu [routers]="router.childrenList"></efn-menu>
   </mat-expansion-panel>
   <mat-nav-list *ngIf="router.childrenList.length === 0">
-    <a mat-list-item [href]="router.path">
+    <a mat-list-item [routerLink]="router.path">
       <mat-icon mat-list-icon>{{ router.icon || "warning" }}</mat-icon>
       {{ router.name }}
     </a>

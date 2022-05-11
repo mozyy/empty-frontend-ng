@@ -11,7 +11,7 @@ export class ModalService {
   }
 
   open(data: ModalData, config?: MatDialogConfig<ModalData>) {
-    return this.dialog.open<ModalComponent, ModalData>(
+    return this.dialog.open<ModalComponent, ModalData, boolean>(
       ModalComponent,
       {
         data,
