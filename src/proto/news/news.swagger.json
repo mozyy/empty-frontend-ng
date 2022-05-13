@@ -15,7 +15,72 @@
   "produces": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/news.News/Detail": {
+      "post": {
+        "operationId": "News_Detail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/newsDetailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/newsDetailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "News"
+        ]
+      }
+    },
+    "/news.News/List": {
+      "post": {
+        "operationId": "News_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/newsListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "properties": {}
+            }
+          }
+        ],
+        "tags": [
+          "News"
+        ]
+      }
+    }
+  },
   "definitions": {
     "DetailResponseDetailContent": {
       "type": "object",
@@ -45,6 +110,14 @@
         "newsDetailID": {
           "type": "integer",
           "format": "int64"
+        }
+      }
+    },
+    "newsDetailRequest": {
+      "type": "object",
+      "properties": {
+        "URL": {
+          "type": "string"
         }
       }
     },

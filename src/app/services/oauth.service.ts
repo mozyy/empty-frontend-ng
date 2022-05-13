@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as ClientOAuth2 from 'client-oauth2';
+import ClientOAuth2 from 'client-oauth2';
 import { OAuthToken } from '../../proto/user/oauth_pb';
 import { StorageService } from './storage.service';
 

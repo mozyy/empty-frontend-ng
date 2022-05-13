@@ -15,7 +15,136 @@
   "produces": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/manage.Sources/Create": {
+      "post": {
+        "operationId": "Sources_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/manageSourcesItem"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/manageSourcesItem"
+            }
+          }
+        ],
+        "tags": [
+          "Sources"
+        ]
+      }
+    },
+    "/manage.Sources/Delete": {
+      "post": {
+        "operationId": "Sources_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/manageSourcesItem"
+            }
+          }
+        ],
+        "tags": [
+          "Sources"
+        ]
+      }
+    },
+    "/manage.Sources/List": {
+      "post": {
+        "operationId": "Sources_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/manageListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/manageSourcesItem"
+            }
+          }
+        ],
+        "tags": [
+          "Sources"
+        ]
+      }
+    },
+    "/manage.Sources/Update": {
+      "post": {
+        "operationId": "Sources_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/manageSourcesItem"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/manageSourcesItem"
+            }
+          }
+        ],
+        "tags": [
+          "Sources"
+        ]
+      }
+    }
+  },
   "definitions": {
     "manageListResponse": {
       "type": "object",

@@ -1,4 +1,4 @@
-@import "../../../utils/utils.scss";
+@use "../../../utils/utils.scss";
 
 .root {
 }
@@ -8,5 +8,5 @@
 }
 .card-title {
   line-height: initial;
-  @include overEllipsis(3);
+  @include utils.overEllipsis(3);
 }

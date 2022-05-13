@@ -21,6 +21,7 @@ import { ManageComponent } from './manage.component';
 import { SourceComponent } from './source/source.component';
 import { EditDialogComponent } from './source/components/edit-dialog/edit-dialog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DocsComponent } from './docs/docs.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SourceComponent,
     EditDialogComponent,
     DashboardComponent,
+    DocsComponent,
   ],
   imports: [
     CommonModule,
