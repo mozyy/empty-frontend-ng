@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { ServerModule, ServerTransferStateModule } from '@angular/platform-server';
 import { Routes } from '@angular/router';
 // @ts-ignore
@@ -17,7 +16,6 @@ global.XMLHttpRequest = xhr;
     AppModule,
     ServerModule,
     ServerTransferStateModule,
-    BrowserModule.withServerTransition({ appId: 'angular-starter' }),
   ],
   bootstrap: [AppComponent],
 })
