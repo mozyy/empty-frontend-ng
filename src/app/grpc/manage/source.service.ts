@@ -1,13 +1,11 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
 import {
-  EMPTY,
-  from, map, merge, Observable, of, scan, Subject, Subscriber, switchMap, TeardownLogic,
+  from, map, merge, of, Subject, switchMap,
 } from 'rxjs';
 import { SourcesClient } from '../../../proto/manage/SourcesServiceClientPb';
 import { SourcesItem } from '../../../proto/manage/sources_pb';
-import { AppConfig, APP_CONFIG } from '../../app.config';
-import { GrpcInterceptorService } from '../../services/grpc-interceptor.service';
+import { GrpcConfigService } from '../../services/grpc-config.service';
 import { HandleErrorService } from '../../services/handle-error.service';
 import { protobufAssign } from '../../utils/grpc';
 
@@ -22,11 +20,10 @@ export class SourceService {
   private refreshObservable:Subject<null>;
 
   constructor(
-    interceptor:GrpcInterceptorService,
-    @Inject(APP_CONFIG) config: AppConfig,
+    config: GrpcConfigService,
     private handleError: HandleErrorService,
   ) {
-    this.client = new SourcesClient(config.grpcHost, null, { unaryInterceptors: [interceptor] });
+    this.client = new SourcesClient(config.hostname, config.credentials, config.options);
     this.refreshObservable = new Subject();
   }
 

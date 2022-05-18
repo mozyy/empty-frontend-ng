@@ -1,12 +1,11 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   from, map, tap,
 } from 'rxjs';
 import { OAuthToken } from '../../../proto/user/oauth_pb';
 import { UserClient } from '../../../proto/user/UserServiceClientPb';
 import { LoginRequest } from '../../../proto/user/user_pb';
-import { AppConfig, APP_CONFIG } from '../../app.config';
-import { GrpcInterceptorService } from '../../services/grpc-interceptor.service';
+import { GrpcConfigService } from '../../services/grpc-config.service';
 import { HandleErrorService } from '../../services/handle-error.service';
 import { OauthService } from '../../services/oauth.service';
 import { protobufAssign } from '../../utils/grpc';
@@ -20,12 +19,11 @@ export class UserService {
   private client:UserClient;
 
   constructor(
-    interceptor:GrpcInterceptorService,
-    @Inject(APP_CONFIG) config: AppConfig,
+    config:GrpcConfigService,
     private handleError: HandleErrorService,
     private oauthService: OauthService,
   ) {
-    this.client = new UserClient(config.grpcHost, null, { unaryInterceptors: [interceptor] });
+    this.client = new UserClient(config.hostname, config.credentials, config.options);
   }
 
   login(params: ParamsLogin) {

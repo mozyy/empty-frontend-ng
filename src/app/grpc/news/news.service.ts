@@ -1,12 +1,11 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
 import {
   from, map,
 } from 'rxjs';
 import { NewsClient } from '../../../proto/news/NewsServiceClientPb';
 import { DetailRequest, DetailResponse, NewsItem } from '../../../proto/news/news_pb';
-import { AppConfig, APP_CONFIG } from '../../app.config';
-import { GrpcInterceptorService } from '../../services/grpc-interceptor.service';
+import { GrpcConfigService } from '../../services/grpc-config.service';
 import { HandleErrorService } from '../../services/handle-error.service';
 import { protobufAssign } from '../../utils/grpc';
 
@@ -17,11 +16,10 @@ export class NewsService {
   client: NewsClient;
 
   constructor(
-    interceptor:GrpcInterceptorService,
-    @Inject(APP_CONFIG) config: AppConfig,
+    config: GrpcConfigService,
     private handleError: HandleErrorService,
   ) {
-    this.client = new NewsClient(config.grpcHost, null, { unaryInterceptors: [interceptor] });
+    this.client = new NewsClient(config.hostname, config.credentials, config.options);
   }
 
   getNews() {
