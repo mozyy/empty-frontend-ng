@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  grpcHost: 'http://localhost:50052/i/api',
+  grpcHost: 'http://192.168.120.181:50052/i/api',
 };
 
 /*

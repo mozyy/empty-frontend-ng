@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
-import { ServerModule } from '@angular/platform-server';
-
-import { Routes, RouterModule } from '@angular/router';
-import { AppModule } from './app.module';
-import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { ServerModule, ServerTransferStateModule } from '@angular/platform-server';
+import { Routes } from '@angular/router';
+// @ts-ignore
+import xhr from 'xhr2';
 import { AppShellComponent } from './app-shell/app-shell.component';
+import { AppComponent } from './app.component';
+import { AppModule } from './app.module';
 
 const routes: Routes = [{ path: 'shell', component: AppShellComponent }];
+
+global.XMLHttpRequest = xhr;
 
 @NgModule({
   imports: [
     AppModule,
     ServerModule,
-    // RouterModule.forRoot(routes, {
-    //   initialNavigation: 'enabledBlocking',
-    // }),
+    ServerTransferStateModule,
+    BrowserModule.withServerTransition({ appId: 'angular-starter' }),
   ],
   bootstrap: [AppComponent],
-  declarations: [
-    AppShellComponent,
-  ],
 })
-export class AppServerModule {}
+export class AppServerModule { }

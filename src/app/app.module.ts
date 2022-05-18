@@ -14,7 +14,6 @@ import { ModalModule } from './components/modal/modal.module';
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
