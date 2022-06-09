@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.195.0/containers/javascript-node
 {
   "name": "EmptyFrontendNg",
-  "image": "mozyy/empty-dev-container:1.0.7",
+  "image": "mozyy/empty-dev-container:1.0.8",
   "runArgs": ["--init"],
   "mounts": [
     "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind"
