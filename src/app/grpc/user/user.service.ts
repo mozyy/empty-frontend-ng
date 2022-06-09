@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import {
   from, map, tap,
 } from 'rxjs';
-import { OAuthToken } from '../../../proto/user/oauth_pb';
-import { UserClient } from '../../../proto/user/UserServiceClientPb';
-import { LoginRequest } from '../../../proto/user/user_pb';
+import { UserServiceClient } from '../../../proto/user/login/v1/LoginServiceClientPb';
+import { LoginRequest, LoginResponse } from '../../../proto/user/login/v1/login_pb';
+import { OAuthToken } from '../../../proto/user/oauth/v1/oauth_pb';
 import { GrpcConfigService } from '../../services/grpc-config.service';
 import { HandleErrorService } from '../../services/handle-error.service';
 import { OauthService } from '../../services/oauth.service';
-import { protobufAssign } from '../../utils/grpc';
 
 export type ParamsLogin = LoginRequest.AsObject;
 
@@ -16,25 +15,23 @@ export type ParamsLogin = LoginRequest.AsObject;
   providedIn: 'root',
 })
 export class UserService {
-  private client:UserClient;
+  private client:UserServiceClient;
 
   constructor(
     config:GrpcConfigService,
     private handleError: HandleErrorService,
     private oauthService: OauthService,
   ) {
-    this.client = new UserClient(config.hostname, config.credentials, config.options);
+    this.client = new UserServiceClient(config.hostname, config.credentials, config.options);
   }
 
-  login(params: ParamsLogin) {
-    const req = new LoginRequest();
-    protobufAssign(params, req);
+  login(req: LoginRequest) {
     return from(this.client.login(req, null)).pipe(
       tap((resp) => {
-        this.oauthService.createToken(resp);
+        this.oauthService.createToken(resp.getOAuthToken()!);
       }),
       map((resp) => resp.toObject()),
-      this.handleError.handleCatchError<OAuthToken.AsObject>(new OAuthToken().toObject(), 'login'),
+      this.handleError.handleCatchError<LoginResponse.AsObject>(new LoginResponse().toObject(), 'login'),
     );
   }
 }

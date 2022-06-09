@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID,
 } from '@angular/core';
-import { SourcesItem } from '../../../proto/manage/sources_pb';
+import { Resource } from '../../../proto/system/resource/v1/resource_pb';
 import { SourceService } from '../../grpc/manage/source.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   isBrowser: boolean;
 
-  routers:SourcesItem.AsObject[] = [];
+  routers:Resource.AsObject[] = [];
 
   private mobileQueryListener = () => {};
 

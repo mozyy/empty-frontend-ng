@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginRequest } from '../../../../proto/user/login/v1/login_pb';
 import { UserService } from '../../../grpc/user/user.service';
 
 @Component({
@@ -21,8 +22,12 @@ export class LoginComponent {
   ) { }
 
   onSubmit() {
-    if (this.form.valid) {
-      this.user.login(this.form.value).subscribe((token) => {
+    const { valid, value } = this.form;
+    if (valid) {
+      const req = new LoginRequest();
+      req.setMobile(value.mobile);
+      req.setPassword(value.password);
+      this.user.login(req).subscribe((token) => {
         if (token) {
           // this.location.back();
           this.router.navigate(['..'], { replaceUrl: true }).then(() => {

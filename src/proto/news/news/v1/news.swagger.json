@@ -1,0 +1,270 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "news/news/v1/news.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "NewsService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/news.news.v1.NewsService/Detail": {
+      "post": {
+        "operationId": "NewsService_Detail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DetailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1DetailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NewsService"
+        ]
+      }
+    },
+    "/news.news.v1.NewsService/List": {
+      "post": {
+        "operationId": "NewsService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ListRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NewsService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "DetailResponseDetailContent": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/typesDeletedAt"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "content": {
+          "type": "string"
+        },
+        "newsDetailID": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "typesDeletedAt": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1DetailRequest": {
+      "type": "object",
+      "properties": {
+        "URL": {
+          "type": "string"
+        }
+      }
+    },
+    "v1DetailResponse": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/typesDeletedAt"
+        },
+        "title": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DetailResponseDetailContent"
+          }
+        },
+        "no": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ListRequest": {
+      "type": "object"
+    },
+    "v1ListResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1News"
+          }
+        }
+      }
+    },
+    "v1News": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/typesDeletedAt"
+        },
+        "link": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        },
+        "view": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "comment": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "$ref": "#/definitions/v1TYPE",
+          "title": "1: 业界, 2: 科学, 3: 影视, 4: 游戏"
+        }
+      }
+    },
+    "v1TYPE": {
+      "type": "string",
+      "enum": [
+        "TYPE_INDUSTRY_UNSPECIFIED",
+        "TYPE_SCIENCE",
+        "TYPE_FILM",
+        "TYPE_GAME"
+      ],
+      "default": "TYPE_INDUSTRY_UNSPECIFIED"
+    }
+  }
+}

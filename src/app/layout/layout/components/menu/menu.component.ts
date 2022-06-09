@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SourcesItem } from '../../../../../proto/manage/sources_pb';
+import { Resource } from '../../../../../proto/system/resource/v1/resource_pb';
 
 @Component({
   selector: 'efn-menu',
@@ -7,5 +7,5 @@ import { SourcesItem } from '../../../../../proto/manage/sources_pb';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent {
-  @Input() routers:SourcesItem.AsObject[] = [];
+  @Input() routers:Resource.AsObject[] = [];
 }

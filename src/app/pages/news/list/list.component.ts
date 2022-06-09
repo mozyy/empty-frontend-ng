@@ -3,7 +3,7 @@ import {
   APP_ID, Component, Inject, OnInit, PLATFORM_ID,
 } from '@angular/core';
 import { makeStateKey, TransferState } from '@angular/platform-browser';
-import { NewsItem } from '../../../../proto/news/news_pb';
+import { News } from '../../../../proto/news/news/v1/news_pb';
 import { NewsService } from '../../../grpc/news/news.service';
 
 const STATE_KEY_ITEMS = makeStateKey('items');
@@ -13,7 +13,7 @@ const STATE_KEY_ITEMS = makeStateKey('items');
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  newsList?:NewsItem.AsObject[];
+  newsList?:News.AsObject[];
 
   constructor(
     private state: TransferState,

@@ -2,12 +2,12 @@ import { FlatTreeControl, NestedTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-import { SourcesItem } from '../../../../proto/manage/sources_pb';
+import { DeleteRequest, ListRequest, Resource } from '../../../../proto/system/resource/v1/resource_pb';
 import { ModalService } from '../../../components/modal/modal.service';
-import { ParamsList, SourceService } from '../../../grpc/manage/source.service';
+import { SourceService } from '../../../grpc/manage/source.service';
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 
-interface FlatNode extends SourcesItem.AsObject {
+interface FlatNode extends Resource.AsObject {
   expandable: boolean;
   level: number;
 }
@@ -18,11 +18,9 @@ interface FlatNode extends SourcesItem.AsObject {
   styleUrls: ['./source.component.scss'],
 })
 export class SourceComponent implements OnInit {
-  params: ParamsList = new SourcesItem().toObject();
-
   // treeControl = new NestedTreeControl<SourcesItem.AsObject>((node) => node.childrenList);
 
-  private transformer = (node: SourcesItem.AsObject, level: number) => ({
+  private transformer = (node: Resource.AsObject, level: number) => ({
     expandable: !!node.childrenList && node.childrenList.length > 0,
     level,
     ...node,
@@ -42,7 +40,7 @@ export class SourceComponent implements OnInit {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  sources:SourcesItem.AsObject[] = [];
+  sources:Resource.AsObject[] = [];
 
   constructor(
     private sourceService: SourceService,
@@ -55,13 +53,14 @@ export class SourceComponent implements OnInit {
   }
 
   getSource() {
-    this.sourceService.sourcesTree(this.params).subscribe((resp) => this.dataSource.data = resp);
+    this.sourceService.sourcesTree(new ListRequest())
+      .subscribe((resp) => this.dataSource.data = resp);
   }
 
   add(node: FlatNode) {
-    const sourcesItemid = node.id;
-    const item = new SourcesItem().toObject();
-    this.openDialog({ ...item, sourcesItemid });
+    const resource = new Resource();
+    resource.setResourceItemid(node.id);
+    this.openDialog(resource.toObject());
   }
 
   edit(node:FlatNode) {
@@ -70,15 +69,28 @@ export class SourceComponent implements OnInit {
 
   delete(node: FlatNode) {
     this.modal.open({ content: '确定删除？' }).afterClosed().subscribe(() => {
-      this.sourceService.delete({ ...node }).subscribe(() => {
+      const req = new DeleteRequest();
+      const resource = new Resource();
+      resource.setId(node.id);
+      resource.setResourceItemid(node.resourceItemid);
+      resource.setKey(node.key);
+      resource.setType(node.type);
+      resource.setIndex(node.index);
+      resource.setPath(node.path);
+      resource.setName(node.name);
+      resource.setMenu(node.menu);
+      resource.setIcon(node.icon);
+      resource.setDesc(node.desc);
+      req.setResource(resource);
+      this.sourceService.delete(req).subscribe(() => {
         this.sourceService.refresh();
       });
     });
   }
 
-  openDialog(data: SourcesItem.AsObject): void {
+  openDialog(data: Resource.AsObject): void {
     const dialogRef = this.dialog.open<EditDialogComponent,
-    ParamsList, boolean>(EditDialogComponent, {
+    Resource.AsObject, boolean>(EditDialogComponent, {
       data,
     });
 

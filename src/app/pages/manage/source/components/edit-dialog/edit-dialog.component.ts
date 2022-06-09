@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ParamsList, SourceService } from '../../../../../grpc/manage/source.service';
+import { Resource } from '../../../../../../proto/system/resource/v1/resource_pb';
+import { SourceService } from '../../../../../grpc/manage/source.service';
 
 @Component({
   selector: 'efn-edit-dialog',
@@ -15,7 +16,7 @@ export class EditDialogComponent {
 
   constructor(
     private dialogRef: MatDialogRef<EditDialogComponent, boolean>,
-    @Inject(MAT_DIALOG_DATA) private data: ParamsList,
+    @Inject(MAT_DIALOG_DATA) private data: Resource.AsObject,
     private fb:FormBuilder,
     private sourceService: SourceService,
   ) {

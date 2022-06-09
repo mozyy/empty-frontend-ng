@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DetailResponse } from '../../../../proto/news/news_pb';
+import { DetailResponse } from '../../../../proto/news/news/v1/news_pb';
 import { NewsService } from '../../../grpc/news/news.service';
 import { CryptoService } from '../../../services/crypto.service';
 

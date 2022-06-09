@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
 import {
   from, map, merge, of, Subject, switchMap,
 } from 'rxjs';
-import { SourcesClient } from '../../../proto/manage/SourcesServiceClientPb';
-import { SourcesItem } from '../../../proto/manage/sources_pb';
+import { ResourceServiceClient } from '../../../proto/system/resource/v1/ResourceServiceClientPb';
+import {
+  CreateRequest, CreateResponse, DeleteRequest, DeleteResponse,
+  ListRequest, Resource, UpdateRequest, UpdateResponse,
+} from '../../../proto/system/resource/v1/resource_pb';
 import { GrpcConfigService } from '../../services/grpc-config.service';
 import { HandleErrorService } from '../../services/handle-error.service';
-import { protobufAssign } from '../../utils/grpc';
-
-export type ParamsList = Partial<SourcesItem.AsObject>;
 
 @Injectable({
   providedIn: 'root',
 })
 export class SourceService {
-  private client: SourcesClient;
+  private client: ResourceServiceClient;
 
   private refreshObservable:Subject<null>;
 
@@ -23,39 +22,33 @@ export class SourceService {
     config: GrpcConfigService,
     private handleError: HandleErrorService,
   ) {
-    this.client = new SourcesClient(config.hostname, config.credentials, config.options);
+    this.client = new ResourceServiceClient(config.hostname, config.credentials, config.options);
     this.refreshObservable = new Subject();
   }
 
-  create(params: ParamsList) {
-    const req = new SourcesItem();
-    protobufAssign(params, req);
+  create(req: CreateRequest) {
     return from(this.client.create(req, null)).pipe(
       map((resp) => resp.toObject()),
-      this.handleError.handleCatchError<SourcesItem.AsObject>(new SourcesItem().toObject(), 'create'),
+      this.handleError.handleCatchError<CreateResponse.AsObject>(new CreateResponse().toObject(), 'create'),
     );
   }
 
-  update(params: ParamsList) {
-    const req = new SourcesItem();
-    protobufAssign(params, req);
+  update(req: UpdateRequest) {
     return from(this.client.update(req, null)).pipe(
       map((resp) => resp.toObject()),
-      this.handleError.handleCatchError<SourcesItem.AsObject>(new SourcesItem().toObject(), 'create'),
+      this.handleError.handleCatchError<UpdateResponse.AsObject>(new UpdateResponse().toObject(), 'create'),
     );
   }
 
-  delete(params: ParamsList) {
-    const req = new SourcesItem();
-    protobufAssign(params, req);
+  delete(req: DeleteRequest) {
     return from(this.client.delete(req, null)).pipe(
       map((resp) => resp.toObject()),
-      this.handleError.handleCatchError<Empty.AsObject>(new Empty().toObject(), 'create'),
+      this.handleError.handleCatchError<DeleteResponse.AsObject>(new DeleteResponse().toObject(), 'create'),
     );
   }
 
   source() {
-    return this.sourcesTree({})
+    return this.sourcesTree(new ListRequest())
       .pipe(
         map((resp) => resp[0]?.childrenList || []),
       );
@@ -65,10 +58,10 @@ export class SourceService {
     this.refreshObservable.next(null);
   }
 
-  static generateTree(sources:SourcesItem.AsObject[]) {
+  static generateTree(sources:Resource.AsObject[]) {
     sources.forEach((source) => {
-      if (source.sourcesItemid) {
-        const parent = sources.find((item) => item.id === source.sourcesItemid);
+      if (source.resourceItemid) {
+        const parent = sources.find((item) => item.id === source.resourceItemid);
         if (parent) {
           parent.childrenList.push(source);
         }
@@ -77,14 +70,12 @@ export class SourceService {
     return sources.filter((source) => source.id === 7);
   }
 
-  sourcesTree(params: ParamsList) {
-    const req = new SourcesItem();
-    protobufAssign(params, req);
+  sourcesTree(req: ListRequest) {
     return merge(this.refreshObservable, of(null))
       .pipe(
         switchMap(() => this.client.list(req, null)),
-        map((resp) => resp.toObject().listList),
-        this.handleError.handleCatchError<SourcesItem.AsObject[]>([], 'getSource'),
+        map((resp) => resp.toObject().resourcesList),
+        this.handleError.handleCatchError<Resource.AsObject[]>([], 'getSource'),
         map(SourceService.generateTree),
       );
   }
