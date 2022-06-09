@@ -25,8 +25,8 @@ export class LoginComponent {
     const { valid, value } = this.form;
     if (valid) {
       const req = new LoginRequest();
-      req.setMobile(value.mobile);
-      req.setPassword(value.password);
+      req.setMobile(value.mobile || '');
+      req.setPassword(value.password || '');
       this.user.login(req).subscribe((token) => {
         if (token) {
           // this.location.back();
