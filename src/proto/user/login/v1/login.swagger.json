@@ -114,17 +114,6 @@
     }
   },
   "definitions": {
-    "ResourceTYPE": {
-      "type": "string",
-      "enum": [
-        "TYPE_ROUTE_UNSPECIFIED",
-        "TYPE_FUNCTION",
-        "TYPE_API"
-      ],
-      "default": "TYPE_ROUTE_UNSPECIFIED",
-      "description": "- TYPE_ROUTE_UNSPECIFIED: 路由\n - TYPE_FUNCTION: 功能\n - TYPE_API: 接品",
-      "title": "资源类型"
-    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -160,6 +149,15 @@
           "format": "date-time"
         }
       }
+    },
+    "v1CodeChallengeMethod": {
+      "type": "string",
+      "enum": [
+        "plain",
+        "S256"
+      ],
+      "default": "plain",
+      "title": "buf:lint:ignore ENUM_VALUE_PREFIX\nbuf:lint:ignore ENUM_VALUE_UPPER_SNAKE_CASE\nbuf:lint:ignore ENUM_ZERO_VALUE_SUFFIX"
     },
     "v1InfoRequest": {
       "type": "object"
@@ -220,12 +218,137 @@
       "type": "object",
       "properties": {
         "oAuthToken": {
-          "$ref": "#/definitions/v1OAuthToken",
+          "$ref": "#/definitions/v1TokenInfo",
           "title": "oauth token"
         }
       }
     },
-    "v1OAuthToken": {
+    "v1RegisterRequest": {
+      "type": "object",
+      "properties": {
+        "mobile": {
+          "type": "string",
+          "title": "手机号"
+        },
+        "smsCode": {
+          "type": "string",
+          "title": "短信验证码"
+        },
+        "password": {
+          "type": "string",
+          "title": "密码"
+        }
+      }
+    },
+    "v1RegisterResponse": {
+      "type": "object",
+      "properties": {
+        "oAuthToken": {
+          "$ref": "#/definitions/v1TokenInfo",
+          "title": "oauth token"
+        }
+      }
+    },
+    "v1Resource": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/typesDeletedAt"
+        },
+        "resourceItemID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Resource"
+          }
+        },
+        "key": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/v1ResourceType"
+        },
+        "index": {
+          "type": "boolean",
+          "title": "路由\n是否首页"
+        },
+        "path": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "menu": {
+          "type": "boolean"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "desc": {
+          "type": "string",
+          "title": "描述"
+        }
+      },
+      "title": "系统资源"
+    },
+    "v1ResourceType": {
+      "type": "string",
+      "enum": [
+        "TYPE_ROUTE_UNSPECIFIED",
+        "TYPE_FUNCTION",
+        "TYPE_API"
+      ],
+      "default": "TYPE_ROUTE_UNSPECIFIED",
+      "description": "- TYPE_ROUTE_UNSPECIFIED: 路由\n - TYPE_FUNCTION: 功能\n - TYPE_API: 接品",
+      "title": "资源类型"
+    },
+    "v1Role": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/typesDeletedAt"
+        },
+        "name": {
+          "type": "string",
+          "title": "角色名"
+        },
+        "resourceItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Resource"
+          },
+          "title": "资源"
+        }
+      }
+    },
+    "v1TokenInfo": {
       "type": "object",
       "properties": {
         "ID": {
@@ -276,7 +399,7 @@
           "type": "string"
         },
         "codeChallengeMethod": {
-          "type": "string"
+          "$ref": "#/definitions/v1CodeChallengeMethod"
         },
         "access": {
           "type": "string",
@@ -305,121 +428,8 @@
         "tokenType": {
           "type": "string"
         }
-      }
-    },
-    "v1RegisterRequest": {
-      "type": "object",
-      "properties": {
-        "mobile": {
-          "type": "string",
-          "title": "手机号"
-        },
-        "smsCode": {
-          "type": "string",
-          "title": "短信验证码"
-        },
-        "password": {
-          "type": "string",
-          "title": "密码"
-        }
-      }
-    },
-    "v1RegisterResponse": {
-      "type": "object",
-      "properties": {
-        "oAuthToken": {
-          "$ref": "#/definitions/v1OAuthToken",
-          "title": "oauth token"
-        }
-      }
-    },
-    "v1Resource": {
-      "type": "object",
-      "properties": {
-        "ID": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "deletedAt": {
-          "$ref": "#/definitions/typesDeletedAt"
-        },
-        "resourceItemID": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "children": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Resource"
-          }
-        },
-        "key": {
-          "type": "string"
-        },
-        "type": {
-          "$ref": "#/definitions/ResourceTYPE"
-        },
-        "index": {
-          "type": "boolean",
-          "title": "路由\n是否首页"
-        },
-        "path": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "menu": {
-          "type": "boolean"
-        },
-        "icon": {
-          "type": "string"
-        },
-        "desc": {
-          "type": "string",
-          "title": "描述"
-        }
       },
-      "title": "系统资源"
-    },
-    "v1Role": {
-      "type": "object",
-      "properties": {
-        "ID": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "deletedAt": {
-          "$ref": "#/definitions/typesDeletedAt"
-        },
-        "name": {
-          "type": "string",
-          "title": "角色名"
-        },
-        "resourceItems": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Resource"
-          },
-          "title": "资源"
-        }
-      }
+      "title": "TokenInfo implement oauth2.TokenInfo"
     }
   }
 }

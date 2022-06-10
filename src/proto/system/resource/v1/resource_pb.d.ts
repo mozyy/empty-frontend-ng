@@ -35,8 +35,8 @@ export class Resource extends jspb.Message {
   getKey(): string;
   setKey(value: string): Resource;
 
-  getType(): Resource.TYPE;
-  setType(value: Resource.TYPE): Resource;
+  getType(): Resource.Type;
+  setType(value: Resource.Type): Resource;
 
   getIndex(): boolean;
   setIndex(value: boolean): Resource;
@@ -73,7 +73,7 @@ export namespace Resource {
     resourceItemid: number,
     childrenList: Array<Resource.AsObject>,
     key: string,
-    type: Resource.TYPE,
+    type: Resource.Type,
     index: boolean,
     path: string,
     name: string,
@@ -82,7 +82,7 @@ export namespace Resource {
     desc: string,
   }
 
-  export enum TYPE { 
+  export enum Type { 
     TYPE_ROUTE_UNSPECIFIED = 0,
     TYPE_FUNCTION = 1,
     TYPE_API = 2,

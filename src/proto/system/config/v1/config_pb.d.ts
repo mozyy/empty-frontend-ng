@@ -25,8 +25,8 @@ export class Config extends jspb.Message {
   hasDeletedAt(): boolean;
   clearDeletedAt(): Config;
 
-  getType(): string;
-  setType(value: string): Config;
+  getType(): Type;
+  setType(value: Type): Config;
 
   getValue(): string;
   setValue(value: string): Config;
@@ -37,8 +37,8 @@ export class Config extends jspb.Message {
   getDesc(): string;
   setDesc(value: string): Config;
 
-  getOAuthToken(): user_oauth_v1_oauth_pb.OAuthToken | undefined;
-  setOAuthToken(value?: user_oauth_v1_oauth_pb.OAuthToken): Config;
+  getOAuthToken(): user_oauth_v1_oauth_pb.TokenInfo | undefined;
+  setOAuthToken(value?: user_oauth_v1_oauth_pb.TokenInfo): Config;
   hasOAuthToken(): boolean;
   clearOAuthToken(): Config;
 
@@ -56,11 +56,11 @@ export namespace Config {
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     deletedAt?: gorm_types_types_pb.DeletedAt.AsObject,
-    type: string,
+    type: Type,
     value: string,
     content: string,
     desc: string,
-    oAuthToken?: user_oauth_v1_oauth_pb.OAuthToken.AsObject,
+    oAuthToken?: user_oauth_v1_oauth_pb.TokenInfo.AsObject,
   }
 }
 
@@ -298,3 +298,7 @@ export namespace DeleteResponse {
   }
 }
 
+export enum Type { 
+  TYPE_NORMAL_UNSPECIFIED = 0,
+  TYPE_APISCOPE = 1,
+}

@@ -379,7 +379,7 @@ proto.user.login.v1.RegisterResponse.prototype.toObject = function(opt_includeIn
  */
 proto.user.login.v1.RegisterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    oAuthToken: (f = msg.getOAuthToken()) && user_oauth_v1_oauth_pb.OAuthToken.toObject(includeInstance, f)
+    oAuthToken: (f = msg.getOAuthToken()) && user_oauth_v1_oauth_pb.TokenInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -417,8 +417,8 @@ proto.user.login.v1.RegisterResponse.deserializeBinaryFromReader = function(msg,
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new user_oauth_v1_oauth_pb.OAuthToken;
-      reader.readMessage(value,user_oauth_v1_oauth_pb.OAuthToken.deserializeBinaryFromReader);
+      var value = new user_oauth_v1_oauth_pb.TokenInfo;
+      reader.readMessage(value,user_oauth_v1_oauth_pb.TokenInfo.deserializeBinaryFromReader);
       msg.setOAuthToken(value);
       break;
     default:
@@ -455,24 +455,24 @@ proto.user.login.v1.RegisterResponse.serializeBinaryToWriter = function(message,
     writer.writeMessage(
       1,
       f,
-      user_oauth_v1_oauth_pb.OAuthToken.serializeBinaryToWriter
+      user_oauth_v1_oauth_pb.TokenInfo.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional user.oauth.v1.OAuthToken o_auth_token = 1;
- * @return {?proto.user.oauth.v1.OAuthToken}
+ * optional user.oauth.v1.TokenInfo o_auth_token = 1;
+ * @return {?proto.user.oauth.v1.TokenInfo}
  */
 proto.user.login.v1.RegisterResponse.prototype.getOAuthToken = function() {
-  return /** @type{?proto.user.oauth.v1.OAuthToken} */ (
-    jspb.Message.getWrapperField(this, user_oauth_v1_oauth_pb.OAuthToken, 1));
+  return /** @type{?proto.user.oauth.v1.TokenInfo} */ (
+    jspb.Message.getWrapperField(this, user_oauth_v1_oauth_pb.TokenInfo, 1));
 };
 
 
 /**
- * @param {?proto.user.oauth.v1.OAuthToken|undefined} value
+ * @param {?proto.user.oauth.v1.TokenInfo|undefined} value
  * @return {!proto.user.login.v1.RegisterResponse} returns this
 */
 proto.user.login.v1.RegisterResponse.prototype.setOAuthToken = function(value) {
@@ -720,7 +720,7 @@ proto.user.login.v1.LoginResponse.prototype.toObject = function(opt_includeInsta
  */
 proto.user.login.v1.LoginResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    oAuthToken: (f = msg.getOAuthToken()) && user_oauth_v1_oauth_pb.OAuthToken.toObject(includeInstance, f)
+    oAuthToken: (f = msg.getOAuthToken()) && user_oauth_v1_oauth_pb.TokenInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -758,8 +758,8 @@ proto.user.login.v1.LoginResponse.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new user_oauth_v1_oauth_pb.OAuthToken;
-      reader.readMessage(value,user_oauth_v1_oauth_pb.OAuthToken.deserializeBinaryFromReader);
+      var value = new user_oauth_v1_oauth_pb.TokenInfo;
+      reader.readMessage(value,user_oauth_v1_oauth_pb.TokenInfo.deserializeBinaryFromReader);
       msg.setOAuthToken(value);
       break;
     default:
@@ -796,24 +796,24 @@ proto.user.login.v1.LoginResponse.serializeBinaryToWriter = function(message, wr
     writer.writeMessage(
       1,
       f,
-      user_oauth_v1_oauth_pb.OAuthToken.serializeBinaryToWriter
+      user_oauth_v1_oauth_pb.TokenInfo.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional user.oauth.v1.OAuthToken o_auth_token = 1;
- * @return {?proto.user.oauth.v1.OAuthToken}
+ * optional user.oauth.v1.TokenInfo o_auth_token = 1;
+ * @return {?proto.user.oauth.v1.TokenInfo}
  */
 proto.user.login.v1.LoginResponse.prototype.getOAuthToken = function() {
-  return /** @type{?proto.user.oauth.v1.OAuthToken} */ (
-    jspb.Message.getWrapperField(this, user_oauth_v1_oauth_pb.OAuthToken, 1));
+  return /** @type{?proto.user.oauth.v1.TokenInfo} */ (
+    jspb.Message.getWrapperField(this, user_oauth_v1_oauth_pb.TokenInfo, 1));
 };
 
 
 /**
- * @param {?proto.user.oauth.v1.OAuthToken|undefined} value
+ * @param {?proto.user.oauth.v1.TokenInfo|undefined} value
  * @return {!proto.user.login.v1.LoginResponse} returns this
 */
 proto.user.login.v1.LoginResponse.prototype.setOAuthToken = function(value) {

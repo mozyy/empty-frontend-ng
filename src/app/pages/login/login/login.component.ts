@@ -11,8 +11,8 @@ import { UserService } from '../../../grpc/user/user.service';
 })
 export class LoginComponent {
   form = this.fb.group({
-    mobile: ['', [Validators.required, Validators.pattern('\\d{11}')]],
-    password: ['', [Validators.required, Validators.pattern('\\S{6,}')]],
+    mobile: ['18381335182', [Validators.required, Validators.pattern('\\d{11}')]],
+    password: ['smqy123', [Validators.required, Validators.pattern('\\S{6,}')]],
   });
 
   constructor(
@@ -27,6 +27,7 @@ export class LoginComponent {
       const req = new LoginRequest();
       req.setMobile(value.mobile || '');
       req.setPassword(value.password || '');
+      req.setSmsCode('smscode');
       this.user.login(req).subscribe((token) => {
         if (token) {
           // this.location.back();

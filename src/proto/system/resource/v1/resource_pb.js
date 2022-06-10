@@ -28,7 +28,7 @@ goog.exportSymbol('proto.system.resource.v1.DeleteResponse', null, global);
 goog.exportSymbol('proto.system.resource.v1.ListRequest', null, global);
 goog.exportSymbol('proto.system.resource.v1.ListResponse', null, global);
 goog.exportSymbol('proto.system.resource.v1.Resource', null, global);
-goog.exportSymbol('proto.system.resource.v1.Resource.TYPE', null, global);
+goog.exportSymbol('proto.system.resource.v1.Resource.Type', null, global);
 goog.exportSymbol('proto.system.resource.v1.UpdateRequest', null, global);
 goog.exportSymbol('proto.system.resource.v1.UpdateResponse', null, global);
 /**
@@ -343,7 +343,7 @@ proto.system.resource.v1.Resource.deserializeBinaryFromReader = function(msg, re
       msg.setKey(value);
       break;
     case 8:
-      var value = /** @type {!proto.system.resource.v1.Resource.TYPE} */ (reader.readEnum());
+      var value = /** @type {!proto.system.resource.v1.Resource.Type} */ (reader.readEnum());
       msg.setType(value);
       break;
     case 9:
@@ -507,7 +507,7 @@ proto.system.resource.v1.Resource.serializeBinaryToWriter = function(message, wr
 /**
  * @enum {number}
  */
-proto.system.resource.v1.Resource.TYPE = {
+proto.system.resource.v1.Resource.Type = {
   TYPE_ROUTE_UNSPECIFIED: 0,
   TYPE_FUNCTION: 1,
   TYPE_API: 2
@@ -717,16 +717,16 @@ proto.system.resource.v1.Resource.prototype.setKey = function(value) {
 
 
 /**
- * optional TYPE type = 8;
- * @return {!proto.system.resource.v1.Resource.TYPE}
+ * optional Type type = 8;
+ * @return {!proto.system.resource.v1.Resource.Type}
  */
 proto.system.resource.v1.Resource.prototype.getType = function() {
-  return /** @type {!proto.system.resource.v1.Resource.TYPE} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+  return /** @type {!proto.system.resource.v1.Resource.Type} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
 
 /**
- * @param {!proto.system.resource.v1.Resource.TYPE} value
+ * @param {!proto.system.resource.v1.Resource.Type} value
  * @return {!proto.system.resource.v1.Resource} returns this
  */
 proto.system.resource.v1.Resource.prototype.setType = function(value) {

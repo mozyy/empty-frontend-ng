@@ -113,6 +113,16 @@
         }
       }
     },
+    "newsv1Type": {
+      "type": "string",
+      "enum": [
+        "TYPE_INDUSTRY_UNSPECIFIED",
+        "TYPE_SCIENCE",
+        "TYPE_FILM",
+        "TYPE_GAME"
+      ],
+      "default": "TYPE_INDUSTRY_UNSPECIFIED"
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -251,20 +261,10 @@
           "format": "int32"
         },
         "type": {
-          "$ref": "#/definitions/v1TYPE",
+          "$ref": "#/definitions/newsv1Type",
           "title": "1: 业界, 2: 科学, 3: 影视, 4: 游戏"
         }
       }
-    },
-    "v1TYPE": {
-      "type": "string",
-      "enum": [
-        "TYPE_INDUSTRY_UNSPECIFIED",
-        "TYPE_SCIENCE",
-        "TYPE_FILM",
-        "TYPE_GAME"
-      ],
-      "default": "TYPE_INDUSTRY_UNSPECIFIED"
     }
   }
 }

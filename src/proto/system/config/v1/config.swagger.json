@@ -179,6 +179,14 @@
     }
   },
   "definitions": {
+    "configv1Type": {
+      "type": "string",
+      "enum": [
+        "TYPE_NORMAL_UNSPECIFIED",
+        "TYPE_APISCOPE"
+      ],
+      "default": "TYPE_NORMAL_UNSPECIFIED"
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -215,6 +223,15 @@
         }
       }
     },
+    "v1CodeChallengeMethod": {
+      "type": "string",
+      "enum": [
+        "plain",
+        "S256"
+      ],
+      "default": "plain",
+      "title": "buf:lint:ignore ENUM_VALUE_PREFIX\nbuf:lint:ignore ENUM_VALUE_UPPER_SNAKE_CASE\nbuf:lint:ignore ENUM_ZERO_VALUE_SUFFIX"
+    },
     "v1Config": {
       "type": "object",
       "properties": {
@@ -234,7 +251,7 @@
           "$ref": "#/definitions/typesDeletedAt"
         },
         "type": {
-          "type": "string"
+          "$ref": "#/definitions/configv1Type"
         },
         "value": {
           "type": "string"
@@ -246,7 +263,7 @@
           "type": "string"
         },
         "oAuthToken": {
-          "$ref": "#/definitions/v1OAuthToken"
+          "$ref": "#/definitions/v1TokenInfo"
         }
       }
     },
@@ -302,7 +319,23 @@
         }
       }
     },
-    "v1OAuthToken": {
+    "v1ReadRequest": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "$ref": "#/definitions/v1Config"
+        }
+      }
+    },
+    "v1ReadResponse": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "$ref": "#/definitions/v1Config"
+        }
+      }
+    },
+    "v1TokenInfo": {
       "type": "object",
       "properties": {
         "ID": {
@@ -353,7 +386,7 @@
           "type": "string"
         },
         "codeChallengeMethod": {
-          "type": "string"
+          "$ref": "#/definitions/v1CodeChallengeMethod"
         },
         "access": {
           "type": "string",
@@ -382,23 +415,8 @@
         "tokenType": {
           "type": "string"
         }
-      }
-    },
-    "v1ReadRequest": {
-      "type": "object",
-      "properties": {
-        "config": {
-          "$ref": "#/definitions/v1Config"
-        }
-      }
-    },
-    "v1ReadResponse": {
-      "type": "object",
-      "properties": {
-        "config": {
-          "$ref": "#/definitions/v1Config"
-        }
-      }
+      },
+      "title": "TokenInfo implement oauth2.TokenInfo"
     },
     "v1UpdateRequest": {
       "type": "object",

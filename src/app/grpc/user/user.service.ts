@@ -4,7 +4,6 @@ import {
 } from 'rxjs';
 import { UserServiceClient } from '../../../proto/user/login/v1/LoginServiceClientPb';
 import { LoginRequest, LoginResponse } from '../../../proto/user/login/v1/login_pb';
-import { OAuthToken } from '../../../proto/user/oauth/v1/oauth_pb';
 import { GrpcConfigService } from '../../services/grpc-config.service';
 import { HandleErrorService } from '../../services/handle-error.service';
 import { OauthService } from '../../services/oauth.service';

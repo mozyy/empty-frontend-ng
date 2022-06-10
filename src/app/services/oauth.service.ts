@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import ClientOAuth2 from 'client-oauth2';
-import { OAuthToken } from '../../proto/user/oauth/v1/oauth_pb';
+import { TokenInfo } from '../../proto/user/oauth/v1/oauth_pb';
 import { StorageService } from './storage.service';
 
 @Injectable({
@@ -19,13 +19,13 @@ export class OauthService {
   });
 
   constructor(private storageService:StorageService) {
-    const storage = this.storageService.getItem<OAuthToken>('oauthToken');
+    const storage = this.storageService.getItem<TokenInfo>('oauthToken');
     if (storage) {
       this.convertToken(storage);
     }
   }
 
-  private convertToken(req: OAuthToken) {
+  private convertToken(req: TokenInfo) {
     const token = this.client.createToken(
       req.getAccess(),
       req.getRefresh(),
@@ -37,12 +37,12 @@ export class OauthService {
     return token;
   }
 
-  createToken(req: OAuthToken) {
+  createToken(req: TokenInfo) {
     this.convertToken(req);
     this.setToken(req);
   }
 
-  private setToken(req: OAuthToken) {
+  private setToken(req: TokenInfo) {
     this.storageService.setItem('oauthToken', req);
   }
 
@@ -52,7 +52,7 @@ export class OauthService {
     }
     const token = await this.oAuth2Token.refresh();
     this.oAuth2Token = token;
-    const req = new OAuthToken();
+    const req = new TokenInfo();
     req.setAccess(token.accessToken);
     req.setRefresh(token.refreshToken);
     req.setTokenType(token.tokenType);

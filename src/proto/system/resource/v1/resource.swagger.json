@@ -146,17 +146,6 @@
     }
   },
   "definitions": {
-    "ResourceTYPE": {
-      "type": "string",
-      "enum": [
-        "TYPE_ROUTE_UNSPECIFIED",
-        "TYPE_FUNCTION",
-        "TYPE_API"
-      ],
-      "default": "TYPE_ROUTE_UNSPECIFIED",
-      "description": "- TYPE_ROUTE_UNSPECIFIED: 路由\n - TYPE_FUNCTION: 功能\n - TYPE_API: 接品",
-      "title": "资源类型"
-    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -276,7 +265,7 @@
           "type": "string"
         },
         "type": {
-          "$ref": "#/definitions/ResourceTYPE"
+          "$ref": "#/definitions/v1ResourceType"
         },
         "index": {
           "type": "boolean",
@@ -300,6 +289,17 @@
         }
       },
       "title": "系统资源"
+    },
+    "v1ResourceType": {
+      "type": "string",
+      "enum": [
+        "TYPE_ROUTE_UNSPECIFIED",
+        "TYPE_FUNCTION",
+        "TYPE_API"
+      ],
+      "default": "TYPE_ROUTE_UNSPECIFIED",
+      "description": "- TYPE_ROUTE_UNSPECIFIED: 路由\n - TYPE_FUNCTION: 功能\n - TYPE_API: 接品",
+      "title": "资源类型"
     },
     "v1UpdateRequest": {
       "type": "object",

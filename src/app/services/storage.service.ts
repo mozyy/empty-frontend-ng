@@ -4,7 +4,7 @@ import { Message } from 'google-protobuf';
 import { isPlatformBrowser } from '@angular/common';
 import { CryptoService } from './crypto.service';
 import { News } from '../../proto/news/news/v1/news_pb';
-import { OAuthToken } from '../../proto/user/oauth/v1/oauth_pb';
+import { TokenInfo } from '../../proto/user/oauth/v1/oauth_pb';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,7 @@ export class StorageService extends CryptoService {
     oauthToken: {
       storage: 'localStorage' as const,
       storageKey: this.encAES('oauthToken'),
-      decode: OAuthToken,
+      decode: TokenInfo,
     },
   };
 

@@ -3,8 +3,8 @@ import * as jspb from 'google-protobuf'
 
 
 export class Message extends jspb.Message {
-  getState(): STATUS;
-  setState(value: STATUS): Message;
+  getState(): Status;
+  setState(value: Status): Message;
 
   getMessage(): string;
   setMessage(value: string): Message;
@@ -19,12 +19,12 @@ export class Message extends jspb.Message {
 
 export namespace Message {
   export type AsObject = {
-    state: STATUS,
+    state: Status,
     message: string,
   }
 }
 
-export enum STATUS { 
+export enum Status { 
   STATUS_SUCCESS_UNSPECIFIED = 0,
   STATUS_INFO = 1,
   STATUS_WARNING = 2,

@@ -34,8 +34,8 @@ export namespace RegisterRequest {
 }
 
 export class RegisterResponse extends jspb.Message {
-  getOAuthToken(): user_oauth_v1_oauth_pb.OAuthToken | undefined;
-  setOAuthToken(value?: user_oauth_v1_oauth_pb.OAuthToken): RegisterResponse;
+  getOAuthToken(): user_oauth_v1_oauth_pb.TokenInfo | undefined;
+  setOAuthToken(value?: user_oauth_v1_oauth_pb.TokenInfo): RegisterResponse;
   hasOAuthToken(): boolean;
   clearOAuthToken(): RegisterResponse;
 
@@ -49,7 +49,7 @@ export class RegisterResponse extends jspb.Message {
 
 export namespace RegisterResponse {
   export type AsObject = {
-    oAuthToken?: user_oauth_v1_oauth_pb.OAuthToken.AsObject,
+    oAuthToken?: user_oauth_v1_oauth_pb.TokenInfo.AsObject,
   }
 }
 
@@ -80,8 +80,8 @@ export namespace LoginRequest {
 }
 
 export class LoginResponse extends jspb.Message {
-  getOAuthToken(): user_oauth_v1_oauth_pb.OAuthToken | undefined;
-  setOAuthToken(value?: user_oauth_v1_oauth_pb.OAuthToken): LoginResponse;
+  getOAuthToken(): user_oauth_v1_oauth_pb.TokenInfo | undefined;
+  setOAuthToken(value?: user_oauth_v1_oauth_pb.TokenInfo): LoginResponse;
   hasOAuthToken(): boolean;
   clearOAuthToken(): LoginResponse;
 
@@ -95,7 +95,7 @@ export class LoginResponse extends jspb.Message {
 
 export namespace LoginResponse {
   export type AsObject = {
-    oAuthToken?: user_oauth_v1_oauth_pb.OAuthToken.AsObject,
+    oAuthToken?: user_oauth_v1_oauth_pb.TokenInfo.AsObject,
   }
 }
 

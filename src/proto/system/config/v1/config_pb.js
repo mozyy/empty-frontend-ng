@@ -33,6 +33,7 @@ goog.exportSymbol('proto.system.config.v1.ListRequest', null, global);
 goog.exportSymbol('proto.system.config.v1.ListResponse', null, global);
 goog.exportSymbol('proto.system.config.v1.ReadRequest', null, global);
 goog.exportSymbol('proto.system.config.v1.ReadResponse', null, global);
+goog.exportSymbol('proto.system.config.v1.Type', null, global);
 goog.exportSymbol('proto.system.config.v1.UpdateRequest', null, global);
 goog.exportSymbol('proto.system.config.v1.UpdateResponse', null, global);
 /**
@@ -323,11 +324,11 @@ proto.system.config.v1.Config.toObject = function(includeInstance, msg) {
     createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     deletedAt: (f = msg.getDeletedAt()) && gorm_types_types_pb.DeletedAt.toObject(includeInstance, f),
-    type: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 5, 0),
     value: jspb.Message.getFieldWithDefault(msg, 6, ""),
     content: jspb.Message.getFieldWithDefault(msg, 7, ""),
     desc: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    oAuthToken: (f = msg.getOAuthToken()) && user_oauth_v1_oauth_pb.OAuthToken.toObject(includeInstance, f)
+    oAuthToken: (f = msg.getOAuthToken()) && user_oauth_v1_oauth_pb.TokenInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -384,7 +385,7 @@ proto.system.config.v1.Config.deserializeBinaryFromReader = function(msg, reader
       msg.setDeletedAt(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {!proto.system.config.v1.Type} */ (reader.readEnum());
       msg.setType(value);
       break;
     case 6:
@@ -400,8 +401,8 @@ proto.system.config.v1.Config.deserializeBinaryFromReader = function(msg, reader
       msg.setDesc(value);
       break;
     case 9:
-      var value = new user_oauth_v1_oauth_pb.OAuthToken;
-      reader.readMessage(value,user_oauth_v1_oauth_pb.OAuthToken.deserializeBinaryFromReader);
+      var value = new user_oauth_v1_oauth_pb.TokenInfo;
+      reader.readMessage(value,user_oauth_v1_oauth_pb.TokenInfo.deserializeBinaryFromReader);
       msg.setOAuthToken(value);
       break;
     default:
@@ -465,8 +466,8 @@ proto.system.config.v1.Config.serializeBinaryToWriter = function(message, writer
     );
   }
   f = message.getType();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f !== 0.0) {
+    writer.writeEnum(
       5,
       f
     );
@@ -497,7 +498,7 @@ proto.system.config.v1.Config.serializeBinaryToWriter = function(message, writer
     writer.writeMessage(
       9,
       f,
-      user_oauth_v1_oauth_pb.OAuthToken.serializeBinaryToWriter
+      user_oauth_v1_oauth_pb.TokenInfo.serializeBinaryToWriter
     );
   }
 };
@@ -633,20 +634,20 @@ proto.system.config.v1.Config.prototype.hasDeletedAt = function() {
 
 
 /**
- * optional string type = 5;
- * @return {string}
+ * optional Type type = 5;
+ * @return {!proto.system.config.v1.Type}
  */
 proto.system.config.v1.Config.prototype.getType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type {!proto.system.config.v1.Type} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {!proto.system.config.v1.Type} value
  * @return {!proto.system.config.v1.Config} returns this
  */
 proto.system.config.v1.Config.prototype.setType = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+  return jspb.Message.setProto3EnumField(this, 5, value);
 };
 
 
@@ -705,17 +706,17 @@ proto.system.config.v1.Config.prototype.setDesc = function(value) {
 
 
 /**
- * optional user.oauth.v1.OAuthToken o_auth_token = 9;
- * @return {?proto.user.oauth.v1.OAuthToken}
+ * optional user.oauth.v1.TokenInfo o_auth_token = 9;
+ * @return {?proto.user.oauth.v1.TokenInfo}
  */
 proto.system.config.v1.Config.prototype.getOAuthToken = function() {
-  return /** @type{?proto.user.oauth.v1.OAuthToken} */ (
-    jspb.Message.getWrapperField(this, user_oauth_v1_oauth_pb.OAuthToken, 9));
+  return /** @type{?proto.user.oauth.v1.TokenInfo} */ (
+    jspb.Message.getWrapperField(this, user_oauth_v1_oauth_pb.TokenInfo, 9));
 };
 
 
 /**
- * @param {?proto.user.oauth.v1.OAuthToken|undefined} value
+ * @param {?proto.user.oauth.v1.TokenInfo|undefined} value
  * @return {!proto.system.config.v1.Config} returns this
 */
 proto.system.config.v1.Config.prototype.setOAuthToken = function(value) {
@@ -2521,5 +2522,13 @@ proto.system.config.v1.DeleteResponse.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.system.config.v1.Type = {
+  TYPE_NORMAL_UNSPECIFIED: 0,
+  TYPE_APISCOPE: 1
+};
 
 goog.object.extend(exports, proto.system.config.v1);

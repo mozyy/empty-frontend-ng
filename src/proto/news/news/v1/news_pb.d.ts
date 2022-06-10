@@ -42,8 +42,8 @@ export class News extends jspb.Message {
   getComment(): number;
   setComment(value: number): News;
 
-  getType(): TYPE;
-  setType(value: TYPE): News;
+  getType(): Type;
+  setType(value: Type): News;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): News.AsObject;
@@ -65,7 +65,7 @@ export namespace News {
     time: string,
     view: number,
     comment: number,
-    type: TYPE,
+    type: Type,
   }
 }
 
@@ -232,7 +232,7 @@ export namespace DetailResponse {
 
 }
 
-export enum TYPE { 
+export enum Type { 
   TYPE_INDUSTRY_UNSPECIFIED = 0,
   TYPE_SCIENCE = 1,
   TYPE_FILM = 2,
