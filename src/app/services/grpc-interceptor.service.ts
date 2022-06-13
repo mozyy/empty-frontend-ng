@@ -1,5 +1,7 @@
 import { isPlatformServer } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import {
+  Inject, Injectable, Injector, PLATFORM_ID,
+} from '@angular/core';
 import { Message } from 'google-protobuf';
 import { UnaryInterceptor, UnaryResponse, Request } from 'grpc-web';
 import { firstValueFrom } from 'rxjs';
@@ -12,7 +14,7 @@ import { OauthService } from '../grpc/user/oauth.service';
 export class GrpcInterceptorService<REQ extends Message = Message, RESP extends Message =Message>
 implements UnaryInterceptor<REQ, RESP> {
   constructor(
-    private oauthService:OauthService,
+    private injector: Injector,
     @Inject(PLATFORM_ID) private platformId:Object,
   ) {}
 
@@ -21,7 +23,7 @@ implements UnaryInterceptor<REQ, RESP> {
     invoker: (request: Request<REQ, RESP>) =>
     Promise<UnaryResponse<REQ, RESP>>,
   ): Promise<UnaryResponse<REQ, RESP>> {
-    const accessToken = await firstValueFrom(this.oauthService.getAccessToken());
+    const accessToken = await firstValueFrom(this.injector.get(OauthService).getAccessToken());
     const reqMeta = request.getMetadata();
     reqMeta['Authorization'] = reqMeta['Authorization'] ?? `Bearer ${accessToken}`;
     return invoker(request).then((response) => {

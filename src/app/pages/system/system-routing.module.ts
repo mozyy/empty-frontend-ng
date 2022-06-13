@@ -2,18 +2,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DocsComponent } from './docs/docs.component';
-import { ManageComponent } from './manage.component';
-import { SourceComponent } from './source/source.component';
+import { SystemComponent } from './system.component';
+import { ResourceComponent } from './resource/resource.component';
+import { RoleComponent } from './role/role.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ManageComponent,
+    component: SystemComponent,
     children: [
-      { path: 'source', component: SourceComponent },
+      { path: 'resource', component: ResourceComponent },
       { path: 'dash', component: DashboardComponent },
       { path: 'docs', component: DocsComponent },
-      { path: '', redirectTo: 'source', pathMatch: 'full' },
+      { path: 'role', component: RoleComponent },
+      { path: '', redirectTo: 'resource', pathMatch: 'full' },
     ],
   },
 ];
@@ -22,4 +24,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ManageRoutingModule { }
+export class SystemRoutingModule { }

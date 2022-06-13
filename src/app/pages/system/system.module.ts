@@ -16,25 +16,28 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { LayoutModule } from '@angular/cdk/layout';
-import { ManageRoutingModule } from './manage-routing.module';
-import { ManageComponent } from './manage.component';
-import { SourceComponent } from './source/source.component';
-import { EditDialogComponent } from './source/components/edit-dialog/edit-dialog.component';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { SystemRoutingModule } from './system-routing.module';
+import { SystemComponent } from './system.component';
+import { ResourceComponent } from './resource/resource.component';
+import { EditDialogComponent } from './resource/components/edit-dialog/edit-dialog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DocsComponent } from './docs/docs.component';
+import { RoleComponent } from './role/role.component';
 
 @NgModule({
   declarations: [
-    ManageComponent,
-    SourceComponent,
+    SystemComponent,
+    ResourceComponent,
     EditDialogComponent,
     DashboardComponent,
     DocsComponent,
+    RoleComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ManageRoutingModule,
+    SystemRoutingModule,
     // MatTableModule,
     MatButtonModule,
     MatDialogModule,
@@ -49,7 +52,8 @@ import { DocsComponent } from './docs/docs.component';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
+    MatPaginatorModule,
     LayoutModule,
   ],
 })
-export class ManageModule { }
+export class SystemModule { }

@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { DeleteRequest, ListRequest, Resource } from '../../../../proto/system/resource/v1/resource_pb';
 import { ModalService } from '../../../components/modal/modal.service';
-import { SourceService } from '../../../grpc/manage/source.service';
+import { ResourceService } from '../../../grpc/system/resource.service';
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 
 interface FlatNode extends Resource.AsObject {
@@ -13,11 +13,11 @@ interface FlatNode extends Resource.AsObject {
 }
 
 @Component({
-  selector: 'efn-source',
-  templateUrl: './source.component.html',
-  styleUrls: ['./source.component.scss'],
+  selector: 'efn-resource',
+  templateUrl: './resource.component.html',
+  styleUrls: ['./resource.component.scss'],
 })
-export class SourceComponent implements OnInit {
+export class ResourceComponent implements OnInit {
   // treeControl = new NestedTreeControl<SourcesItem.AsObject>((node) => node.childrenList);
 
   private transformer = (node: Resource.AsObject, level: number) => ({
@@ -43,7 +43,7 @@ export class SourceComponent implements OnInit {
   sources:Resource.AsObject[] = [];
 
   constructor(
-    private sourceService: SourceService,
+    private sourceService: ResourceService,
     private dialog: MatDialog,
     private modal: ModalService,
   ) { }

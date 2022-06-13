@@ -4,7 +4,7 @@ import {
   ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID,
 } from '@angular/core';
 import { Resource } from '../../../proto/system/resource/v1/resource_pb';
-import { SourceService } from '../../grpc/manage/source.service';
+import { ResourceService } from '../../grpc/system/resource.service';
 
 @Component({
   selector: 'efn-layout',
@@ -23,7 +23,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   constructor(
     media: MediaMatcher,
     changeDetectorRef: ChangeDetectorRef,
-    public source: SourceService,
+    public resource: ResourceService,
     @Inject(PLATFORM_ID) platformId: Object,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -36,7 +36,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.isBrowser) {
-      this.source.source()
+      this.resource.source()
         .subscribe((resp) => this.routers = resp);
     }
   }

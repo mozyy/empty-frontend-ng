@@ -13,8 +13,8 @@ const routes: Routes = [
         loadChildren: () => import('./pages/news/news.module').then((m) => m.NewsModule),
       },
       {
-        path: 'manage',
-        loadChildren: () => import('./pages/manage/manage.module').then((m) => m.ManageModule),
+        path: 'system',
+        loadChildren: () => import('./pages/system/system.module').then((m) => m.SystemModule),
       },
       {
         path: '',

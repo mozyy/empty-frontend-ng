@@ -25,6 +25,7 @@ export class OauthService {
   constructor(config:GrpcConfigService, private storageService:StorageService) {
     this.client = new OAuthServiceClient(config.hostname, config.credentials, config.options);
     this.tokenInfo = this.storageService.getItem<TokenInfo>('oauthToken');
+    console.log(111, this.tokenInfo);
   }
 
   token(req: TokenRequest) {
@@ -44,7 +45,7 @@ export class OauthService {
   }
 
   getAccessToken() {
-    if (!this.tokenInfo) {
+    if (!this.tokenInfo || !this.tokenInfo.getAccess()) {
       return of('');
     }
 

@@ -13,7 +13,7 @@ import { HandleErrorService } from '../../services/handle-error.service';
 @Injectable({
   providedIn: 'root',
 })
-export class SourceService {
+export class ResourceService {
   private client: ResourceServiceClient;
 
   private refreshObservable:Subject<null>;
@@ -76,7 +76,7 @@ export class SourceService {
         switchMap(() => this.client.list(req, null)),
         map((resp) => resp.toObject().resourcesList),
         this.handleError.handleCatchError<Resource.AsObject[]>([], 'getSource'),
-        map(SourceService.generateTree),
+        map(ResourceService.generateTree),
       );
   }
 }

@@ -13,7 +13,7 @@ export type ParamsLogin = LoginRequest.AsObject;
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class LoginService {
   private client:LoginServiceClient;
 
   constructor(
@@ -26,7 +26,6 @@ export class UserService {
 
   login(req: LoginRequest) {
     return from(this.client.login(req, null)).pipe(
-      this.handleError.handleCatchError<LoginResponse>(new LoginResponse(), 'login'),
       tap((resp) => {
         this.oauthService.createToken(resp.getTokenInfo()!);
       }),

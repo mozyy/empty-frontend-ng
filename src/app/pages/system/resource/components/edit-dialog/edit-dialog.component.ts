@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CreateRequest, Resource, UpdateRequest } from '../../../../../../proto/system/resource/v1/resource_pb';
-import { SourceService } from '../../../../../grpc/manage/source.service';
+import { ResourceService } from '../../../../../grpc/system/resource.service';
 
 @Component({
   selector: 'efn-edit-dialog',
@@ -18,7 +18,7 @@ export class EditDialogComponent {
     private dialogRef: MatDialogRef<EditDialogComponent, boolean>,
     @Inject(MAT_DIALOG_DATA) private data: Resource.AsObject,
     private fb:FormBuilder,
-    private sourceService: SourceService,
+    private resourceService: ResourceService,
   ) {
     console.log(11111111, 'edit');
   }
@@ -52,13 +52,13 @@ export class EditDialogComponent {
         resource.setId(value.id);
         const req = new UpdateRequest();
         req.setResource(resource);
-        this.sourceService.update(req).subscribe((resp) => {
+        this.resourceService.update(req).subscribe((resp) => {
           this.close(true);
         });
       } else {
         const req = new CreateRequest();
         req.setResource(resource);
-        this.sourceService.create(req).subscribe(() => {
+        this.resourceService.create(req).subscribe(() => {
           this.close(true);
         });
       }

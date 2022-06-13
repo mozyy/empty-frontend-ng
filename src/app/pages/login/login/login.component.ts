@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../../../../proto/user/login/v1/login_pb';
-import { UserService } from '../../../grpc/user/login.service';
+import { LoginService } from '../../../grpc/user/login.service';
 
 @Component({
   selector: 'efn-login',
@@ -17,7 +17,7 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private user:UserService,
+    private login: LoginService,
     private router: Router,
   ) { }
 
@@ -28,7 +28,7 @@ export class LoginComponent {
       req.setMobile(value.mobile || '');
       req.setPassword(value.password || '');
       req.setSmsCode('smscode');
-      this.user.login(req).subscribe((token) => {
+      this.login.login(req).subscribe((token) => {
         if (token) {
           // this.location.back();
           this.router.navigate(['..'], { replaceUrl: true }).then(() => {
