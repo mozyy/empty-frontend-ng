@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../../../../proto/user/login/v1/login_pb';
-import { UserService } from '../../../grpc/user/user.service';
+import { UserService } from '../../../grpc/user/login.service';
 
 @Component({
   selector: 'efn-login',

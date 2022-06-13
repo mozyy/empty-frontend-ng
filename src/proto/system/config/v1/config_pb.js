@@ -328,7 +328,7 @@ proto.system.config.v1.Config.toObject = function(includeInstance, msg) {
     value: jspb.Message.getFieldWithDefault(msg, 6, ""),
     content: jspb.Message.getFieldWithDefault(msg, 7, ""),
     desc: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    oAuthToken: (f = msg.getOAuthToken()) && user_oauth_v1_oauth_pb.TokenInfo.toObject(includeInstance, f)
+    tokenInfo: (f = msg.getTokenInfo()) && user_oauth_v1_oauth_pb.TokenInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -403,7 +403,7 @@ proto.system.config.v1.Config.deserializeBinaryFromReader = function(msg, reader
     case 9:
       var value = new user_oauth_v1_oauth_pb.TokenInfo;
       reader.readMessage(value,user_oauth_v1_oauth_pb.TokenInfo.deserializeBinaryFromReader);
-      msg.setOAuthToken(value);
+      msg.setTokenInfo(value);
       break;
     default:
       reader.skipField();
@@ -493,7 +493,7 @@ proto.system.config.v1.Config.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getOAuthToken();
+  f = message.getTokenInfo();
   if (f != null) {
     writer.writeMessage(
       9,
@@ -706,10 +706,10 @@ proto.system.config.v1.Config.prototype.setDesc = function(value) {
 
 
 /**
- * optional user.oauth.v1.TokenInfo o_auth_token = 9;
+ * optional user.oauth.v1.TokenInfo token_info = 9;
  * @return {?proto.user.oauth.v1.TokenInfo}
  */
-proto.system.config.v1.Config.prototype.getOAuthToken = function() {
+proto.system.config.v1.Config.prototype.getTokenInfo = function() {
   return /** @type{?proto.user.oauth.v1.TokenInfo} */ (
     jspb.Message.getWrapperField(this, user_oauth_v1_oauth_pb.TokenInfo, 9));
 };
@@ -719,7 +719,7 @@ proto.system.config.v1.Config.prototype.getOAuthToken = function() {
  * @param {?proto.user.oauth.v1.TokenInfo|undefined} value
  * @return {!proto.system.config.v1.Config} returns this
 */
-proto.system.config.v1.Config.prototype.setOAuthToken = function(value) {
+proto.system.config.v1.Config.prototype.setTokenInfo = function(value) {
   return jspb.Message.setWrapperField(this, 9, value);
 };
 
@@ -728,8 +728,8 @@ proto.system.config.v1.Config.prototype.setOAuthToken = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.system.config.v1.Config} returns this
  */
-proto.system.config.v1.Config.prototype.clearOAuthToken = function() {
-  return this.setOAuthToken(undefined);
+proto.system.config.v1.Config.prototype.clearTokenInfo = function() {
+  return this.setTokenInfo(undefined);
 };
 
 
@@ -737,7 +737,7 @@ proto.system.config.v1.Config.prototype.clearOAuthToken = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.system.config.v1.Config.prototype.hasOAuthToken = function() {
+proto.system.config.v1.Config.prototype.hasTokenInfo = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 

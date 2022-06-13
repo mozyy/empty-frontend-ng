@@ -34,10 +34,10 @@ export namespace RegisterRequest {
 }
 
 export class RegisterResponse extends jspb.Message {
-  getOAuthToken(): user_oauth_v1_oauth_pb.TokenInfo | undefined;
-  setOAuthToken(value?: user_oauth_v1_oauth_pb.TokenInfo): RegisterResponse;
-  hasOAuthToken(): boolean;
-  clearOAuthToken(): RegisterResponse;
+  getTokenInfo(): user_oauth_v1_oauth_pb.TokenInfo | undefined;
+  setTokenInfo(value?: user_oauth_v1_oauth_pb.TokenInfo): RegisterResponse;
+  hasTokenInfo(): boolean;
+  clearTokenInfo(): RegisterResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RegisterResponse.AsObject;
@@ -49,7 +49,7 @@ export class RegisterResponse extends jspb.Message {
 
 export namespace RegisterResponse {
   export type AsObject = {
-    oAuthToken?: user_oauth_v1_oauth_pb.TokenInfo.AsObject,
+    tokenInfo?: user_oauth_v1_oauth_pb.TokenInfo.AsObject,
   }
 }
 
@@ -80,10 +80,10 @@ export namespace LoginRequest {
 }
 
 export class LoginResponse extends jspb.Message {
-  getOAuthToken(): user_oauth_v1_oauth_pb.TokenInfo | undefined;
-  setOAuthToken(value?: user_oauth_v1_oauth_pb.TokenInfo): LoginResponse;
-  hasOAuthToken(): boolean;
-  clearOAuthToken(): LoginResponse;
+  getTokenInfo(): user_oauth_v1_oauth_pb.TokenInfo | undefined;
+  setTokenInfo(value?: user_oauth_v1_oauth_pb.TokenInfo): LoginResponse;
+  hasTokenInfo(): boolean;
+  clearTokenInfo(): LoginResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): LoginResponse.AsObject;
@@ -95,7 +95,7 @@ export class LoginResponse extends jspb.Message {
 
 export namespace LoginResponse {
   export type AsObject = {
-    oAuthToken?: user_oauth_v1_oauth_pb.TokenInfo.AsObject,
+    tokenInfo?: user_oauth_v1_oauth_pb.TokenInfo.AsObject,
   }
 }
 

@@ -78,5 +78,48 @@ export class OAuthServiceClient {
     this.methodDescriptorToken);
   }
 
+  methodDescriptorValid = new grpcWeb.MethodDescriptor(
+    '/user.oauth.v1.OAuthService/Valid',
+    grpcWeb.MethodType.UNARY,
+    user_oauth_v1_oauth_pb.ValidRequest,
+    user_oauth_v1_oauth_pb.ValidResponse,
+    (request: user_oauth_v1_oauth_pb.ValidRequest) => {
+      return request.serializeBinary();
+    },
+    user_oauth_v1_oauth_pb.ValidResponse.deserializeBinary
+  );
+
+  valid(
+    request: user_oauth_v1_oauth_pb.ValidRequest,
+    metadata: grpcWeb.Metadata | null): Promise<user_oauth_v1_oauth_pb.ValidResponse>;
+
+  valid(
+    request: user_oauth_v1_oauth_pb.ValidRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: user_oauth_v1_oauth_pb.ValidResponse) => void): grpcWeb.ClientReadableStream<user_oauth_v1_oauth_pb.ValidResponse>;
+
+  valid(
+    request: user_oauth_v1_oauth_pb.ValidRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: user_oauth_v1_oauth_pb.ValidResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/user.oauth.v1.OAuthService/Valid',
+        request,
+        metadata || {},
+        this.methodDescriptorValid,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/user.oauth.v1.OAuthService/Valid',
+    request,
+    metadata || {},
+    this.methodDescriptorValid);
+  }
+
 }
 

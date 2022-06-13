@@ -379,7 +379,7 @@ proto.user.login.v1.RegisterResponse.prototype.toObject = function(opt_includeIn
  */
 proto.user.login.v1.RegisterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    oAuthToken: (f = msg.getOAuthToken()) && user_oauth_v1_oauth_pb.TokenInfo.toObject(includeInstance, f)
+    tokenInfo: (f = msg.getTokenInfo()) && user_oauth_v1_oauth_pb.TokenInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -419,7 +419,7 @@ proto.user.login.v1.RegisterResponse.deserializeBinaryFromReader = function(msg,
     case 1:
       var value = new user_oauth_v1_oauth_pb.TokenInfo;
       reader.readMessage(value,user_oauth_v1_oauth_pb.TokenInfo.deserializeBinaryFromReader);
-      msg.setOAuthToken(value);
+      msg.setTokenInfo(value);
       break;
     default:
       reader.skipField();
@@ -450,7 +450,7 @@ proto.user.login.v1.RegisterResponse.prototype.serializeBinary = function() {
  */
 proto.user.login.v1.RegisterResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getOAuthToken();
+  f = message.getTokenInfo();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -462,10 +462,10 @@ proto.user.login.v1.RegisterResponse.serializeBinaryToWriter = function(message,
 
 
 /**
- * optional user.oauth.v1.TokenInfo o_auth_token = 1;
+ * optional user.oauth.v1.TokenInfo token_info = 1;
  * @return {?proto.user.oauth.v1.TokenInfo}
  */
-proto.user.login.v1.RegisterResponse.prototype.getOAuthToken = function() {
+proto.user.login.v1.RegisterResponse.prototype.getTokenInfo = function() {
   return /** @type{?proto.user.oauth.v1.TokenInfo} */ (
     jspb.Message.getWrapperField(this, user_oauth_v1_oauth_pb.TokenInfo, 1));
 };
@@ -475,7 +475,7 @@ proto.user.login.v1.RegisterResponse.prototype.getOAuthToken = function() {
  * @param {?proto.user.oauth.v1.TokenInfo|undefined} value
  * @return {!proto.user.login.v1.RegisterResponse} returns this
 */
-proto.user.login.v1.RegisterResponse.prototype.setOAuthToken = function(value) {
+proto.user.login.v1.RegisterResponse.prototype.setTokenInfo = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -484,8 +484,8 @@ proto.user.login.v1.RegisterResponse.prototype.setOAuthToken = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.user.login.v1.RegisterResponse} returns this
  */
-proto.user.login.v1.RegisterResponse.prototype.clearOAuthToken = function() {
-  return this.setOAuthToken(undefined);
+proto.user.login.v1.RegisterResponse.prototype.clearTokenInfo = function() {
+  return this.setTokenInfo(undefined);
 };
 
 
@@ -493,7 +493,7 @@ proto.user.login.v1.RegisterResponse.prototype.clearOAuthToken = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.user.login.v1.RegisterResponse.prototype.hasOAuthToken = function() {
+proto.user.login.v1.RegisterResponse.prototype.hasTokenInfo = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -720,7 +720,7 @@ proto.user.login.v1.LoginResponse.prototype.toObject = function(opt_includeInsta
  */
 proto.user.login.v1.LoginResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    oAuthToken: (f = msg.getOAuthToken()) && user_oauth_v1_oauth_pb.TokenInfo.toObject(includeInstance, f)
+    tokenInfo: (f = msg.getTokenInfo()) && user_oauth_v1_oauth_pb.TokenInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -760,7 +760,7 @@ proto.user.login.v1.LoginResponse.deserializeBinaryFromReader = function(msg, re
     case 1:
       var value = new user_oauth_v1_oauth_pb.TokenInfo;
       reader.readMessage(value,user_oauth_v1_oauth_pb.TokenInfo.deserializeBinaryFromReader);
-      msg.setOAuthToken(value);
+      msg.setTokenInfo(value);
       break;
     default:
       reader.skipField();
@@ -791,7 +791,7 @@ proto.user.login.v1.LoginResponse.prototype.serializeBinary = function() {
  */
 proto.user.login.v1.LoginResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getOAuthToken();
+  f = message.getTokenInfo();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -803,10 +803,10 @@ proto.user.login.v1.LoginResponse.serializeBinaryToWriter = function(message, wr
 
 
 /**
- * optional user.oauth.v1.TokenInfo o_auth_token = 1;
+ * optional user.oauth.v1.TokenInfo token_info = 1;
  * @return {?proto.user.oauth.v1.TokenInfo}
  */
-proto.user.login.v1.LoginResponse.prototype.getOAuthToken = function() {
+proto.user.login.v1.LoginResponse.prototype.getTokenInfo = function() {
   return /** @type{?proto.user.oauth.v1.TokenInfo} */ (
     jspb.Message.getWrapperField(this, user_oauth_v1_oauth_pb.TokenInfo, 1));
 };
@@ -816,7 +816,7 @@ proto.user.login.v1.LoginResponse.prototype.getOAuthToken = function() {
  * @param {?proto.user.oauth.v1.TokenInfo|undefined} value
  * @return {!proto.user.login.v1.LoginResponse} returns this
 */
-proto.user.login.v1.LoginResponse.prototype.setOAuthToken = function(value) {
+proto.user.login.v1.LoginResponse.prototype.setTokenInfo = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -825,8 +825,8 @@ proto.user.login.v1.LoginResponse.prototype.setOAuthToken = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.user.login.v1.LoginResponse} returns this
  */
-proto.user.login.v1.LoginResponse.prototype.clearOAuthToken = function() {
-  return this.setOAuthToken(undefined);
+proto.user.login.v1.LoginResponse.prototype.clearTokenInfo = function() {
+  return this.setTokenInfo(undefined);
 };
 
 
@@ -834,7 +834,7 @@ proto.user.login.v1.LoginResponse.prototype.clearOAuthToken = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.user.login.v1.LoginResponse.prototype.hasOAuthToken = function() {
+proto.user.login.v1.LoginResponse.prototype.hasTokenInfo = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 

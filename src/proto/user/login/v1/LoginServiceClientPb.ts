@@ -16,7 +16,7 @@ import * as grpcWeb from 'grpc-web';
 import * as user_login_v1_login_pb from '../../../user/login/v1/login_pb';
 
 
-export class UserServiceClient {
+export class LoginServiceClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;
   credentials_: null | { [index: string]: string; };
@@ -36,7 +36,7 @@ export class UserServiceClient {
   }
 
   methodDescriptorRegister = new grpcWeb.MethodDescriptor(
-    '/user.login.v1.UserService/Register',
+    '/user.login.v1.LoginService/Register',
     grpcWeb.MethodType.UNARY,
     user_login_v1_login_pb.RegisterRequest,
     user_login_v1_login_pb.RegisterResponse,
@@ -64,7 +64,7 @@ export class UserServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/user.login.v1.UserService/Register',
+          '/user.login.v1.LoginService/Register',
         request,
         metadata || {},
         this.methodDescriptorRegister,
@@ -72,14 +72,14 @@ export class UserServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/user.login.v1.UserService/Register',
+      '/user.login.v1.LoginService/Register',
     request,
     metadata || {},
     this.methodDescriptorRegister);
   }
 
   methodDescriptorLogin = new grpcWeb.MethodDescriptor(
-    '/user.login.v1.UserService/Login',
+    '/user.login.v1.LoginService/Login',
     grpcWeb.MethodType.UNARY,
     user_login_v1_login_pb.LoginRequest,
     user_login_v1_login_pb.LoginResponse,
@@ -107,7 +107,7 @@ export class UserServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/user.login.v1.UserService/Login',
+          '/user.login.v1.LoginService/Login',
         request,
         metadata || {},
         this.methodDescriptorLogin,
@@ -115,14 +115,14 @@ export class UserServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/user.login.v1.UserService/Login',
+      '/user.login.v1.LoginService/Login',
     request,
     metadata || {},
     this.methodDescriptorLogin);
   }
 
   methodDescriptorInfo = new grpcWeb.MethodDescriptor(
-    '/user.login.v1.UserService/Info',
+    '/user.login.v1.LoginService/Info',
     grpcWeb.MethodType.UNARY,
     user_login_v1_login_pb.InfoRequest,
     user_login_v1_login_pb.InfoResponse,
@@ -150,7 +150,7 @@ export class UserServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/user.login.v1.UserService/Info',
+          '/user.login.v1.LoginService/Info',
         request,
         metadata || {},
         this.methodDescriptorInfo,
@@ -158,7 +158,7 @@ export class UserServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/user.login.v1.UserService/Info',
+      '/user.login.v1.LoginService/Info',
     request,
     metadata || {},
     this.methodDescriptorInfo);

@@ -6,7 +6,7 @@
   },
   "tags": [
     {
-      "name": "UserService"
+      "name": "LoginService"
     }
   ],
   "consumes": [
@@ -16,9 +16,9 @@
     "application/json"
   ],
   "paths": {
-    "/user.login.v1.UserService/Info": {
+    "/user.login.v1.LoginService/Info": {
       "post": {
-        "operationId": "UserService_Info",
+        "operationId": "LoginService_Info",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -44,13 +44,13 @@
           }
         ],
         "tags": [
-          "UserService"
+          "LoginService"
         ]
       }
     },
-    "/user.login.v1.UserService/Login": {
+    "/user.login.v1.LoginService/Login": {
       "post": {
-        "operationId": "UserService_Login",
+        "operationId": "LoginService_Login",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -76,13 +76,13 @@
           }
         ],
         "tags": [
-          "UserService"
+          "LoginService"
         ]
       }
     },
-    "/user.login.v1.UserService/Register": {
+    "/user.login.v1.LoginService/Register": {
       "post": {
-        "operationId": "UserService_Register",
+        "operationId": "LoginService_Register",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -108,7 +108,7 @@
           }
         ],
         "tags": [
-          "UserService"
+          "LoginService"
         ]
       }
     }
@@ -217,7 +217,7 @@
     "v1LoginResponse": {
       "type": "object",
       "properties": {
-        "oAuthToken": {
+        "tokenInfo": {
           "$ref": "#/definitions/v1TokenInfo",
           "title": "oauth token"
         }
@@ -243,7 +243,7 @@
     "v1RegisterResponse": {
       "type": "object",
       "properties": {
-        "oAuthToken": {
+        "tokenInfo": {
           "$ref": "#/definitions/v1TokenInfo",
           "title": "oauth token"
         }
@@ -288,20 +288,29 @@
           "title": "路由\n是否首页"
         },
         "path": {
-          "type": "string"
+          "type": "string",
+          "title": "路由地址/接口地址(正则)"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "title": "资源名"
         },
         "menu": {
-          "type": "boolean"
+          "type": "boolean",
+          "title": "是否菜单"
         },
         "icon": {
-          "type": "string"
+          "type": "string",
+          "title": "菜单图标"
         },
         "desc": {
           "type": "string",
           "title": "描述"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int64",
+          "title": "排序"
         }
       },
       "title": "系统资源"
@@ -314,7 +323,7 @@
         "TYPE_API"
       ],
       "default": "TYPE_ROUTE_UNSPECIFIED",
-      "description": "- TYPE_ROUTE_UNSPECIFIED: 路由\n - TYPE_FUNCTION: 功能\n - TYPE_API: 接品",
+      "description": "- TYPE_ROUTE_UNSPECIFIED: 路由\n - TYPE_FUNCTION: 功能\n - TYPE_API: 接口",
       "title": "资源类型"
     },
     "v1Role": {

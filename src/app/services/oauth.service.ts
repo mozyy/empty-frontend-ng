@@ -52,12 +52,12 @@ export class OauthService {
     }
     const token = await this.oAuth2Token.refresh();
     this.oAuth2Token = token;
-    const req = new TokenInfo();
-    req.setAccess(token.accessToken);
-    req.setRefresh(token.refreshToken);
-    req.setTokenType(token.tokenType);
-    req.setAccessExpiresIn(((token as any).expires - Date.now()) / 1000);
-    this.setToken(req);
+    const tokenInfo = new TokenInfo();
+    tokenInfo.setAccess(token.accessToken);
+    tokenInfo.setRefresh(token.refreshToken);
+    tokenInfo.setTokenType(token.tokenType);
+    tokenInfo.setAccessExpiresIn(((token as any).expires - Date.now()) / 1000);
+    this.setToken(tokenInfo);
     return token.accessToken;
   }
 

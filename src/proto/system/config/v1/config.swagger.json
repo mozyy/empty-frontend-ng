@@ -262,7 +262,7 @@
         "desc": {
           "type": "string"
         },
-        "oAuthToken": {
+        "tokenInfo": {
           "$ref": "#/definitions/v1TokenInfo"
         }
       }

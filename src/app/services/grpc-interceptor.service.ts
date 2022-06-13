@@ -2,7 +2,9 @@ import { isPlatformServer } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Message } from 'google-protobuf';
 import { UnaryInterceptor, UnaryResponse, Request } from 'grpc-web';
-import { OauthService } from './oauth.service';
+import { firstValueFrom } from 'rxjs';
+// eslint-disable-next-line import/no-cycle
+import { OauthService } from '../grpc/user/oauth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +21,7 @@ implements UnaryInterceptor<REQ, RESP> {
     invoker: (request: Request<REQ, RESP>) =>
     Promise<UnaryResponse<REQ, RESP>>,
   ): Promise<UnaryResponse<REQ, RESP>> {
-    const accessToken = await this.oauthService.getAccessToken();
+    const accessToken = await firstValueFrom(this.oauthService.getAccessToken());
     const reqMeta = request.getMetadata();
     reqMeta['Authorization'] = reqMeta['Authorization'] ?? `Bearer ${accessToken}`;
     return invoker(request).then((response) => {

@@ -113,6 +113,54 @@ export namespace TokenResponse {
   }
 }
 
+export class ValidRequest extends jspb.Message {
+  getAccess(): string;
+  setAccess(value: string): ValidRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ValidRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ValidRequest): ValidRequest.AsObject;
+  static serializeBinaryToWriter(message: ValidRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ValidRequest;
+  static deserializeBinaryFromReader(message: ValidRequest, reader: jspb.BinaryReader): ValidRequest;
+}
+
+export namespace ValidRequest {
+  export type AsObject = {
+    access: string,
+  }
+}
+
+export class ValidResponse extends jspb.Message {
+  getAudience(): string;
+  setAudience(value: string): ValidResponse;
+
+  getSubject(): string;
+  setSubject(value: string): ValidResponse;
+
+  getExpiresat(): number;
+  setExpiresat(value: number): ValidResponse;
+
+  getScope(): string;
+  setScope(value: string): ValidResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ValidResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ValidResponse): ValidResponse.AsObject;
+  static serializeBinaryToWriter(message: ValidResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ValidResponse;
+  static deserializeBinaryFromReader(message: ValidResponse, reader: jspb.BinaryReader): ValidResponse;
+}
+
+export namespace ValidResponse {
+  export type AsObject = {
+    audience: string,
+    subject: string,
+    expiresat: number,
+    scope: string,
+  }
+}
+
 export class TokenInfo extends jspb.Message {
   getId(): number;
   setId(value: number): TokenInfo;

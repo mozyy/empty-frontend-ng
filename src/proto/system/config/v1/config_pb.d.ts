@@ -37,10 +37,10 @@ export class Config extends jspb.Message {
   getDesc(): string;
   setDesc(value: string): Config;
 
-  getOAuthToken(): user_oauth_v1_oauth_pb.TokenInfo | undefined;
-  setOAuthToken(value?: user_oauth_v1_oauth_pb.TokenInfo): Config;
-  hasOAuthToken(): boolean;
-  clearOAuthToken(): Config;
+  getTokenInfo(): user_oauth_v1_oauth_pb.TokenInfo | undefined;
+  setTokenInfo(value?: user_oauth_v1_oauth_pb.TokenInfo): Config;
+  hasTokenInfo(): boolean;
+  clearTokenInfo(): Config;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Config.AsObject;
@@ -60,7 +60,7 @@ export namespace Config {
     value: string,
     content: string,
     desc: string,
-    oAuthToken?: user_oauth_v1_oauth_pb.TokenInfo.AsObject,
+    tokenInfo?: user_oauth_v1_oauth_pb.TokenInfo.AsObject,
   }
 }
 

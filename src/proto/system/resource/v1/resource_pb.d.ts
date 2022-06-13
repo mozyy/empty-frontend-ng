@@ -56,6 +56,9 @@ export class Resource extends jspb.Message {
   getDesc(): string;
   setDesc(value: string): Resource;
 
+  getSort(): number;
+  setSort(value: number): Resource;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Resource.AsObject;
   static toObject(includeInstance: boolean, msg: Resource): Resource.AsObject;
@@ -80,6 +83,7 @@ export namespace Resource {
     menu: boolean,
     icon: string,
     desc: string,
+    sort: number,
   }
 
   export enum Type { 

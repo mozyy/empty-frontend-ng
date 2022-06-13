@@ -47,6 +47,38 @@
           "OAuthService"
         ]
       }
+    },
+    "/user.oauth.v1.OAuthService/Valid": {
+      "post": {
+        "operationId": "OAuthService_Valid",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ValidResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ValidRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OAuthService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -251,6 +283,32 @@
       "properties": {
         "tokenInfo": {
           "$ref": "#/definitions/v1TokenInfo"
+        }
+      }
+    },
+    "v1ValidRequest": {
+      "type": "object",
+      "properties": {
+        "access": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ValidResponse": {
+      "type": "object",
+      "properties": {
+        "audience": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "int64"
+        },
+        "scope": {
+          "type": "string"
         }
       }
     }

@@ -273,7 +273,8 @@ proto.system.resource.v1.Resource.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 11, ""),
     menu: jspb.Message.getBooleanFieldWithDefault(msg, 12, false),
     icon: jspb.Message.getFieldWithDefault(msg, 13, ""),
-    desc: jspb.Message.getFieldWithDefault(msg, 14, "")
+    desc: jspb.Message.getFieldWithDefault(msg, 14, ""),
+    sort: jspb.Message.getFieldWithDefault(msg, 15, 0)
   };
 
   if (includeInstance) {
@@ -369,6 +370,10 @@ proto.system.resource.v1.Resource.deserializeBinaryFromReader = function(msg, re
     case 14:
       var value = /** @type {string} */ (reader.readString());
       msg.setDesc(value);
+      break;
+    case 15:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setSort(value);
       break;
     default:
       reader.skipField();
@@ -498,6 +503,13 @@ proto.system.resource.v1.Resource.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeString(
       14,
+      f
+    );
+  }
+  f = message.getSort();
+  if (f !== 0) {
+    writer.writeUint32(
+      15,
       f
     );
   }
@@ -839,6 +851,24 @@ proto.system.resource.v1.Resource.prototype.getDesc = function() {
  */
 proto.system.resource.v1.Resource.prototype.setDesc = function(value) {
   return jspb.Message.setProto3StringField(this, 14, value);
+};
+
+
+/**
+ * optional uint32 sort = 15;
+ * @return {number}
+ */
+proto.system.resource.v1.Resource.prototype.getSort = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.system.resource.v1.Resource} returns this
+ */
+proto.system.resource.v1.Resource.prototype.setSort = function(value) {
+  return jspb.Message.setProto3IntField(this, 15, value);
 };
 
 

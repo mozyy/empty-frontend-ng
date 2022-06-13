@@ -1,5 +1,6 @@
 import * as jspb from 'google-protobuf'
 
+import * as gorm_options_gorm_pb from '../../../gorm/options/gorm_pb';
 
 
 export class SendRequest extends jspb.Message {
