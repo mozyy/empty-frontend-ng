@@ -1,33 +1,25 @@
-import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ɵElement } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CreateRequest, Resource, UpdateRequest } from '../../../../../../proto/system/resource/v1/resource_pb';
 import { ResourceService } from '../../../../../grpc/system/resource.service';
+import { FormGroupBuilder } from '../../../../../utils/types';
 
 @Component({
-  selector: 'efn-edit-dialog',
-  templateUrl: './edit-dialog.component.html',
-  styleUrls: ['./edit-dialog.component.scss'],
+  selector: 'efn-resource-edit',
+  templateUrl: './resource-edit.component.html',
+  styleUrls: ['./resource-edit.component.scss'],
 })
-export class EditDialogComponent {
-  form = this.fb.group({
-    ...this.data,
-  });
+export class ResourceEditComponent {
+  form: FormGroupBuilder<Resource.AsObject>;
 
   constructor(
-    private dialogRef: MatDialogRef<EditDialogComponent, boolean>,
-    @Inject(MAT_DIALOG_DATA) private data: Resource.AsObject,
-    private fb:FormBuilder,
+    private dialogRef: MatDialogRef<ResourceEditComponent, boolean>,
+    @Inject(MAT_DIALOG_DATA) data: Resource.AsObject,
+    fb:FormBuilder,
     private resourceService: ResourceService,
   ) {
-    console.log(11111111, 'edit');
-  }
-
-  get title() {
-    if (this.data.id) {
-      return '编辑';
-    }
-    return '新建';
+    this.form = fb.group(data);
   }
 
   get menuContarl() {

@@ -1,11 +1,13 @@
 import { FlatTreeControl, NestedTreeControl } from '@angular/cdk/tree';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component, OnInit, TemplateRef, ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { DeleteRequest, ListRequest, Resource } from '../../../../proto/system/resource/v1/resource_pb';
 import { ModalService } from '../../../components/modal/modal.service';
 import { ResourceService } from '../../../grpc/system/resource.service';
-import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
+import { ResourceEditComponent } from './components/resource-edit/resource-edit.component';
 
 interface FlatNode extends Resource.AsObject {
   expandable: boolean;
@@ -89,10 +91,8 @@ export class ResourceComponent implements OnInit {
   }
 
   openDialog(data: Resource.AsObject): void {
-    const dialogRef = this.dialog.open<EditDialogComponent,
-    Resource.AsObject, boolean>(EditDialogComponent, {
-      data,
-    });
+    const dialogRef = this.dialog.open<ResourceEditComponent, Resource.AsObject,
+    boolean>(ResourceEditComponent, { data });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

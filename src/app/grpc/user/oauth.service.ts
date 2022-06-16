@@ -45,13 +45,15 @@ export class OauthService {
   }
 
   getAccessToken() {
+    console.log(2222, this.tokenInfo);
     if (!this.tokenInfo || !this.tokenInfo.getAccess()) {
       return of('');
     }
 
-    // if (!this.oAuth2Token.expired()) {
-    // 从已过期再刷新token, 改为还有5分钟过期就刷新
-    if (this.tokenInfo.getAccessExpiresIn() > Date.now() - 1000 * 60 * 5) {
+    // 从已过期再刷新token, 改为还有1分钟过期就刷新
+    const expired = this.tokenInfo.getAccessExpiresIn() / 1000000000
+     > Date.now() / 1000 - this.tokenInfo.getAccessCreateAt()!.getSeconds() + 60;
+    if (expired) {
       return of(this.tokenInfo.getAccess());
     }
     if (!this.refreshing) {

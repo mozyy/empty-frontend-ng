@@ -20,19 +20,23 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { SystemRoutingModule } from './system-routing.module';
 import { SystemComponent } from './system.component';
 import { ResourceComponent } from './resource/resource.component';
-import { EditDialogComponent } from './resource/components/edit-dialog/edit-dialog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DocsComponent } from './docs/docs.component';
 import { RoleComponent } from './role/role.component';
+import { EditDialogModule } from '../../components/edit-dialog/edit-dialog.module';
+import { ResourceEditComponent } from './resource/components/resource-edit/resource-edit.component';
+import { RoleEditComponent } from './role/components/role-edit/role-edit.component';
+import { EditDialogComponent } from '../../components/edit-dialog/edit-dialog.component';
 
 @NgModule({
   declarations: [
     SystemComponent,
     ResourceComponent,
-    EditDialogComponent,
     DashboardComponent,
     DocsComponent,
     RoleComponent,
+    ResourceEditComponent,
+    RoleEditComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +58,7 @@ import { RoleComponent } from './role/role.component';
     MatMenuModule,
     MatPaginatorModule,
     LayoutModule,
+    EditDialogModule,
   ],
 })
 export class SystemModule { }

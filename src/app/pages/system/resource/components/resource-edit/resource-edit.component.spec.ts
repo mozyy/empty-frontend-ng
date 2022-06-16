@@ -1,20 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditDialogComponent } from './edit-dialog.component';
+import { ResourceEditComponent } from './resource-edit.component';
 
-describe('EditDialogComponent', () => {
-  let component: EditDialogComponent;
-  let fixture: ComponentFixture<EditDialogComponent>;
+describe('ResourceEditComponent', () => {
+  let component: ResourceEditComponent;
+  let fixture: ComponentFixture<ResourceEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditDialogComponent ]
+      declarations: [ ResourceEditComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EditDialogComponent);
+    fixture = TestBed.createComponent(ResourceEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

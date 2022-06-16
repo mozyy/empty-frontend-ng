@@ -41,3 +41,39 @@
     </button>
   </mat-tree-node>
 </mat-tree>
+
+<efn-edit-dialog #editDialog>
+  <mat-form-field>
+    <mat-label>父资源</mat-label>
+    <input matInput type="number" formControlName="sourcesItemid" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>资源标识</mat-label>
+    <input matInput placeholder="唯一资源标识" formControlName="key" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>类型</mat-label>
+    <mat-select formControlName="type">
+      <mat-option [value]="0">路由</mat-option>
+      <mat-option [value]="1">功能</mat-option>
+      <mat-option [value]="2">接口</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>路径</mat-label>
+    <input matInput formControlName="path" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>名称</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>图标</mat-label>
+    <input matInput formControlName="icon" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>描述</mat-label>
+    <textarea matInput formControlName="desc"></textarea>
+  </mat-form-field>
+  <!-- <mat-checkbox [formControl]="menuContarl">是否菜单</mat-checkbox> -->
+</efn-edit-dialog>
