@@ -7,7 +7,6 @@ import { NewsServiceClient } from '../../../proto/news/news/v1/NewsServiceClient
 import { DetailRequest, DetailResponse, News } from '../../../proto/news/news/v1/news_pb';
 import { GrpcConfigService } from '../../services/grpc-config.service';
 import { HandleErrorService } from '../../services/handle-error.service';
-import { protobufAssign } from '../../utils/grpc';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +30,7 @@ export class NewsService {
 
   getDetail(link:string) {
     const req = new DetailRequest();
-    protobufAssign({ link }, req);
+    req.setUrl(link);
     return from(this.client.detail(req, null)).pipe(
       map((resp) => resp.toObject()),
       this.handleError.handleCatchError<DetailResponse.AsObject>(new DetailResponse().toObject(), 'get news detail'),
