@@ -1,0 +1,60 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*", "src/proto/**/*", "src/gorm/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "airbnb-base",
+        "airbnb-typescript/base",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "efn",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "efn",
+            "style": "kebab-case"
+          }
+        ],
+        "import/prefer-default-export": "off",
+        "no-return-assign": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "class-methods-use-this": "warn"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    }
+    // {
+    //   "files": ["*.html"],
+    //   "excludedFiles": ["*inline-template-*.component.html"],
+    //   "extends": ["plugin:prettier/recommended"],
+    //   "rules": {
+    //     // NOTE: WE ARE OVERRIDING THE DEFAULT CONFIG TO ALWAYS SET THE PARSER TO ANGULAR (SEE BELOW)
+    //     "prettier/prettier": ["error", { "parser": "angular" }]
+    //   }
+    // },
+    // {
+    //   "files": ["*.scss"],
+    //   "extends": ["plugin:prettier/recommended"],
+    //   "rules": {}
+    // }
+  ]
+}

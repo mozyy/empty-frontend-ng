@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<mat-dialog-content>
+  {{ content }}
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button *ngIf="showCancel" mat-button mat-dialog-close>取消</button>
+  <button mat-button color="primary" [mat-dialog-close]="true">确定</button>
+</mat-dialog-actions>

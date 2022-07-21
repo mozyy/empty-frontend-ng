@@ -1,0 +1,26 @@
+<mat-nav-list class="root">
+  <a
+    [routerLink]="['../detail', item.link]"
+    *ngFor="let item of newsList"
+    class="item"
+  >
+    <mat-card>
+      <mat-card-title-group>
+        <mat-card-title>
+          <span class="mat-h4 card-title">{{ item.title }}</span>
+        </mat-card-title>
+        <mat-card-subtitle>{{
+          item.time + " | " + item.view + " | " + item.comment
+        }}</mat-card-subtitle>
+        <img
+          referrerpolicy="no-referrer"
+          mat-card-md-image
+          [src]="item.image"
+        />
+      </mat-card-title-group>
+      <!-- <mat-card-content>
+              {{ item.getView() + " | " + item.getComment() }}
+            </mat-card-content> -->
+    </mat-card>
+  </a>
+</mat-nav-list>
