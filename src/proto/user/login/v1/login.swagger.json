@@ -1,0 +1,444 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "user/login/v1/login.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "LoginService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/user.login.v1.LoginService/Info": {
+      "post": {
+        "operationId": "LoginService_Info",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1InfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1InfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LoginService"
+        ]
+      }
+    },
+    "/user.login.v1.LoginService/Login": {
+      "post": {
+        "operationId": "LoginService_Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LoginResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1LoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LoginService"
+        ]
+      }
+    },
+    "/user.login.v1.LoginService/Register": {
+      "post": {
+        "operationId": "LoginService_Register",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RegisterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RegisterRequest"
+            }
+          }
+        ],
+        "tags": [
+          "LoginService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "typesDeletedAt": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1CodeChallengeMethod": {
+      "type": "string",
+      "enum": [
+        "plain",
+        "S256"
+      ],
+      "default": "plain",
+      "title": "buf:lint:ignore ENUM_VALUE_PREFIX\nbuf:lint:ignore ENUM_VALUE_UPPER_SNAKE_CASE\nbuf:lint:ignore ENUM_ZERO_VALUE_SUFFIX"
+    },
+    "v1InfoRequest": {
+      "type": "object"
+    },
+    "v1InfoResponse": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/typesDeletedAt"
+        },
+        "name": {
+          "type": "string",
+          "title": "用户名"
+        },
+        "mobile": {
+          "type": "string",
+          "title": "手机号"
+        },
+        "resourceItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Role"
+          },
+          "title": "角色"
+        }
+      }
+    },
+    "v1LoginRequest": {
+      "type": "object",
+      "properties": {
+        "mobile": {
+          "type": "string",
+          "title": "手机号"
+        },
+        "password": {
+          "type": "string",
+          "title": "密码"
+        },
+        "smsCode": {
+          "type": "string",
+          "title": "短信验证码"
+        }
+      }
+    },
+    "v1LoginResponse": {
+      "type": "object",
+      "properties": {
+        "tokenInfo": {
+          "$ref": "#/definitions/v1TokenInfo",
+          "title": "oauth token"
+        }
+      }
+    },
+    "v1RegisterRequest": {
+      "type": "object",
+      "properties": {
+        "mobile": {
+          "type": "string",
+          "title": "手机号"
+        },
+        "smsCode": {
+          "type": "string",
+          "title": "短信验证码"
+        },
+        "password": {
+          "type": "string",
+          "title": "密码"
+        }
+      }
+    },
+    "v1RegisterResponse": {
+      "type": "object",
+      "properties": {
+        "tokenInfo": {
+          "$ref": "#/definitions/v1TokenInfo",
+          "title": "oauth token"
+        }
+      }
+    },
+    "v1Resource": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/typesDeletedAt"
+        },
+        "resourceItemID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Resource"
+          }
+        },
+        "key": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/v1ResourceType"
+        },
+        "index": {
+          "type": "boolean",
+          "title": "路由\n是否首页"
+        },
+        "path": {
+          "type": "string",
+          "title": "路由地址/接口地址(正则)"
+        },
+        "name": {
+          "type": "string",
+          "title": "资源名"
+        },
+        "menu": {
+          "type": "boolean",
+          "title": "是否菜单"
+        },
+        "icon": {
+          "type": "string",
+          "title": "菜单图标"
+        },
+        "desc": {
+          "type": "string",
+          "title": "描述"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int64",
+          "title": "排序"
+        }
+      },
+      "title": "系统资源"
+    },
+    "v1ResourceType": {
+      "type": "string",
+      "enum": [
+        "TYPE_ROUTE_UNSPECIFIED",
+        "TYPE_FUNCTION",
+        "TYPE_API"
+      ],
+      "default": "TYPE_ROUTE_UNSPECIFIED",
+      "description": "- TYPE_ROUTE_UNSPECIFIED: 路由\n - TYPE_FUNCTION: 功能\n - TYPE_API: 接口",
+      "title": "资源类型"
+    },
+    "v1Role": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/typesDeletedAt"
+        },
+        "name": {
+          "type": "string",
+          "title": "角色名"
+        },
+        "resourceItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Resource"
+          },
+          "title": "资源"
+        }
+      }
+    },
+    "v1TokenInfo": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/typesDeletedAt"
+        },
+        "clientID": {
+          "type": "string",
+          "title": "客户端id"
+        },
+        "userID": {
+          "type": "string",
+          "title": "用户id"
+        },
+        "redirectURI": {
+          "type": "string",
+          "title": "回调地址"
+        },
+        "scope": {
+          "type": "string",
+          "title": "请求权限"
+        },
+        "code": {
+          "type": "string",
+          "title": "code"
+        },
+        "codeCreateAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "code 创建时间"
+        },
+        "codeExpiresIn": {
+          "type": "string",
+          "format": "int64"
+        },
+        "codeChallenge": {
+          "type": "string"
+        },
+        "codeChallengeMethod": {
+          "$ref": "#/definitions/v1CodeChallengeMethod"
+        },
+        "access": {
+          "type": "string",
+          "title": "access"
+        },
+        "accessCreateAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "accessExpiresIn": {
+          "type": "string",
+          "format": "int64"
+        },
+        "refresh": {
+          "type": "string",
+          "title": "刷新"
+        },
+        "refreshCreateAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "refreshExpiresIn": {
+          "type": "string",
+          "format": "int64"
+        },
+        "tokenType": {
+          "type": "string"
+        }
+      },
+      "title": "TokenInfo implement oauth2.TokenInfo"
+    }
+  }
+}
