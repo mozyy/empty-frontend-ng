@@ -1,0 +1,138 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "sms/sms/v1/sms.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "SMSService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/sms.sms.v1.SMSService/Send": {
+      "post": {
+        "operationId": "SMSService_Send",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SendResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SendRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SMSService"
+        ]
+      }
+    },
+    "/sms.sms.v1.SMSService/Validation": {
+      "post": {
+        "operationId": "SMSService_Validation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ValidationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ValidationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SMSService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1SendRequest": {
+      "type": "object",
+      "properties": {
+        "mobile": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SendResponse": {
+      "type": "object"
+    },
+    "v1ValidationRequest": {
+      "type": "object",
+      "properties": {
+        "mobile": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ValidationResponse": {
+      "type": "object"
+    }
+  }
+}

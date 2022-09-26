@@ -1,0 +1,316 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "user/oauth/v1/oauth.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "OAuthService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/user.oauth.v1.OAuthService/Token": {
+      "post": {
+        "operationId": "OAuthService_Token",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TokenResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1TokenRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OAuthService"
+        ]
+      }
+    },
+    "/user.oauth.v1.OAuthService/Valid": {
+      "post": {
+        "operationId": "OAuthService_Valid",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ValidResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ValidRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OAuthService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "typesDeletedAt": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1CodeChallengeMethod": {
+      "type": "string",
+      "enum": [
+        "plain",
+        "S256"
+      ],
+      "default": "plain",
+      "title": "buf:lint:ignore ENUM_VALUE_PREFIX\nbuf:lint:ignore ENUM_VALUE_UPPER_SNAKE_CASE\nbuf:lint:ignore ENUM_ZERO_VALUE_SUFFIX"
+    },
+    "v1GrantType": {
+      "type": "string",
+      "enum": [
+        "authorization_code",
+        "password",
+        "client_credentials",
+        "refresh_token",
+        "__implicit"
+      ],
+      "default": "authorization_code",
+      "title": "buf:lint:ignore ENUM_VALUE_PREFIX\nbuf:lint:ignore ENUM_VALUE_UPPER_SNAKE_CASE\nbuf:lint:ignore ENUM_ZERO_VALUE_SUFFIX\ndefine authorization model"
+    },
+    "v1TokenGenerateRequest": {
+      "type": "object",
+      "properties": {
+        "clientID": {
+          "type": "string"
+        },
+        "clientSecret": {
+          "type": "string"
+        },
+        "userID": {
+          "type": "string"
+        },
+        "redirectURI": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "codeChallenge": {
+          "type": "string"
+        },
+        "codeChallengeMethod": {
+          "$ref": "#/definitions/v1CodeChallengeMethod"
+        },
+        "refresh": {
+          "type": "string"
+        },
+        "codeVerifier": {
+          "type": "string"
+        },
+        "accessTokenExp": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1TokenInfo": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/typesDeletedAt"
+        },
+        "clientID": {
+          "type": "string",
+          "title": "客户端id"
+        },
+        "userID": {
+          "type": "string",
+          "title": "用户id"
+        },
+        "redirectURI": {
+          "type": "string",
+          "title": "回调地址"
+        },
+        "scope": {
+          "type": "string",
+          "title": "请求权限"
+        },
+        "code": {
+          "type": "string",
+          "title": "code"
+        },
+        "codeCreateAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "code 创建时间"
+        },
+        "codeExpiresIn": {
+          "type": "string",
+          "format": "int64"
+        },
+        "codeChallenge": {
+          "type": "string"
+        },
+        "codeChallengeMethod": {
+          "$ref": "#/definitions/v1CodeChallengeMethod"
+        },
+        "access": {
+          "type": "string",
+          "title": "access"
+        },
+        "accessCreateAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "accessExpiresIn": {
+          "type": "string",
+          "format": "int64"
+        },
+        "refresh": {
+          "type": "string",
+          "title": "刷新"
+        },
+        "refreshCreateAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "refreshExpiresIn": {
+          "type": "string",
+          "format": "int64"
+        },
+        "tokenType": {
+          "type": "string"
+        }
+      },
+      "title": "TokenInfo implement oauth2.TokenInfo"
+    },
+    "v1TokenRequest": {
+      "type": "object",
+      "properties": {
+        "grantType": {
+          "$ref": "#/definitions/v1GrantType"
+        },
+        "tokenGenerateRequest": {
+          "$ref": "#/definitions/v1TokenGenerateRequest"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "v1TokenResponse": {
+      "type": "object",
+      "properties": {
+        "tokenInfo": {
+          "$ref": "#/definitions/v1TokenInfo"
+        }
+      }
+    },
+    "v1ValidRequest": {
+      "type": "object",
+      "properties": {
+        "access": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ValidResponse": {
+      "type": "object",
+      "properties": {
+        "audience": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "int64"
+        },
+        "scope": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
