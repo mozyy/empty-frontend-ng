@@ -1,0 +1,14 @@
+// 超出 $line 行显示省略号
+@mixin overEllipsis($line: 1) {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  @if $line == 1 {
+    display: inline-block;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    /*这个数字是设置要显示省略号的行数*/
+    -webkit-box-orient: vertical;
+  }
+}

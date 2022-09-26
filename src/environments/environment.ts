@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  grpcHost: 'http://127.0.0.1:50052/i/api',
 };
 
 /*

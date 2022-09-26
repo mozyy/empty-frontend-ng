@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { ComponentsModule } from './components.module';
+import { AppConfigProvider } from './app.config';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+// import { LayoutModule } from './layout/layout.module';
+import { ModalModule } from './components/modal/modal.module';
+import { ApiModule, BASE_PATH } from './openapi/questions';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -19,10 +24,17 @@ import { ComponentsModule } from './components.module';
       registrationStrategy: 'registerWhenStable:30000',
     }),
     BrowserAnimationsModule,
-    ComponentsModule,
+    HttpClientModule,
+    BrowserTransferStateModule, 
     AppRoutingModule,
+    // LayoutModule,
+    ModalModule,
+    ApiModule,
   ],
-  providers: [],
+  providers: [
+    AppConfigProvider,
+    {provide: BASE_PATH, useValue: 'http://localhost:8080'  }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

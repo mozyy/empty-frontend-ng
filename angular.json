@@ -29,7 +29,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              {
+                "glob": "**/*.swagger.json",
+                "input": "src/proto",
+                "output": "/assets/proto"
+              }
             ],
             "styles": ["src/styles.scss"],
             "scripts": [],
@@ -41,13 +46,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "100kb",
+                  "maximumError": "200kb"
                 }
               ],
               "fileReplacements": [
@@ -114,7 +119,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/empty-frontend-ng/server",
-            "main": "src/main.server.ts",
+            "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss"
           },
@@ -152,6 +157,37 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "empty-frontend-ng:build:development",
+              "serverTarget": "empty-frontend-ng:server:development"
+            },
+            "production": {
+              "browserTarget": "empty-frontend-ng:build:production",
+              "serverTarget": "empty-frontend-ng:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": ["/"]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "empty-frontend-ng:build:production",
+              "serverTarget": "empty-frontend-ng:server:production"
+            },
+            "development": {
+              "browserTarget": "empty-frontend-ng:build:development",
+              "serverTarget": "empty-frontend-ng:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
@@ -159,6 +195,7 @@
   "defaultProject": "empty-frontend-ng",
   "cli": {
     "defaultCollection": "@angular-eslint/schematics",
-    "packageManager": "yarn"
+    "packageManager": "yarn",
+    "analytics": false
   }
 }

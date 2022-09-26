@@ -1,0 +1,14 @@
+@use "@angular/material" as mat;
+
+.name {
+  width: 100px;
+}
+.tree-node:active {
+  // @include mat.elevation(2);
+}
+.cdk-drag-preview {
+  @include mat.elevation(2);
+}
+.cdk-drag-placeholder {
+  opacity: 0;
+}

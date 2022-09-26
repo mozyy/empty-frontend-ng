@@ -1,0 +1,12 @@
+@use "../../../utils/utils.scss";
+
+.root {
+}
+.item {
+  margin-top: 5px;
+  display: block;
+}
+.card-title {
+  line-height: initial;
+  @include utils.overEllipsis(3);
+}

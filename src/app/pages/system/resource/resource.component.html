@@ -1,0 +1,79 @@
+<!-- <button mat-button (click)="openDialog()">add</button> -->
+
+<mat-tree
+  [dataSource]="dataSource"
+  [treeControl]="treeControl"
+  cdkDropList
+  (cdkDropListDropped)="drop($event)"
+>
+  <mat-tree-node
+    *matTreeNodeDef="let node"
+    class="tree-node"
+    matTreeNodePadding
+    cdkDrag
+    [cdkDragData]="node"
+  >
+    <button
+      *ngIf="hasChild(0, node); else hasNoChild"
+      mat-icon-button
+      matTreeNodeToggle
+      [attr.aria-label]="'Toggle ' + node.item"
+    >
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
+      </mat-icon>
+    </button>
+    <ng-template #hasNoChild
+      ><button mat-icon-button disabled></button
+    ></ng-template>
+    <span class="name">{{ node.name }}</span>
+    <button mat-icon-button (click)="edit(node)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button (click)="add(node)">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button cdkDragHandle>
+      <mat-icon>swap_vert</mat-icon>
+    </button>
+    <button mat-icon-button (click)="delete(node)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-tree-node>
+</mat-tree>
+
+<efn-edit-dialog #editDialog>
+  <mat-form-field>
+    <mat-label>父资源</mat-label>
+    <input matInput type="number" formControlName="sourcesItemid" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>资源标识</mat-label>
+    <input matInput placeholder="唯一资源标识" formControlName="key" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>类型</mat-label>
+    <mat-select formControlName="type">
+      <mat-option [value]="0">路由</mat-option>
+      <mat-option [value]="1">功能</mat-option>
+      <mat-option [value]="2">接口</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>路径</mat-label>
+    <input matInput formControlName="path" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>名称</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>图标</mat-label>
+    <input matInput formControlName="icon" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>描述</mat-label>
+    <textarea matInput formControlName="desc"></textarea>
+  </mat-form-field>
+  <!-- <mat-checkbox [formControl]="menuContarl">是否菜单</mat-checkbox> -->
+</efn-edit-dialog>

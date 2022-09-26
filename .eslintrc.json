@@ -1,6 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
+  "ignorePatterns": ["projects/**/*", "src/proto/**/*", "src/gorm/**/*"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -32,7 +32,9 @@
           }
         ],
         "import/prefer-default-export": "off",
-        "@typescript-eslint/no-unused-vars": "warn"
+        "no-return-assign": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "class-methods-use-this": "warn"
       }
     },
     {
