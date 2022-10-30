@@ -1,3 +1,6 @@
+@use 'sass:map';
+@import '../../../styles.scss';
+
 .root {
   display: flex;
   flex-direction: column;
@@ -22,7 +25,20 @@
 .sidenav {
   width: 240px;
 }
+.content {
+  display: flex;
+  flex-direction: column;
+}
 .router {
   margin: 0 auto;
+  flex: auto;
   max-width: 800px;
+}
+.footer {
+  flex: none;
+  text-align: center;
+}
+.link {
+  color: map.get($empty-frontend-ng-primary, 'default');
+  text-decoration: none;
 }

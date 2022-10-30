@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { AppConfigProvider } from './app.config';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-// import { LayoutModule } from './layout/layout.module';
+import { LayoutModule } from './layout/layout.module';
 import { ModalModule } from './components/modal/modal.module';
 import { ApiModule, BASE_PATH } from './openapi/questions';
 
@@ -25,15 +25,15 @@ import { ApiModule, BASE_PATH } from './openapi/questions';
     }),
     BrowserAnimationsModule,
     HttpClientModule,
-    BrowserTransferStateModule, 
+    BrowserTransferStateModule,
     AppRoutingModule,
-    // LayoutModule,
+    LayoutModule,
     ModalModule,
     ApiModule,
   ],
   providers: [
     AppConfigProvider,
-    {provide: BASE_PATH, useValue: 'http://localhost:8080'  }
+    { provide: BASE_PATH, useValue: 'http://localhost:3000/x' },
   ],
   bootstrap: [AppComponent],
 })

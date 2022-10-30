@@ -1,3 +1,3 @@
-export * from './crate.service';
-import { CrateService } from './crate.service';
-export const APIS = [CrateService];
+export * from './questions.service';
+import { QuestionsService } from './questions.service';
+export const APIS = [QuestionsService];

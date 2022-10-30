@@ -4,16 +4,17 @@ import { CommonModule } from '@angular/common';
 import { QuestionsRoutingModule } from './questions-routing.module';
 import { QuestionsComponent } from './questions.component';
 import { ListComponent } from './list/list.component';
-
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
     QuestionsComponent,
-    ListComponent
+    ListComponent,
+    EditComponent,
   ],
   imports: [
     CommonModule,
-    QuestionsRoutingModule
-  ]
+    QuestionsRoutingModule,
+  ],
 })
 export class QuestionsModule { }

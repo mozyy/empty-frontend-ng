@@ -9,11 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { Answer } from './answer';
+import { Question } from './question';
 
 
-export interface NewAnswer { 
-    content: string;
-    correct: boolean;
-    question_id: number;
+export interface QuestionResp { 
+    answers: Array<Answer>;
+    question: Question;
 }
 

@@ -1,10 +1,12 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { isPlatformBrowser } from '@angular/common';
 import {
-  ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID,
+  ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, Optional, PLATFORM_ID,
 } from '@angular/core';
-import { Resource } from '../../../proto/system/resource/v1/resource_pb';
-import { ResourceService } from '../../grpc/system/resource.service';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
+import { Request } from 'express';
+import { getIcp } from '../../utils/status';
+import { Resource } from './components/menu/menu.component';
 
 @Component({
   selector: 'efn-layout',
@@ -15,16 +17,19 @@ export class LayoutComponent implements OnInit, OnDestroy {
   mobileQuery?: MediaQueryList;
 
   isBrowser: boolean;
+  year = new Date().getFullYear()
+  host = 'yyuck.com'
+  icp?: any;
 
-  routers:Resource.AsObject[] = [];
+  routers:Resource[] = [];
 
   private mobileQueryListener = () => {};
 
   constructor(
     media: MediaMatcher,
     changeDetectorRef: ChangeDetectorRef,
-    public resource: ResourceService,
     @Inject(PLATFORM_ID) platformId: Object,
+    @Optional() @Inject(REQUEST) private request: Request,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
     if (this.isBrowser) {
@@ -36,8 +41,10 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.isBrowser) {
-      this.resource.source()
-        .subscribe((resp) => this.routers = resp);
+      this.host = location.host
+      this.icp = getIcp(this.host)
+    } else {
+      this.icp = getIcp(this.request?.hostname||'')
     }
   }
 

@@ -1,5 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { Resource } from '../../../../../proto/system/resource/v1/resource_pb';
+import { Resource as ResourceItem } from '../../../../openapi/resources';
+
+export interface Resource extends ResourceItem {
+  childrenList: Resource[]
+}
 
 @Component({
   selector: 'efn-menu',
@@ -7,5 +11,5 @@ import { Resource } from '../../../../../proto/system/resource/v1/resource_pb';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent {
-  @Input() routers:Resource.AsObject[] = [];
+  @Input() routers:Resource[] = [];
 }

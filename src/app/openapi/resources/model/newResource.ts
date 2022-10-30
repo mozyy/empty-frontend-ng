@@ -11,9 +11,16 @@
  */
 
 
-export interface NewAnswer { 
-    content: string;
-    correct: boolean;
-    question_id: number;
+export interface NewResource { 
+    desc: string;
+    icon: string;
+    index: boolean;
+    key: string;
+    menu: boolean;
+    name: string;
+    path: string;
+    resource_id: number;
+    rtype: number;
+    sort: number;
 }
 

@@ -1,20 +1,20 @@
 import 'zone.js/dist/zone-node';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
-import express from 'express';
+import express, { RequestHandler } from 'express';
 import { join } from 'path';
 
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
+import compression from 'compression';
 import { AppServerModule } from './src/main.server';
-import  compression from 'compression'
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/empty-frontend-ng/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
-// const compression =require('compression')
+  // const compression =require('compression')
 
   server.use(compression()),
 
@@ -26,6 +26,16 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
+  const renderHandler:RequestHandler<{}, any, any, qs.ParsedQs,
+  Record<string, any>> = (req, res) => {
+    res.render(indexHtml, {
+      req,
+      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
+    });
+  };
+
+  server.get('/index.html', renderHandler);
+
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
@@ -34,12 +44,7 @@ export function app(): express.Express {
   }));
 
   // All regular routes use the Universal engine
-  server.get('*', (req, res) => {
-    res.render(indexHtml, {
-      req,
-      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
-    });
-  });
+  server.get('*', renderHandler);
 
   return server;
 }

@@ -1,2 +1,4 @@
-<p>list works!</p>
-<div *ngFor="let item of newsList"><span>11{{ item.question.content }}</span></div> 
+<div class="question" *ngFor="let question of questions">
+  <div>{{ question.question.content }}</div>
+  <div *ngFor="let answer of question.answers">{{ answer.content }}</div>
+</div>

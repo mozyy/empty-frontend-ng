@@ -14,7 +14,9 @@
 export interface QuestionAnswer { 
     answer_id: number;
     content: string;
+    created_at: number;
     id: number;
     question_id: number;
+    updated_at: number;
 }
 
